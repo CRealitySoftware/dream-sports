@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+    html,
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+    :root {
+        --color-bg: 255 255 255;
+        --color-bg-muted: 229 229 229;
+        --color-fg: 8 8 8;
+        --color-fg-muted: 100 100 100;
+        --color-primary: 8 61 145;
+        --color-secondary: 201 162 39;
+    }
+    .dark {
+        --color-bg: 10 10 20;
+        --color-bg-muted: 24 24 40;
+        --color-fg: 245 245 245;
+        --color-fg-muted: 160 160 180;
+        --color-primary: 90 140 240;
+        --color-secondary: 220 178 60;
+    }
+}
