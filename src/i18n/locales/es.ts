@@ -14,7 +14,7 @@ const es = {
   },
   hero: {
     badge: "Convocatoria Abierta · Junio 2026",
-    title: "Tu puerta\nal deporte\neuropeo", 
+    title: "Tu puerta al deporte\neuropeo", 
     subtitle:
       "Conectamos atletas colombianos con el deporte profesional italiano. Una experiencia transformadora de 86 días en Italia.",
     cta: "Inscríbete Ahora",

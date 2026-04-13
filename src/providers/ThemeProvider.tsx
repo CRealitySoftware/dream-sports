@@ -40,7 +40,7 @@ const light: ThemeColors = {
   gold: "rgba(201,162,39,1)",
   goldTint: "rgba(201,162,39,0.10)",
   cta: "rgba(201,162,39,1)",
-  ctaText: "rgba(2,13,56,1)",
+  ctaText: "rgba(255,255,255,1)",
 }
 
 const dark: ThemeColors = {

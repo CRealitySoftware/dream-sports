@@ -86,7 +86,7 @@ export default function Navbar() {
                 style={{
                   paddingHorizontal: 12,
                   paddingVertical: 6,
-                  backgroundColor: locale === lang.id ? colors.brand : "transparent",
+                  backgroundColor: locale === lang.id ? "rgba(8,61,145,0.75)" : "transparent",
                 }}
               >
                 <Text

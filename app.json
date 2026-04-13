@@ -35,11 +35,18 @@
           }
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "56eaa721-3481-4a16-9135-0f10c3de46c5"
+      }
     }
   }
 }

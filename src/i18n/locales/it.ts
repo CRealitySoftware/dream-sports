@@ -14,7 +14,7 @@ const it = {
   },
   hero: {
     badge: "Candidature Aperte · Giugno 2026",
-    title: "La tua porta\nallo sport\neuropeo",
+    title: "La tua porta allo sport\neuropeo",
     subtitle:
       "Colleghiamo atleti colombiani con lo sport professionistico italiano. Un'esperienza trasformativa di 86 giorni in Italia.",
     cta: "Iscriviti Ora",

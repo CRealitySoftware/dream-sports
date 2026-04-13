@@ -184,3 +184,67 @@ src/components/
 ### rules
 1. NO EMOJIS -> use icons
 2. NO INNECESARY COMMENTS -> Just the complex code needs comments
+
+---
+
+## Animations
+
+**Engine:** React Native Reanimated v4 + `IntersectionObserver` (web) for scroll-triggered reveals.
+
+**Wrapper component:** `src/components/ui/AnimatedSection.tsx`
+
+```tsx
+import { AnimatedSection } from "@/components/ui/AnimatedSection"
+
+<AnimatedSection variant="fadeUp" delay={0} duration={650}>
+  <MySection />
+</AnimatedSection>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"fadeUp" \| "fadeIn" \| "fadeLeft" \| "fadeRight" \| "fadeDown"` | `"fadeUp"` | Direction the element slides from |
+| `delay` | `number` (ms) | `0` | Delay before animation starts — use for stagger within a section |
+| `duration` | `number` (ms) | `650` | Animation duration |
+| `threshold` | `number` 0–1 | `0.12` | Fraction of element visible before triggering |
+| `style` | `ViewStyle` | — | Passed to the `Animated.View` wrapper |
+| `className` | `string` | — | NativeWind classes on the wrapper |
+
+### Patterns
+
+**Section-level reveal** (used in `(web)/index.tsx`):
+```tsx
+<AnimatedSection variant="fadeUp">
+  <SomeSection />
+</AnimatedSection>
+```
+
+**Staggered cards within a section** — wrap each item individually with incremental `delay`:
+```tsx
+{items.map((item, i) => (
+  <AnimatedSection key={item.id} variant="fadeUp" delay={i * 80}>
+    <Card item={item} />
+  </AnimatedSection>
+))}
+```
+
+**Two-column split** — opposing directions:
+```tsx
+<AnimatedSection variant="fadeLeft"><TextColumn /></AnimatedSection>
+<AnimatedSection variant="fadeRight"><ImageColumn /></AnimatedSection>
+```
+
+### Platform behavior
+
+- **Web:** `IntersectionObserver` fires once when the element enters the viewport. Animation does not repeat on scroll-back.
+- **Native (future):** Reanimated triggers immediately on mount (no scroll detection). Enhance later with `useScrollViewOffset` if needed.
+
+### Rules
+
+- Never animate the `Hero` section — it's above the fold, immediate render is expected.
+- Never animate `FooterSection` — it's a utility element, not a content reveal.
+- Keep `duration` between 500–800ms. Faster feels cheap, slower feels sluggish.
+- Keep stagger `delay` increments at 60–100ms max. Above that, the last card waits too long.
+- Do not nest `AnimatedSection` inside another `AnimatedSection` — use a single wrapper at the right granularity.
