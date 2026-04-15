@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Linking, Pressable, Text, View } from "react-native";
-import LogoButton from "../ui/LogoButton";
+import LogoButton from "../../../ui/LogoButton";
 
 const FG = "#F0F0F0"
 const MUTED = "#9AABBD"

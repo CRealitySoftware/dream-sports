@@ -1,6 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
+import { useRouter } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 
 const STEPS = [
@@ -8,7 +9,7 @@ const STEPS = [
   { n: "2", numKey: "step2Number", titleKey: "step2Title", dateKey: "step2Date", bodyKey: "step2Body" },
   { n: "3", numKey: "step3Number", titleKey: "step3Title", dateKey: "step3Date", bodyKey: "step3Body" },
   { n: "4", numKey: "step4Number", titleKey: "step4Title", dateKey: "step4Date", bodyKey: "step4Body" },
-] as const;
+] as const
 
 function StepCircle({
   label,
@@ -16,10 +17,10 @@ function StepCircle({
   size,
   colors,
 }: {
-  label: string;
-  isFirst: boolean;
-  size: number;
-  colors: ThemeColors;
+  label: string
+  isFirst: boolean
+  size: number
+  colors: ThemeColors
 }) {
   return (
     <View
@@ -44,7 +45,7 @@ function StepCircle({
         {label}
       </Text>
     </View>
-  );
+  )
 }
 
 function DesktopTimeline({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
@@ -108,7 +109,7 @@ function DesktopTimeline({ t, colors }: { t: (k: string) => string; colors: Them
         ))}
       </View>
     </View>
-  );
+  )
 }
 
 function MobileTimeline({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
@@ -161,16 +162,17 @@ function MobileTimeline({ t, colors }: { t: (k: string) => string; colors: Theme
         </View>
       ))}
     </View>
-  );
+  )
 }
 
 export default function ExperienceSection({
   onScrollToRegister,
 }: {
-  onScrollToRegister?: () => void;
+  onScrollToRegister?: () => void
 }) {
-  const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { t } = useTranslation()
+  const { colors } = useTheme()
+  const router = useRouter()
 
   return (
     <View
@@ -237,7 +239,7 @@ export default function ExperienceSection({
             {t("experience.closingText")}
           </Text>
           <Pressable
-            onPress={onScrollToRegister}
+            onPress={() => router.push("/register")}
             style={({ pressed }: any) => ({
               backgroundColor: pressed ? colors.gold : colors.cta,
               paddingHorizontal: 36,
@@ -260,5 +262,5 @@ export default function ExperienceSection({
         </View>
       </View>
     </View>
-  );
+  )
 }

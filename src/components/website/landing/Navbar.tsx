@@ -4,27 +4,29 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { Locale } from "@/i18n/index";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 
 const NAV_LINKS = [
-  { labelKey: "nav.home", sectionId: "hero" },
-  { labelKey: "nav.quienesSomos", sectionId: "quienes-somos" },
-  { labelKey: "nav.disciplinas", sectionId: "disciplinas" },
-  { labelKey: "nav.experiencia", sectionId: "experiencia" },
-  { labelKey: "nav.aliados", sectionId: "aliados" },
+  { labelKey: "nav.home", route: "/" },
+  { labelKey: "nav.quienesSomos", route: "/(web)/about" },
+  { labelKey: "nav.disciplinas", route: "/(web)/sports" },
+  { labelKey: "nav.experiencia", route: "/a" },
+  { labelKey: "nav.aliados", route: "/b" },
 ] as const
 
-function scrollToSection(id: string) {
-  if (Platform.OS === "web") {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-  }
-}
+// function scrollToSection(id: string) {
+//   if (Platform.OS === "web") {
+//     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+//   }
+// }
 
 export default function Navbar() {
   const { t, locale, setLocale } = useTranslation()
   const { colors, isDark, toggle } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+  const router = useRouter()
 
   const navBg = isDark ? "rgba(10,10,20,0.5)" : "rgba(255,255,255,0.9)"
 
@@ -47,8 +49,9 @@ export default function Navbar() {
       >
         <LogoButton />
         <View className="hidden md:flex" style={{ flexDirection: "row", alignItems: "center", gap: 32 }}>
-          {NAV_LINKS.map(({ labelKey, sectionId }) => (
-            <Pressable key={sectionId} onPress={() => scrollToSection(sectionId)}>
+          {NAV_LINKS.map(({ labelKey, route }) => (
+            // @ts-ignore
+            <Pressable key={route} onPress={() => router.push(route)}>
               {({ hovered }: any) => (
                 <View>
                   <Text
@@ -146,10 +149,11 @@ export default function Navbar() {
             paddingBottom: 12,
           }}
         >
-          {NAV_LINKS.map(({ labelKey, sectionId }, i) => (
+          {NAV_LINKS.map(({ labelKey, route }, i) => (
             <Pressable
-              key={sectionId}
-              onPress={() => { scrollToSection(sectionId); setMenuOpen(false) }}
+              key={route}
+              // @ts-ignore
+              onPress={() => { router.push(route); setMenuOpen(false) }}
               style={{
                 paddingVertical: 14,
                 borderBottomWidth: i < NAV_LINKS.length - 1 ? 1 : 0,

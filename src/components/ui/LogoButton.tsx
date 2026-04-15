@@ -2,6 +2,7 @@ import Logo from "@/assets/images/logos/logo.png";
 import { BLURHASH } from '@/constants/image';
 import { useTheme } from '@/hooks/useTheme';
 import { Image } from 'expo-image';
+import { useRouter } from "expo-router";
 import React from 'react';
 import { Platform, Pressable, Text, View } from 'react-native';
 
@@ -14,10 +15,11 @@ function scrollToSection(id: string) {
 export default function LogoButton() {
 
     const { colors } = useTheme()
+    const router = useRouter()
 
     return (
         <Pressable
-            onPress={() => scrollToSection("hero")}
+            onPress={() => router.push("/")}
             style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
         >
             <Image
