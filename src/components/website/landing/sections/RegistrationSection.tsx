@@ -1,3 +1,4 @@
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
@@ -239,7 +240,7 @@ export default function RegistrationSection() {
 
   return (
     <View
-      nativeID="inscripcion"
+      nativeID={SECTIONS_IDS.registration.toString()}
       style={{
         backgroundColor: colors.surfaceElevated,
         borderTopWidth: 2,

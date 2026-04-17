@@ -12,23 +12,31 @@ const NAV_LINKS = [
   { labelKey: "nav.home", route: "/" },
   { labelKey: "nav.quienesSomos", route: "/(web)/about" },
   { labelKey: "nav.disciplinas", route: "/(web)/sports" },
-  { labelKey: "nav.experiencia", route: "/a" },
-  { labelKey: "nav.aliados", route: "/b" },
+  { labelKey: "nav.experiencia", route: "/(web)/experience" },
+  { labelKey: "nav.aliados", route: "/(web)/allies" },
 ] as const
-
-// function scrollToSection(id: string) {
-//   if (Platform.OS === "web") {
-//     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-//   }
-// }
 
 export default function Navbar() {
   const { t, locale, setLocale } = useTranslation()
-  const { colors, isDark, toggle } = useTheme()
+  const { colors, isDark } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [langMenuOpen, setLangMenuOpen] = useState(false)
   const router = useRouter()
 
   const navBg = isDark ? "rgba(10,10,20,0.5)" : "rgba(255,255,255,0.9)"
+  const activeLang = SUPPORT_LANGS.find((lang) => lang.id === locale) ?? SUPPORT_LANGS[0]
+
+  const handleNavigate = (route: string) => {
+    // @ts-ignore
+    router.push(route)
+    setMenuOpen(false)
+  }
+
+  const handleRegistration = () => {
+    // @ts-ignore
+    router.push("/(web)/register")
+    setMenuOpen(false)
+  }
 
   return (
     <View
@@ -72,57 +80,161 @@ export default function Navbar() {
             </Pressable>
           ))}
         </View>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              borderRadius: 20,
-              borderWidth: 1,
-              borderColor: colors.border,
-              overflow: "hidden",
-            }}
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+          <Pressable
+            onPress={handleRegistration}
+            className="hidden md:flex"
+            style={({ pressed }: any) => ({
+              backgroundColor: pressed ? colors.gold : colors.cta,
+              borderRadius: 999,
+              paddingVertical: 10,
+              paddingHorizontal: 18,
+              shadowColor: colors.cta,
+              shadowOpacity: 0.18,
+              shadowRadius: 14,
+              shadowOffset: { width: 0, height: 6 },
+            })}
           >
-            {SUPPORT_LANGS.map((lang) => (
-              <Pressable
-                key={lang.id}
-                onPress={() => setLocale(lang.id as Locale)}
-                style={{
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  backgroundColor: locale === lang.id ? "rgba(8,61,145,0.75)" : "transparent",
-                }}
-              >
+            <Text
+              style={{
+                color: colors.ctaText,
+                fontSize: 13,
+                fontWeight: "800",
+                letterSpacing: 0.5,
+                textTransform: "uppercase",
+              }}
+            >
+              {t("footer.navRegister")}
+            </Text>
+          </Pressable>
+
+          <View style={{ position: "relative", flexDirection: "row", alignItems: "center", alignContent: "center", gap: 10 }}>
+            <Pressable
+              onPress={() => setLangMenuOpen((value) => !value)}
+              style={({ pressed }: any) => ({
+                minWidth: 92,
+                height: 42,
+                borderRadius: 21,
+                borderWidth: 1,
+                borderColor: langMenuOpen ? colors.brand : colors.border,
+                backgroundColor: pressed || langMenuOpen ? colors.surfaceElevated : navBg,
+                paddingHorizontal: 14,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              })}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                <Text style={{ fontSize: 18 }}>{activeLang.icon}</Text>
                 <Text
                   style={{
-                    fontSize: 20,
-                    fontWeight: "700",
-                    letterSpacing: 1,
-                    color: locale === lang.id ? "#fff" : colors.inkMuted,
+                    fontSize: 12,
+                    fontWeight: "800",
+                    letterSpacing: 0.8,
+                    color: colors.ink,
                     textTransform: "uppercase",
                   }}
                 >
-                  {lang.icon}
+                  {activeLang.id}
                 </Text>
-              </Pressable>
-            ))}
+              </View>
+              <Ionicons
+                name={langMenuOpen ? "chevron-up" : "chevron-down"}
+                size={14}
+                color={colors.inkMuted}
+              />
+            </Pressable>
+
+            {langMenuOpen && (
+              <View
+                style={{
+                  position: "absolute",
+                  top: 50,
+                  right: 0,
+                  minWidth: 160,
+                  borderRadius: 18,
+                  backgroundColor: colors.bg,
+                  borderWidth: 1,
+                  borderColor: colors.border,
+                  padding: 8,
+                  shadowColor: "#000",
+                  shadowOpacity: 0.12,
+                  shadowRadius: 18,
+                  shadowOffset: { width: 0, height: 10 },
+                }}
+              >
+                {SUPPORT_LANGS.map((lang) => {
+                  const isActive = locale === lang.id
+
+                  return (
+                    <Pressable
+                      key={lang.id}
+                      onPress={() => {
+                        setLocale(lang.id as Locale)
+                        setLangMenuOpen(false)
+                      }}
+                      style={({ pressed }: any) => ({
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        borderRadius: 12,
+                        paddingHorizontal: 12,
+                        paddingVertical: 10,
+                        backgroundColor: isActive
+                          ? "rgba(8,61,145,0.1)"
+                          : pressed
+                            ? colors.surfaceElevated
+                            : "transparent",
+                      })}
+                    >
+                      <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                        <Text style={{ fontSize: 18 }}>{lang.icon}</Text>
+                        <Text
+                          style={{
+                            color: isActive ? colors.brand : colors.ink,
+                            fontSize: 13,
+                            fontWeight: "700",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {lang.id}
+                        </Text>
+                      </View>
+                      {isActive && <Ionicons name="checkmark" size={16} color={colors.brand} />}
+                    </Pressable>
+                  )
+                })}
+              </View>
+            )}
+            <Pressable
+              onPress={handleRegistration}
+              style={({ pressed }: any) => ({
+                backgroundColor: pressed ? colors.gold : colors.cta,
+                borderRadius: 16,
+                paddingVertical: 10,
+                paddingHorizontal: 10,
+                alignItems: "center",
+              })}
+            >
+              <Text
+                style={{
+                  color: colors.ctaText,
+                  fontSize: 14,
+                  fontWeight: "800",
+                  letterSpacing: 0.4,
+                  textTransform: "uppercase",
+                }}
+              >
+                {t("footer.navRegister")}
+              </Text>
+            </Pressable>
           </View>
-          {/* <Pressable
-            onPress={toggle}
-            style={({ pressed }: any) => ({
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              borderWidth: 1,
-              borderColor: colors.border,
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: pressed ? 0.7 : 1,
-            })}
-          >
-            <Ionicons name={isDark ? "sunny" : "moon"} size={16} color={isDark ? colors.gold : colors.brand} />
-          </Pressable> */}
+
           <Pressable
-            onPress={() => setMenuOpen((v) => !v)}
+            onPress={() => {
+              setMenuOpen((v) => !v)
+              setLangMenuOpen(false)
+            }}
             className="flex md:hidden"
             style={({ pressed }: any) => ({
               width: 36,
@@ -152,8 +264,7 @@ export default function Navbar() {
           {NAV_LINKS.map(({ labelKey, route }, i) => (
             <Pressable
               key={route}
-              // @ts-ignore
-              onPress={() => { router.push(route); setMenuOpen(false) }}
+              onPress={() => handleNavigate(route)}
               style={{
                 paddingVertical: 14,
                 borderBottomWidth: i < NAV_LINKS.length - 1 ? 1 : 0,
@@ -165,6 +276,29 @@ export default function Navbar() {
               </Text>
             </Pressable>
           ))}
+          <Pressable
+            onPress={handleRegistration}
+            style={({ pressed }: any) => ({
+              marginTop: 14,
+              backgroundColor: pressed ? colors.gold : colors.cta,
+              borderRadius: 18,
+              paddingVertical: 14,
+              paddingHorizontal: 18,
+              alignItems: "center",
+            })}
+          >
+            <Text
+              style={{
+                color: colors.ctaText,
+                fontSize: 14,
+                fontWeight: "800",
+                letterSpacing: 0.4,
+                textTransform: "uppercase",
+              }}
+            >
+              {t("footer.navRegister")}
+            </Text>
+          </Pressable>
         </View>
       )}
     </View>

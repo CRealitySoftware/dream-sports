@@ -1,6 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { Linking, Pressable, Text, View } from "react-native";
 import LogoButton from "../../../ui/LogoButton";
 
@@ -11,12 +12,12 @@ const DIVIDER = "rgba(255,255,255,0.08)"
 const ACCENT = "#E2A820"
 
 const NAV_LINKS = [
-  { key: "navHome", section: "inicio" },
-  { key: "navWhoWeAre", section: "quienesSomos" },
-  { key: "navDisciplines", section: "disciplinas" },
-  { key: "navExperience", section: "experiencia" },
-  { key: "navAllies", section: "aliados" },
-  { key: "navRegister", section: "inscripcion" },
+  { key: "navHome", section: "/" },
+  { key: "navWhoWeAre", section: "/(web)/about" },
+  { key: "navDisciplines", section: "/(web)/sports" },
+  { key: "navExperience", section: "/(web)/experience" },
+  { key: "navAllies", section: "/(web)/allies" },
+  { key: "navRegister", section: "/(web)/register" },
 ] as const
 
 const SOCIALS = [
@@ -100,7 +101,7 @@ function ContactColumn({ t }: { t: (k: string) => string }) {
           value={t("footer.email")}
           onPress={() => Linking.openURL(`mailto:${t("footer.email")}`)}
         />
-        <ContactRow
+        {/* <ContactRow
           prefix="📞 IT"
           value={t("footer.phoneItaly")}
           onPress={() => Linking.openURL(`tel:${t("footer.phoneItaly").replace(/\s/g, "")}`)}
@@ -109,7 +110,7 @@ function ContactColumn({ t }: { t: (k: string) => string }) {
           prefix="📞 CO"
           value={t("footer.phoneColombia")}
           onPress={() => Linking.openURL(`tel:${t("footer.phoneColombia").replace(/\s/g, "")}`)}
-        />
+        /> */}
         <ContactRow prefix="📍" value={t("footer.addressLabel")} />
       </View>
     </View>
@@ -128,17 +129,20 @@ function NavColumn({
       </Text>
       <View style={{ gap: 8 }}>
         {NAV_LINKS.map((link) => (
-          <Pressable
+          <Link
             key={link.key}
-            onPress={() => { }}
-            style={({ hovered }: any) => ({ opacity: hovered ? 1 : 0.85 })}
+            href={link.section}
           >
-            {({ hovered }: any) => (
-              <Text style={{ color: hovered ? FG : MUTED, fontSize: 13, lineHeight: 22 }}>
-                {t(`footer.${link.key}`)}
-              </Text>
-            )}
-          </Pressable>
+            <Pressable
+              style={({ hovered }: any) => ({ opacity: hovered ? 1 : 0.85 })}
+            >
+              {({ hovered }: any) => (
+                <Text style={{ color: hovered ? FG : MUTED, fontSize: 13, lineHeight: 22 }}>
+                  {t(`footer.${link.key}`)}
+                </Text>
+              )}
+            </Pressable>
+          </Link>
         ))}
       </View>
     </View>

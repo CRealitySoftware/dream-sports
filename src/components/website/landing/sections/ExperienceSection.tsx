@@ -1,7 +1,9 @@
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
-import { useRouter } from "expo-router";
+import { scrollToSection } from "@/utils/scrollToSection";
 import { Pressable, Text, View } from "react-native";
 
 const STEPS = [
@@ -165,102 +167,99 @@ function MobileTimeline({ t, colors }: { t: (k: string) => string; colors: Theme
   )
 }
 
-export default function ExperienceSection({
-  onScrollToRegister,
-}: {
-  onScrollToRegister?: () => void
-}) {
+export default function ExperienceSection() {
   const { t } = useTranslation()
   const { colors } = useTheme()
-  const router = useRouter()
 
   return (
     <View
-      nativeID="experiencia"
+      nativeID={SECTIONS_IDS.experience.toString()}
       style={{
         backgroundColor: colors.surfaceElevated,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}
     >
-      <View
-        className="py-20 md:py-24 px-6"
-        style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}
-      >
-        <View style={{ alignItems: "center", marginBottom: 56 }}>
-          <View
-            style={{
-              backgroundColor: colors.brandTint,
-              borderRadius: 20,
-              paddingHorizontal: 14,
-              paddingVertical: 6,
-              marginBottom: 16,
-            }}
-          >
-            <Text
+      <AnimatedSection variant="fadeUp">
+        <View
+          className="py-20 md:py-24 px-6"
+          style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}
+        >
+          <View style={{ alignItems: "center", marginBottom: 56 }}>
+            <View
               style={{
-                color: colors.brand,
-                fontSize: 11,
-                fontWeight: "700",
-                letterSpacing: 2,
-                textTransform: "uppercase",
+                backgroundColor: colors.brandTint,
+                borderRadius: 20,
+                paddingHorizontal: 14,
+                paddingVertical: 6,
+                marginBottom: 16,
               }}
             >
-              {t("experience.sectionTag")}
+              <Text
+                style={{
+                  color: colors.brand,
+                  fontSize: 11,
+                  fontWeight: "700",
+                  letterSpacing: 2,
+                  textTransform: "uppercase",
+                }}
+              >
+                {t("experience.sectionTag")}
+              </Text>
+            </View>
+            <Text
+              style={{
+                color: colors.ink,
+                fontSize: 36,
+                fontWeight: "800",
+                letterSpacing: -0.8,
+                textAlign: "center",
+              }}
+            >
+              {t("experience.sectionTitle")}
             </Text>
           </View>
-          <Text
-            style={{
-              color: colors.ink,
-              fontSize: 36,
-              fontWeight: "800",
-              letterSpacing: -0.8,
-              textAlign: "center",
-            }}
-          >
-            {t("experience.sectionTitle")}
-          </Text>
-        </View>
 
-        <DesktopTimeline t={t} colors={colors} />
-        <MobileTimeline t={t} colors={colors} />
+          <DesktopTimeline t={t} colors={colors} />
+          <MobileTimeline t={t} colors={colors} />
 
-        <View style={{ alignItems: "center", marginTop: 64 }}>
-          <Text
-            style={{
-              color: colors.inkMuted,
-              fontSize: 15,
-              lineHeight: 26,
-              textAlign: "center",
-              maxWidth: 600,
-              marginBottom: 32,
-            }}
-          >
-            {t("experience.closingText")}
-          </Text>
-          <Pressable
-            onPress={() => router.push("/register")}
-            style={({ pressed }: any) => ({
-              backgroundColor: pressed ? colors.gold : colors.cta,
-              paddingHorizontal: 36,
-              paddingVertical: 16,
-              borderRadius: 40,
-              opacity: pressed ? 0.9 : 1,
-            })}
-          >
+          <View style={{ alignItems: "center", marginTop: 64 }}>
             <Text
               style={{
-                color: colors.ctaText,
+                color: colors.inkMuted,
                 fontSize: 15,
-                fontWeight: "800",
-                letterSpacing: 0.3,
+                lineHeight: 26,
+                textAlign: "center",
+                maxWidth: 600,
+                marginBottom: 32,
               }}
             >
-              {t("experience.cta")}
+              {t("experience.closingText")}
             </Text>
-          </Pressable>
+            <Pressable
+              onPress={() => scrollToSection(SECTIONS_IDS.registration.toString())}
+              style={({ pressed }: any) => ({
+                backgroundColor: pressed ? colors.gold : colors.cta,
+                paddingHorizontal: 36,
+                paddingVertical: 16,
+                borderRadius: 40,
+                opacity: pressed ? 0.9 : 1,
+              })}
+            >
+              <Text
+                style={{
+                  color: colors.ctaText,
+                  fontSize: 15,
+                  fontWeight: "800",
+                  letterSpacing: 0.3,
+                }}
+              >
+                {t("experience.cta")}
+              </Text>
+            </Pressable>
+          </View>
         </View>
-      </View>
+      </AnimatedSection>
     </View>
   )
 }

@@ -150,6 +150,16 @@ const es = {
     closingText: "Cada ciclo está diseñado para que los deportistas sean evaluados en condiciones reales de entrenamiento y competencia. DreamSports trabaja activamente para que esa visibilidad se convierta en oportunidades concretas.",
     cta: "Reserva tu cupo",
   },
+  experienceHero: {
+    eyebrow: "La experiencia",
+    headline: "86 días que pueden cambiar tu carrera para siempre",
+    subheadline: "Un proceso estructurado que lleva al deportista colombiano desde su ciudad hasta los escenarios deportivos de Italia. Selección, preparación, inmersión y proyección real.",
+  },
+  alliesHero: {
+    eyebrow: "Colaboradores y aliados",
+    headline: "El equipo que hace posible el puente entre Colombia e Italia",
+    subheadline: "Una red de profesionales, entrenadores, clubes e instituciones en ambos países que respaldan, operan y dan credibilidad al programa DreamSports International.",
+  },
   aboutHero: {
     eyebrow: "Quiénes somos",
     headline: "Un puente entre el talento colombiano y el deporte europeo",
@@ -283,6 +293,12 @@ const es = {
     videoSubtitle: "El referente de esta disciplina en Italia te invita a ser parte del programa.",
     referenceLabel: "Referente de la disciplina en Italia",
     videoPending: "Video próximamente",
+  },
+  notFound: {
+    code: "404",
+    headline: "Página no encontrada",
+    subheadline: "La página que buscas no existe o fue movida.",
+    cta: "Volver al inicio",
   },
   footer: {
     tagline: "Conectando el talento colombiano con Europa",

@@ -1,3 +1,5 @@
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
@@ -41,7 +43,7 @@ function SocialButton({ label, colors }: { label: string; colors: ThemeColors })
         justifyContent: "center",
       })}
     >
-      <FontAwesome5 name={label} color={colors.brand} size={20}/>
+      <FontAwesome5 name={label} color={colors.brand} size={20} />
     </Pressable>
   )
 }
@@ -182,77 +184,78 @@ export default function AlliesSection() {
 
   return (
     <View
-      nativeID="aliados"
+      nativeID={SECTIONS_IDS.allies.toString()}
       style={{
         backgroundColor: colors.bg,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}
     >
-      <View
-        className="py-20 md:py-24"
-        style={{ maxWidth: 1120, alignSelf: "center", width: "100%", paddingHorizontal: 24 }}
-      >
-        <View style={{ alignItems: "center", marginBottom: 40 }}>
-          <View
-            style={{
-              backgroundColor: colors.brandTint,
-              borderRadius: 20,
-              paddingHorizontal: 14,
-              paddingVertical: 6,
-              marginBottom: 16,
-            }}
-          >
-            <Text
+      <AnimatedSection variant="fadeUp">
+        <View
+          className="py-20 md:py-24"
+          style={{ maxWidth: 1120, alignSelf: "center", width: "100%", paddingHorizontal: 24 }}
+        >
+          <View style={{ alignItems: "center", marginBottom: 40 }}>
+            <View
               style={{
-                color: colors.brand,
-                fontSize: 11,
-                fontWeight: "700",
-                letterSpacing: 2,
-                textTransform: "uppercase",
+                backgroundColor: colors.brandTint,
+                borderRadius: 20,
+                paddingHorizontal: 14,
+                paddingVertical: 6,
+                marginBottom: 16,
               }}
             >
-              {t("allies.sectionTag")}
+              <Text
+                style={{
+                  color: colors.brand,
+                  fontSize: 11,
+                  fontWeight: "700",
+                  letterSpacing: 2,
+                  textTransform: "uppercase",
+                }}
+              >
+                {t("allies.sectionTag")}
+              </Text>
+            </View>
+            <Text
+              style={{
+                color: colors.ink,
+                fontSize: 36,
+                fontWeight: "800",
+                letterSpacing: -0.8,
+                textAlign: "center",
+                marginBottom: 12,
+              }}
+            >
+              {t("allies.sectionTitle")}
+            </Text>
+            <Text
+              style={{
+                color: colors.inkMuted,
+                fontSize: 15,
+                lineHeight: 24,
+                textAlign: "center",
+                maxWidth: 520,
+              }}
+            >
+              {t("allies.subtitle")}
             </Text>
           </View>
-          <Text
-            style={{
-              color: colors.ink,
-              fontSize: 36,
-              fontWeight: "800",
-              letterSpacing: -0.8,
-              textAlign: "center",
-              marginBottom: 12,
-            }}
-          >
-            {t("allies.sectionTitle")}
-          </Text>
-          <Text
-            style={{
-              color: colors.inkMuted,
-              fontSize: 15,
-              lineHeight: 24,
-              textAlign: "center",
-              maxWidth: 520,
-            }}
-          >
-            {t("allies.subtitle")}
-          </Text>
         </View>
-      </View>
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 24, gap: 16, paddingBottom: 8 }}
-      >
-        {PLACEHOLDER_ALLIES.map((ally) => (
-          <AllyCard key={ally.id} ally={ally} colors={colors} t={t} />
-        ))}
-        <MoreCard colors={colors} t={t} />
-      </ScrollView>
-
-      <View style={{ height: 80 }} />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 24, gap: 16, paddingBottom: 8 }}
+        >
+          {PLACEHOLDER_ALLIES.map((ally) => (
+            <AllyCard key={ally.id} ally={ally} colors={colors} t={t} />
+          ))}
+          <MoreCard colors={colors} t={t} />
+        </ScrollView>
+        <View style={{ height: 80 }} />
+      </AnimatedSection>
     </View>
   )
 }

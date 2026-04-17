@@ -22,12 +22,8 @@ export default function LandingPage() {
         <ProgramSection />
       </AnimatedSection>
       <DisciplinesSection />
-      <AnimatedSection variant="fadeUp">
-        <ExperienceSection />
-      </AnimatedSection>
-      <AnimatedSection variant="fadeUp">
-        <AlliesSection />
-      </AnimatedSection>
+      <ExperienceSection />
+      <AlliesSection />
       <RegistrationSection />
       <FooterSection />
     </ScrollView>

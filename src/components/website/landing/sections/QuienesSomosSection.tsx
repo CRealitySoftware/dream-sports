@@ -1,4 +1,5 @@
 import Logo from "@/assets/images/logos/logo-variant.png";
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { Image } from "expo-image";
@@ -11,7 +12,7 @@ export default function QuienesSomosSection() {
 
   return (
     <View
-      nativeID="quienes-somos"
+      nativeID={SECTIONS_IDS.about.toString()}
       style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <View

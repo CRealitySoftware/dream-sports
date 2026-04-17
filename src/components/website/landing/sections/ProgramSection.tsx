@@ -1,3 +1,4 @@
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
@@ -8,9 +9,9 @@ function BulletItem({
   dotColor,
   textColor,
 }: {
-  text: string;
-  dotColor: string;
-  textColor: string;
+  text: string
+  dotColor: string
+  textColor: string
 }) {
   return (
     <View style={{ flexDirection: "row", alignItems: "flex-start", gap: 10, marginBottom: 12 }}>
@@ -26,7 +27,7 @@ function BulletItem({
       />
       <Text style={{ color: textColor, fontSize: 14, lineHeight: 22, flex: 1 }}>{text}</Text>
     </View>
-  );
+  )
 }
 
 const P1_ITEMS = [
@@ -34,15 +35,15 @@ const P1_ITEMS = [
   "phase1Item2",
   "phase1Item3",
   "phase1Item4",
-] as const;
+] as const
 
 function Phase1Card({ t, gold }: { t: (k: string) => string; gold: string }) {
   // Colors are fixed: always light-on-dark regardless of theme
-  const white = "rgba(255,255,255,1)";
-  const whiteMuted = "rgba(255,255,255,0.65)";
-  const whiteFaint = "rgba(255,255,255,0.45)";
-  const whiteBorder = "rgba(255,255,255,0.12)";
-  const tagBg = "rgba(255,255,255,0.14)";
+  const white = "rgba(255,255,255,1)"
+  const whiteMuted = "rgba(255,255,255,0.65)"
+  const whiteFaint = "rgba(255,255,255,0.45)"
+  const whiteBorder = "rgba(255,255,255,0.12)"
+  const tagBg = "rgba(255,255,255,0.14)"
 
   return (
     <View
@@ -104,7 +105,7 @@ function Phase1Card({ t, gold }: { t: (k: string) => string; gold: string }) {
         </Text>
       </View>
     </View>
-  );
+  )
 }
 
 const P2_ITEMS = [
@@ -112,10 +113,10 @@ const P2_ITEMS = [
   "phase2Item2",
   "phase2Item3",
   "phase2Item4",
-] as const;
+] as const
 
 function Phase2Card({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
-  const tagBg = colors.brandTint; // ~8% opacity tint
+  const tagBg = colors.brand
 
   return (
     <View
@@ -181,15 +182,15 @@ function Phase2Card({ t, colors }: { t: (k: string) => string; colors: ThemeColo
         </Text>
       </View>
     </View>
-  );
+  )
 }
 export default function ProgramSection() {
-  const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { t } = useTranslation()
+  const { colors } = useTheme()
 
   return (
     <View
-      nativeID="programa"
+      nativeID={SECTIONS_IDS.program.toString()}
       style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <View
@@ -199,7 +200,7 @@ export default function ProgramSection() {
         <View style={{ alignItems: "center", marginBottom: 48 }}>
           <View
             style={{
-              backgroundColor: colors.brandTint,
+              backgroundColor: colors.brand,
               borderRadius: 20,
               paddingHorizontal: 14,
               paddingVertical: 6,
@@ -249,5 +250,5 @@ export default function ProgramSection() {
         </View>
       </View>
     </View>
-  );
+  )
 }

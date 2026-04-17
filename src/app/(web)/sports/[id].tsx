@@ -5,11 +5,17 @@ import SportItalySection from '@/components/website/landing/sections/sports/Spor
 import SportPresentationSection from '@/components/website/landing/sections/sports/SportPresentationSection';
 import SportSelectionDatesSection from '@/components/website/landing/sections/sports/SportSelectionDatesSection';
 import SportVideoSection from '@/components/website/landing/sections/sports/SportVideoSection';
-import { useLocalSearchParams } from 'expo-router';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import { ScrollView } from 'react-native';
+
+const VALID_SPORTS = ['football', 'basketball', 'volleyball', 'cycling']
 
 export default function Page() {
     const { id } = useLocalSearchParams<{ id: string }>()
+
+    if (!id || !VALID_SPORTS.includes(id)) {
+        return <Redirect href="/(web)/not-found" />
+    }
 
     return (
         <ScrollView>

@@ -1,4 +1,5 @@
 import { BLURHASH, SPORTS_IMAGES } from "@/constants/image";
+import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
@@ -145,7 +146,7 @@ export default function DisciplinesSection() {
 
   return (
     <View
-      nativeID="disciplinas"
+      nativeID={SECTIONS_IDS.sports.toString()}
       style={{
         backgroundColor: colors.surfaceMuted,
         borderTopWidth: 1,

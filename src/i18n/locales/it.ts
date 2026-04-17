@@ -150,6 +150,16 @@ const it = {
     closingText: "Ogni ciclo è progettato affinché gli atleti vengano valutati in condizioni reali di allenamento e competizione. DreamSports lavora attivamente affinché quella visibilità si traduca in opportunità concrete.",
     cta: "Prenota il tuo posto",
   },
+  experienceHero: {
+    eyebrow: "L'esperienza",
+    headline: "86 giorni che possono cambiare la tua carriera per sempre",
+    subheadline: "Un processo strutturato che porta l'atleta colombiano dalla sua città agli scenari sportivi italiani. Selezione, preparazione, immersione e proiezione reale.",
+  },
+  alliesHero: {
+    eyebrow: "Collaboratori e alleati",
+    headline: "Il team che rende possibile il ponte tra Colombia e Italia",
+    subheadline: "Una rete di professionisti, allenatori, club e istituzioni in entrambi i paesi che supportano, operano e danno credibilità al programma DreamSports International.",
+  },
   aboutHero: {
     eyebrow: "Chi siamo",
     headline: "Un ponte tra il talento colombiano e lo sport europeo",
@@ -283,6 +293,12 @@ const it = {
   },
   inscripcion: {
     title: "Iscrizione",
+  },
+  notFound: {
+    code: "404",
+    headline: "Pagina non trovata",
+    subheadline: "La pagina che stai cercando non esiste o è stata spostata.",
+    cta: "Torna alla home",
   },
   footer: {
     tagline: "Collegare il talento colombiano con l'Europa",

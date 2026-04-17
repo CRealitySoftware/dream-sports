@@ -4,13 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { Image } from 'expo-image';
 import { useRouter } from "expo-router";
 import React from 'react';
-import { Platform, Pressable, Text, View } from 'react-native';
-
-function scrollToSection(id: string) {
-    if (Platform.OS === "web") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    }
-}
+import { Pressable, Text, View } from 'react-native';
 
 export default function LogoButton() {
 
