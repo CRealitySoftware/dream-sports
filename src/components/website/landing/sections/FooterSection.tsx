@@ -3,6 +3,7 @@ import { useTranslation } from "@/i18n/I18nProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { Linking, Pressable, Text, View } from "react-native";
+import { useCallback } from "react";
 import LogoButton from "../../../ui/LogoButton";
 
 const FG = "#F0F0F0"
@@ -21,15 +22,20 @@ const NAV_LINKS = [
 ] as const
 
 const SOCIALS = [
-  { id: "ig", label: "IG", icon: "instagram" },
-  { id: "li", label: "LI", icon: "linkedin-in" },
-  { id: "wa", label: "WA", icon: "whatsapp" },
-  { id: "yt", label: "YT", icon: "youtube" },
+  { id: "ig", label: "IG", icon: "instagram", url: "https://www.instagram.com/dream_sports26" },
+  { id: "li", label: "LI", icon: "linkedin-in", url: null },
+  { id: "wa", label: "WA", icon: "whatsapp", url: null },
+  { id: "yt", label: "YT", icon: "youtube", url: null },
 ] as const
 
-function SocialButton({ icon }: { icon: string }) {
+function SocialButton({ icon, url }: { icon: string; url: string | null }) {
+  const handlePress = useCallback(() => {
+    if (url) Linking.openURL(url)
+  }, [url])
+
   return (
     <Pressable
+      onPress={handlePress}
       style={({ pressed }: any) => ({
         width: 40,
         height: 40,
@@ -37,6 +43,7 @@ function SocialButton({ icon }: { icon: string }) {
         backgroundColor: pressed ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.1)",
         alignItems: "center",
         justifyContent: "center",
+        opacity: url ? 1 : 0.4,
       })}
     >
       <FontAwesome5 name={icon} size={24} color={ACCENT} />
@@ -54,7 +61,7 @@ function BrandColumn({ t }: { t: (k: string) => string }) {
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
           {SOCIALS.map((s) => (
-            <SocialButton key={s.id} icon={s.icon} />
+            <SocialButton key={s.id} icon={s.icon} url={s.url} />
           ))}
         </View>
       </View>

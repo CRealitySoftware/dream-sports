@@ -8,10 +8,14 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 
 type Social = { instagram?: string; linkedin?: string; whatsapp?: string }
 type Ally = { id: string; name: string; role: string; country: "it" | "es"; socials: Social }
+type Responsable = { id: string; name: string; role: string; country: "it" | "es" }
+
+const RESPONSABLES: Responsable[] = [
+  { id: "r1", name: "Claudio Capuano", role: "Socio Fondatore · DreamSports International SRL", country: "it" },
+  { id: "r2", name: "Andrés Díaz", role: "Socio Fundador · DreamSports International SRL", country: "es" },
+]
 
 const PLACEHOLDER_ALLIES: Ally[] = [
-  { id: "1", name: "Claudio Capuano", role: "Socio Fondatore", country: "it", socials: { instagram: "#", linkedin: "#" } },
-  { id: "2", name: "Andrés Díaz", role: "Socio Fundador", country: "es", socials: { instagram: "#", linkedin: "#", whatsapp: "#" } },
   { id: "3", name: "Collaboratore IT", role: "Allenatore certificato", country: "it", socials: { instagram: "#" } },
   { id: "4", name: "Colaborador CO", role: "Entrenador regional", country: "es", socials: { instagram: "#", linkedin: "#" } },
   { id: "5", name: "Collaboratore IT", role: "Club sportivo Roma", country: "it", socials: { linkedin: "#" } },
@@ -136,6 +140,86 @@ function AllyCard({ ally, colors, t }: { ally: Ally; colors: ThemeColors; t: (k:
   )
 }
 
+function ResponsableCard({ responsable, colors, t }: { responsable: Responsable; colors: ThemeColors; t: (k: string) => string }) {
+  const initials = getInitials(responsable.name)
+  const countryLabel = responsable.country === "it" ? t("allies.italy") : t("allies.colombia")
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        minWidth: 200,
+        backgroundColor: colors.surface,
+        borderWidth: 1.5,
+        borderColor: colors.brand,
+        borderRadius: 16,
+        paddingVertical: 32,
+        paddingHorizontal: 20,
+        alignItems: "center",
+      }}
+    >
+      <View
+        style={{
+          width: 88,
+          height: 88,
+          borderRadius: 44,
+          backgroundColor: colors.brandTint,
+          borderWidth: 2,
+          borderColor: colors.brand,
+          borderStyle: "dashed",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 16,
+        }}
+      >
+        <Text style={{ color: colors.brand, fontSize: 26, fontWeight: "800" }}>{initials}</Text>
+      </View>
+
+      <Text
+        style={{
+          color: colors.ink,
+          fontSize: 16,
+          fontWeight: "800",
+          textAlign: "center",
+          marginBottom: 6,
+        }}
+      >
+        {responsable.name}
+      </Text>
+
+      <Text
+        style={{
+          color: colors.inkMuted,
+          fontSize: 12,
+          textAlign: "center",
+          marginBottom: 12,
+          lineHeight: 18,
+        }}
+      >
+        {responsable.role}
+      </Text>
+
+      <View
+        style={{
+          backgroundColor: colors.goldTint,
+          borderRadius: 20,
+          paddingHorizontal: 10,
+          paddingVertical: 3,
+          marginBottom: 12,
+        }}
+      >
+        <Text style={{ color: colors.gold, fontSize: 10, fontWeight: "700", letterSpacing: 0.8 }}>
+          {countryLabel}
+        </Text>
+      </View>
+
+      <Text style={{ color: colors.inkMuted, fontSize: 11, fontStyle: "italic" }}>
+        {t("allies.photoPending")}
+      </Text>
+    </View>
+  )
+}
+
 function MoreCard({ colors, t }: { colors: ThemeColors; t: (k: string) => string }) {
   return (
     <View
@@ -242,6 +326,41 @@ export default function AlliesSection() {
               {t("allies.subtitle")}
             </Text>
           </View>
+
+          <View style={{ marginBottom: 48 }}>
+            <Text
+              style={{
+                color: colors.gold,
+                fontSize: 11,
+                fontWeight: "700",
+                letterSpacing: 1.5,
+                textTransform: "uppercase",
+                textAlign: "center",
+                marginBottom: 6,
+              }}
+            >
+              {t("allies.responsablesTitle")}
+            </Text>
+            <Text
+              style={{
+                color: colors.inkMuted,
+                fontSize: 13,
+                textAlign: "center",
+                marginBottom: 24,
+              }}
+            >
+              {t("allies.responsablesSubtitle")}
+            </Text>
+            <View className="flex-col md:flex-row" style={{ gap: 16 }}>
+              {RESPONSABLES.map((r) => (
+                <AnimatedSection key={r.id} variant="fadeUp" delay={RESPONSABLES.indexOf(r) * 80}>
+                  <ResponsableCard responsable={r} colors={colors} t={t} />
+                </AnimatedSection>
+              ))}
+            </View>
+          </View>
+
+          <View style={{ height: 1, backgroundColor: colors.border, marginBottom: 40 }} />
         </View>
 
         <ScrollView

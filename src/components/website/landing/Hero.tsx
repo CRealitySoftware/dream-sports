@@ -27,7 +27,7 @@ export default function Hero({ variant = "plain" }: HeroProps) {
       primaryCta={{ label: t("hero.cta"), onPress: () => scrollToSection(SECTIONS_IDS.registration.toString()) }}
       secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => scrollToSection(SECTIONS_IDS.about.toString()) }}
       stats={[
-        { value: 160, label: t("stats.spots") },
+        { value: 300, label: t("stats.spots") },
         { value: 4, label: t("stats.disciplines") },
         { value: 86, label: t("stats.days") },
       ]}
