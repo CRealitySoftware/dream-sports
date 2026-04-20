@@ -1,5 +1,5 @@
-import { supabase } from "@/lib/supabase";
 import { useTheme } from "@/hooks/useTheme";
+import { supabase } from "@/lib/supabase";
 import { Ionicons } from "@expo/vector-icons";
 import * as DocumentPicker from "expo-document-picker";
 import { useLocalSearchParams } from "expo-router";
@@ -225,7 +225,7 @@ export default function ConfirmPage() {
           </Text>
           <Text style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 20 }}>
             ¿Preguntas? Escríbenos a{" "}
-            <Text style={{ color: colors.brand, fontWeight: "700" }}>dreamsports26@gmail.com</Text>
+            <Text style={{ color: colors.brand, fontWeight: "700" }}>info@dreamsportsinternational.com</Text>
           </Text>
         </View>
       </View>

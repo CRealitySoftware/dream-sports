@@ -321,7 +321,7 @@ const es = {
   footer: {
     tagline: "Conectando el talento colombiano con Europa",
     contactTitle: "Contacto",
-    email: "dreamsports26@gmail.com",
+    email: "info@dreamsportsinternational.com",
     phoneItaly: "+39 333 441 4464",
     phoneColombia: "+57 316 752 6055",
     addressLabel: "Via della Marcigliana 532, Roma, Italia",

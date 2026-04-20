@@ -1,7 +1,5 @@
 import PageHero, { HeroVariant } from "@/components/ui/PageHero";
-import { SECTIONS_IDS } from "@/constants/landing";
 import { useTranslation } from "@/i18n/I18nProvider";
-import { scrollToSection } from "@/utils/scrollToSection";
 import { useRouter } from "expo-router";
 
 const BG_IMAGE = require("../../../../assets/images/sports/football-bg.jpg")
@@ -24,8 +22,8 @@ export default function Hero({ variant = "plain" }: HeroProps) {
       title={t("hero.title")}
       accentLineIndex={1}
       subtitle={t("hero.subtitle")}
-      primaryCta={{ label: t("hero.cta"), onPress: () => scrollToSection(SECTIONS_IDS.registration.toString()) }}
-      secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => scrollToSection(SECTIONS_IDS.about.toString()) }}
+      primaryCta={{ label: t("hero.cta"), onPress: () => router.push("/(web)/register") }}
+      secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => router.push("/(web)/about") }}
       stats={[
         { value: 300, label: t("stats.spots") },
         { value: 4, label: t("stats.disciplines") },
