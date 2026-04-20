@@ -2,7 +2,7 @@ import DocumentViewer from "@/components/ui/DocumentViewer";
 import Modal from "@/components/ui/Modal";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useTheme } from "@/hooks/useTheme";
-import { DISCIPLINE_LABELS, STATUS_CONFIG, type UserRow, type UserStatus } from "@/lib/users";
+import { DISCIPLINE_LABELS, STATUS_CONFIG, sendPaymentConfirmation, type UserRow, type UserStatus } from "@/lib/users";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
@@ -54,11 +54,26 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
   const [loadingStatus, setLoadingStatus] = useState<UserStatus | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   async function handleStatus(status: UserStatus, isPaid?: boolean) {
     setLoadingStatus(status);
     await onStatusChange(status, isPaid);
     setLoadingStatus(null);
+  }
+
+  async function handleSendEmail() {
+    setSendingEmail(true);
+    setEmailError(false);
+    const { error } = await sendPaymentConfirmation(user);
+    setSendingEmail(false);
+    if (error) {
+      setEmailError(true);
+    } else {
+      setEmailSent(true);
+    }
   }
 
   async function handleDelete() {
@@ -164,6 +179,46 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
             );
           })}
         </View>
+
+        {user.status === "approved" && (
+          <View style={{ marginTop: 16, flexDirection: "row", alignItems: "center", gap: 12 }}>
+            <Pressable
+              onPress={handleSendEmail}
+              disabled={sendingEmail || emailSent}
+              style={({ pressed }: { pressed: boolean }) => ({
+                flexDirection: "row", alignItems: "center", gap: 8,
+                paddingVertical: 10, paddingHorizontal: 18, borderRadius: 8,
+                backgroundColor: emailSent
+                  ? "rgba(40,180,90,0.12)"
+                  : pressed ? "rgba(8,61,145,0.15)" : "rgba(8,61,145,0.08)",
+                borderWidth: 1,
+                borderColor: emailSent ? "rgba(30,160,70,0.5)" : "rgba(8,61,145,0.3)",
+                opacity: (sendingEmail || emailSent) ? 0.8 : 1,
+              })}
+            >
+              {sendingEmail ? (
+                <ActivityIndicator size="small" color="rgba(8,61,145,1)" />
+              ) : (
+                <Ionicons
+                  name={emailSent ? "checkmark-circle-outline" : "mail-outline"}
+                  size={15}
+                  color={emailSent ? "rgba(30,160,70,1)" : "rgba(8,61,145,1)"}
+                />
+              )}
+              <Text style={{
+                fontSize: 13, fontWeight: "600",
+                color: emailSent ? "rgba(30,160,70,1)" : "rgba(8,61,145,1)",
+              }}>
+                {emailSent ? "Correo enviado" : "Enviar correo de confirmación"}
+              </Text>
+            </Pressable>
+            {emailError && (
+              <Text style={{ color: "rgba(220,60,60,1)", fontSize: 12 }}>
+                Error al enviar, intenta de nuevo
+              </Text>
+            )}
+          </View>
+        )}
       </Section>
 
       {/* Personal */}
