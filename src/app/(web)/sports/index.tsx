@@ -1,3 +1,4 @@
+import Background from '@/assets/images/sports/bg6.jpg';
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
 import DisciplinesSection from '@/components/website/landing/sections/DisciplinesSection';
@@ -14,6 +15,8 @@ export default function Page() {
         <ScrollView>
             <PageHero
                 minHeightScale={0.8}
+                variant="image"
+                imageSource={Background}
                 title={t("sports.title")}
                 subtitle={t("sports.subtitle")}
             />

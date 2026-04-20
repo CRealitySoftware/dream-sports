@@ -1,26 +1,27 @@
+import LogoButton from "@/components/ui/LogoButton";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
+import { DrawerContentScrollView, type DrawerContentComponentProps } from "@react-navigation/drawer";
 import { Redirect } from "expo-router";
 import { Drawer } from "expo-router/drawer";
-import { DrawerContentScrollView, type DrawerContentComponentProps } from "@react-navigation/drawer";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
 
 type NavItem = {
-  name: string;
-  label: string;
-  icon: React.ComponentProps<typeof Ionicons>["name"];
-};
+  name: string
+  label: string
+  icon: React.ComponentProps<typeof Ionicons>["name"]
+}
 
 const NAV_ITEMS: NavItem[] = [
-  { name: "index",  label: "Dashboard", icon: "grid-outline"   },
-  { name: "users",  label: "Usuarios",  icon: "people-outline" },
-];
+  { name: "index", label: "Dashboard", icon: "grid-outline" },
+  { name: "users", label: "Usuarios", icon: "people-outline" },
+]
 
 function DrawerContent(props: DrawerContentComponentProps) {
-  const { colors } = useTheme();
-  const { signOut, user } = useAuth();
-  const currentRoute = props.state.routeNames[props.state.index];
+  const { colors } = useTheme()
+  const { signOut, user } = useAuth()
+  const currentRoute = props.state.routeNames[props.state.index]
 
   return (
     <DrawerContentScrollView
@@ -29,15 +30,22 @@ function DrawerContent(props: DrawerContentComponentProps) {
       contentContainerStyle={{ flex: 1 }}
       style={{ backgroundColor: colors.brand }}
     >
-      <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 24 }}>
-        {/* Logo */}
-        <Text style={{ color: "#ffffff", fontSize: 16, fontWeight: "800", letterSpacing: -0.3, marginBottom: 32, paddingHorizontal: 8 }}>
-          Dream<Text style={{ color: colors.gold }}>Sports</Text>
-        </Text>
-
-        {/* Nav items */}
+      <View style={{ flex: 1, paddingHorizontal: 10, paddingTop: 16, paddingBottom: 24 }}>
+        <View
+          style={{
+            padding: 5,
+            borderRadius: 10,
+            backgroundColor: colors.bg,
+            width: "auto",
+            alignContent: "center",
+            alignItems: "center",
+            margin: 10
+          }}
+        >
+          <LogoButton showText={false} />
+        </View>
         {NAV_ITEMS.map((item) => {
-          const active = currentRoute === item.name;
+          const active = currentRoute === item.name
           return (
             <Pressable
               key={item.name}
@@ -47,7 +55,7 @@ function DrawerContent(props: DrawerContentComponentProps) {
                 alignItems: "center",
                 gap: 10,
                 paddingVertical: 10,
-                paddingHorizontal: 12,
+                paddingHorizontal: 6,
                 borderRadius: 10,
                 marginBottom: 4,
                 backgroundColor: active ? "rgba(255,255,255,0.12)" : "transparent",
@@ -58,12 +66,10 @@ function DrawerContent(props: DrawerContentComponentProps) {
                 {item.label}
               </Text>
             </Pressable>
-          );
+          )
         })}
 
         <View style={{ flex: 1 }} />
-
-        {/* User + sign out */}
         <Text style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, paddingHorizontal: 12, marginBottom: 8 }} numberOfLines={1}>
           {user?.email}
         </Text>
@@ -76,23 +82,23 @@ function DrawerContent(props: DrawerContentComponentProps) {
         </Pressable>
       </View>
     </DrawerContentScrollView>
-  );
+  )
 }
 
 export default function MainLayout() {
-  const { session, loading } = useAuth();
-  const { colors } = useTheme();
+  const { session, loading } = useAuth()
+  const { colors } = useTheme()
 
   if (loading) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
         <ActivityIndicator size="large" color={colors.brand} />
       </View>
-    );
+    )
   }
 
   if (!session) {
-    return <Redirect href="/backoffice/login" />;
+    return <Redirect href="/backoffice/login" />
   }
 
   return (
@@ -113,7 +119,7 @@ export default function MainLayout() {
       }}
     >
       <Drawer.Screen name="index" options={{ title: "Dashboard" }} />
-      <Drawer.Screen name="users"  options={{ title: "Usuarios"  }} />
+      <Drawer.Screen name="users" options={{ title: "Usuarios" }} />
     </Drawer>
-  );
+  )
 }

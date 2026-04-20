@@ -8,11 +8,15 @@ import FooterSection from "@/components/website/landing/sections/FooterSection";
 import ProgramSection from "@/components/website/landing/sections/ProgramSection";
 import QuienesSomosSection from "@/components/website/landing/sections/QuienesSomosSection";
 import RegistrationSection from "@/components/website/landing/sections/RegistrationSection";
+import { registerScrollRef } from "@/utils/scrollToSection";
+import { useRef } from "react";
 import { ScrollView } from "react-native";
 
 export default function LandingPage() {
+  const scrollRef = useRef<ScrollView>(null);
+
   return (
-    <ScrollView>
+    <ScrollView ref={(ref) => { scrollRef.current = ref; registerScrollRef(ref); }}>
       <Hero variant="video" />
       <AnimatedSection variant="fadeIn">
         <QuienesSomosSection />
@@ -27,5 +31,5 @@ export default function LandingPage() {
       <RegistrationSection />
       <FooterSection />
     </ScrollView>
-  )
+  );
 }

@@ -3,8 +3,7 @@ import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
-import { scrollToSection } from "@/utils/scrollToSection";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const STEPS = [
   { n: "1", numKey: "step1Number", titleKey: "step1Title", dateKey: "step1Date", bodyKey: "step1Body" },
@@ -236,7 +235,7 @@ export default function ExperienceSection() {
             >
               {t("experience.closingText")}
             </Text>
-            <Pressable
+            {/* <Pressable
               onPress={() => scrollToSection(SECTIONS_IDS.registration.toString())}
               style={({ pressed }: any) => ({
                 backgroundColor: pressed ? colors.gold : colors.cta,
@@ -256,7 +255,7 @@ export default function ExperienceSection() {
               >
                 {t("experience.cta")}
               </Text>
-            </Pressable>
+            </Pressable> */}
           </View>
         </View>
       </AnimatedSection>

@@ -9,7 +9,7 @@ export default function AboutCtaSection() {
   const { push } = useRouter()
 
   return (
-    <View style={{ backgroundColor: colors.brand }}>
+    <View style={{ background: "linear-gradient(180deg, #083D91 0%, #051f52 50%, #030e2a 100%)" } as any}>
       <View
         className="py-16 md:py-20 px-6"
         style={{ maxWidth: 640, alignSelf: "center", width: "100%", alignItems: "center" }}

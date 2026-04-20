@@ -6,7 +6,11 @@ import { useRouter } from "expo-router";
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-export default function LogoButton() {
+type LogoButtonProps = {
+    showText?: boolean
+}
+
+export default function LogoButton({ showText = true }: LogoButtonProps) {
 
     const { colors } = useTheme()
     const router = useRouter()
@@ -26,15 +30,18 @@ export default function LogoButton() {
                 contentFit="cover"
                 transition={1000}
             />
-            <View>
-                <Text style={{ fontWeight: "800", letterSpacing: 1.5, fontSize: 14 }}>
-                    <Text style={{ color: colors.brand }}>DREAM</Text>
-                    <Text style={{ color: colors.brand }}> SPORTS</Text>
-                </Text>
-                <Text style={{ color: colors.inkMuted, fontSize: 8, letterSpacing: 3, fontWeight: "600" }}>
-                    INTERNATIONAL
-                </Text>
-            </View>
+            {
+                showText &&
+                <View>
+                    <Text style={{ fontWeight: "800", letterSpacing: 1.5, fontSize: 14 }}>
+                        <Text style={{ color: colors.brand }}>DREAM</Text>
+                        <Text style={{ color: colors.brand }}> SPORTS</Text>
+                    </Text>
+                    <Text style={{ color: colors.inkMuted, fontSize: 8, letterSpacing: 3, fontWeight: "600" }}>
+                        INTERNATIONAL
+                    </Text>
+                </View>
+            }
         </Pressable>
     )
 }

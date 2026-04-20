@@ -135,7 +135,7 @@ export default function PageHero({
   return (
     <View
       nativeID="hero"
-      style={{ minHeight: height * minHeightScale, backgroundColor: "#020D38", overflow: "hidden", position: "relative" }}
+      style={{ minHeight: height * minHeightScale, background: "linear-gradient(180deg, #083D91 0%, #051f52 50%, #020D38 100%)", overflow: "hidden", position: "relative" } as any}
     >
       {variant === "plain" && <PlainBackground />}
       {variant === "image" && imageSource && <BgImage source={imageSource} />}

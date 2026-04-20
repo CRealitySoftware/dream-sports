@@ -144,6 +144,7 @@ const es = {
     responsablesTitle: "Responsables del programa",
     responsablesSubtitle: "El equipo directivo de DreamSports International",
     photoPending: "Foto próximamente",
+    bothLabel: "CO · IT",
   },
   experience: {
     sectionTag: "La experiencia",

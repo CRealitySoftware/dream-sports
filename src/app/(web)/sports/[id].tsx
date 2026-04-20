@@ -4,7 +4,6 @@ import SportHeroSection from '@/components/website/landing/sections/sports/Sport
 import SportItalySection from '@/components/website/landing/sections/sports/SportItalySection';
 import SportPresentationSection from '@/components/website/landing/sections/sports/SportPresentationSection';
 import SportSelectionDatesSection from '@/components/website/landing/sections/sports/SportSelectionDatesSection';
-import SportVideoSection from '@/components/website/landing/sections/sports/SportVideoSection';
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import { ScrollView } from 'react-native';
 
@@ -23,7 +22,7 @@ export default function Page() {
             <SportPresentationSection sportId={id} />
             <SportSelectionDatesSection sportId={id} />
             <SportItalySection />
-            <SportVideoSection />
+            {/* <SportVideoSection /> */}
             <AboutCtaSection />
             <FooterSection />
         </ScrollView>
