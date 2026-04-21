@@ -77,8 +77,8 @@ export const ALLIES: Ally[] = [
     initials: 'AS',
     country: 'co',
     role: {
-      es: 'Director Deportivo Global (Chief Sports Officer)',
-      it: 'Direttore Sportivo Globale (Chief Sports Officer)',
+      es: 'Socio Fundador',
+      it: 'Socio Fondatore',
     },
     title: {
       es: 'Chief Sports Officer – Dream Sport\'s International',
