@@ -2,8 +2,8 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import { Linking, Pressable, Text, View } from "react-native";
 import { useCallback } from "react";
+import { Linking, Pressable, Text, View } from "react-native";
 import LogoButton from "../../../ui/LogoButton";
 
 const FG = "#F0F0F0"
@@ -22,10 +22,10 @@ const NAV_LINKS = [
 ] as const
 
 const SOCIALS = [
-  { id: "ig", label: "IG", icon: "instagram", url: "https://www.instagram.com/dream_sports26" },
-  { id: "li", label: "LI", icon: "linkedin-in", url: null },
-  { id: "wa", label: "WA", icon: "whatsapp", url: null },
-  { id: "yt", label: "YT", icon: "youtube", url: null },
+  { id: "ig", label: "IG", icon: "instagram", url: "https://www.instagram.com/dreamsportsinternational/" },
+  // { id: "li", label: "LI", icon: "linkedin-in", url: null },
+  // { id: "wa", label: "WA", icon: "whatsapp", url: null },
+  // { id: "yt", label: "YT", icon: "youtube", url: null },
 ] as const
 
 function SocialButton({ icon, url }: { icon: string; url: string | null }) {

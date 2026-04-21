@@ -1,3 +1,4 @@
+import { LaunchBanner } from "@/components/ui/LaunchCountdown";
 import LogoButton from "@/components/ui/LogoButton";
 import { SUPPORT_LANGS } from "@/constants/language";
 import { useTheme } from "@/hooks/useTheme";
@@ -23,7 +24,7 @@ export default function Navbar() {
   const [langMenuOpen, setLangMenuOpen] = useState(false)
   const router = useRouter()
 
-  const navBg = isDark ? "rgba(10,10,20,0.5)" : "rgba(255,255,255,0.9)"
+  const navBg = isDark ? "rgba(10,10,20,1)" : "rgba(255,255,255,1)"
   const activeLang = SUPPORT_LANGS.find((lang) => lang.id === locale) ?? SUPPORT_LANGS[0]
 
   const handleNavigate = (route: string) => {
@@ -45,6 +46,7 @@ export default function Navbar() {
         default: { position: "relative" },
       })}
     >
+      <LaunchBanner />
       <View
         style={{
           flexDirection: "row",
@@ -81,7 +83,7 @@ export default function Navbar() {
           ))}
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-          <Pressable
+          {/* <Pressable
             onPress={handleRegistration}
             className="hidden md:flex"
             style={({ pressed }: any) => ({
@@ -106,7 +108,7 @@ export default function Navbar() {
             >
               {t("footer.navRegister")}
             </Text>
-          </Pressable>
+          </Pressable> */}
 
           <View style={{ position: "relative", flexDirection: "row", alignItems: "center", alignContent: "center", gap: 10 }}>
             <Pressable

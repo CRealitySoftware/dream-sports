@@ -14,7 +14,7 @@ const DISCIPLINE_LABELS: Record<string, string> = {
   football: "Fútbol",
   basketball: "Baloncesto",
   volleyball: "Voleibol",
-  cycling: "Ciclismo",
+  // cycling: "Ciclismo",
 };
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"];

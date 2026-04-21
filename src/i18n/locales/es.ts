@@ -57,12 +57,12 @@ const es = {
       selectionDate: "Selección: 4–10 jul 2026",
       videoLabel: "Ver video",
     },
-    cycling: {
-      name: "Ciclismo",
-      summary: "Colombia, potencia mundial del ciclismo. Evaluación bajo criterios europeos y conexión con el circuito italiano.",
-      selectionDate: "Selección: 27 jun – 3 jul 2026",
-      videoLabel: "Ver video",
-    },
+    // cycling: {
+    //   name: "Ciclismo",
+    //   summary: "Colombia, potencia mundial del ciclismo. Evaluación bajo criterios europeos y conexión con el circuito italiano.",
+    //   selectionDate: "Selección: 27 jun – 3 jul 2026",
+    //   videoLabel: "Ver video",
+    // },
   },
   program: {
     sectionTag: "Programa 2026–2029",
@@ -74,7 +74,7 @@ const es = {
     phase1Item2: "Valoración médica inicial",
     phase1Item3: "Selección de grupos para los ciclos en Italia",
     phase1Item4: "Formación en disciplina, convivencia y proyección profesional",
-    phase1Note: "Disciplinas: Fútbol · Baloncesto · Voleibol · Ciclismo",
+    phase1Note: "Disciplinas: Fútbol · Baloncesto · Voleibol",
     phase2Tag: "Fase 2",
     phase2Title: "Ciclos internacionales en Italia",
     phase2Sub: "Desde agosto 2026",
@@ -104,7 +104,7 @@ const es = {
     disciplineFootball: "Fútbol",
     disciplineBasketball: "Baloncesto",
     disciplineVolleyball: "Voleibol",
-    disciplineCycling: "Ciclismo",
+    // disciplineCycling: "Ciclismo",
     guardianSectionTitle: "Información del responsable del menor",
     fatherNamePlaceholder: "Nombre completo del padre",
     fatherCedulaPlaceholder: "Número de cédula del padre",
@@ -190,15 +190,15 @@ const es = {
     strength1Body: "Europa enfrenta una creciente necesidad de talento joven con proyección. Colombia representa un mercado con amplia oferta de deportistas de alto potencial. La articulación de estos dos ecosistemas genera una ventaja competitiva clara y un modelo sostenible basado en la movilidad, el desarrollo y la internacionalización del talento.",
     strength1Tag: "Estrategia binacional",
     strength2Title: "Modelo multidisciplinario",
-    strength2Body: "A diferencia de iniciativas centradas exclusivamente en el fútbol, DreamSports adopta un enfoque que incluye baloncesto, ciclismo y voleibol. Esta diversificación reduce el riesgo operativo, amplía el espectro de oportunidades y permite establecer relaciones con múltiples federaciones, ligas y entidades deportivas.",
-    strength2Tag: "4 disciplinas",
+    strength2Body: "A diferencia de iniciativas centradas exclusivamente en el fútbol, DreamSports adopta un enfoque que incluye baloncesto y voleibol. Esta diversificación reduce el riesgo operativo, amplía el espectro de oportunidades y permite establecer relaciones con múltiples federaciones, ligas y entidades deportivas.",
+    strength2Tag: "3 disciplinas",
     strength3Title: "Enfoque empresarial y escalabilidad",
     strength3Body: "El modelo no es una academia tradicional. Combina formación, exposición internacional y movilidad real. Está orientado a desarrollar líneas de negocio complementarias — campamentos, programas internacionales, representación deportiva y alianzas estratégicas — con capacidad de replicarse en diferentes territorios y disciplinas.",
     strength3Tag: "Escalable y replicable",
   },
   aboutCta: {
     title: "¿Listo para dar el salto?",
-    subtitle: "Las inscripciones abren el 21 de abril de 2026. Solo 300 cupos disponibles — los primeros 100 inscritos tienen cupo directo a Italia.",
+    subtitle: "Las inscripciones abren el 22 de abril de 2026. Solo 300 cupos disponibles — los primeros 100 inscritos tienen cupo directo a Italia.",
     primaryCta: "Inscríbete ahora",
     secondaryCta: "Ver disciplinas",
     note: "Inscripciones abiertas · 300 cupos · Junio 2026",
@@ -229,7 +229,7 @@ const es = {
     opp5: "Experiencia internacional que transforma trayectorias deportivas y de vida",
     stat1Value: "300",
     stat1Label: "cupos disponibles",
-    stat2Value: "4",
+    stat2Value: "3",
     stat2Label: "disciplinas",
     stat3Value: "86",
     stat3Label: "días por ciclo",
@@ -270,7 +270,7 @@ const es = {
   },
   sports: {
     title: "Elige tu disciplina. Nosotros te abrimos las puertas de Italia",
-    subtitle:"Fútbol, baloncesto, voleibol y ciclismo. Cuatro disciplinas, una sola oportunidad: crecer en Europa"
+    subtitle:"Fútbol, baloncesto y voleibol. Tres disciplinas, una sola oportunidad: crecer en Europa"
   },
   sportPage: {
     football: {
@@ -288,11 +288,11 @@ const es = {
       selectionDate: "4–10 jul 2026 · Colombia",
       presentationBody: "El voleibol es una de las disciplinas de mayor crecimiento en Colombia. DreamSports abre las puertas al voleibol italiano, reconocido mundialmente por su nivel competitivo. Los seleccionados podrán vivir una experiencia de inmersión real, entrenando con metodologías de élite y compartiendo espacios con los actores del deporte europeo.",
     },
-    cycling: {
-      headline: "Colombia potencia mundial.\nItalia, el escenario.",
-      selectionDate: "27 jun – 3 jul 2026 · Colombia",
-      presentationBody: "Colombia es una potencia mundial del ciclismo. Sus corredores han dominado las grandes vueltas europeas y su talento sigue siendo una referencia global. Con DreamSports, jóvenes ciclistas colombianos tienen la oportunidad de ser evaluados bajo criterios europeos, conectarse con el circuito ciclista italiano y explorar vías de proyección profesional en Europa.",
-    },
+    // cycling: {
+    //   headline: "Colombia potencia mundial.\nItalia, el escenario.",
+    //   selectionDate: "27 jun – 3 jul 2026 · Colombia",
+    //   presentationBody: "Colombia es una potencia mundial del ciclismo. Sus corredores han dominado las grandes vueltas europeas y su talento sigue siendo una referencia global. Con DreamSports, jóvenes ciclistas colombianos tienen la oportunidad de ser evaluados bajo criterios europeos, conectarse con el circuito ciclista italiano y explorar vías de proyección profesional en Europa.",
+    // },
     selectionDatesTitle: "Fechas de selección",
     selectionObjectivesTitle: "Objetivos del campamento",
     selectionObj1: "Evaluación técnica y táctica",
@@ -336,6 +336,13 @@ const es = {
     copyright: "© 2026 Dream Sport's International SRL",
     legalId: "P.I. 18488001001 · Roma, Italia",
     rights: "Todos los derechos reservados",
+  },
+  countdown: {
+    days: "días",
+    hours: "horas",
+    min: "min",
+    sec: "seg",
+    label: "Inscripciones abren en",
   },
 }
 

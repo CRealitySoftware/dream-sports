@@ -7,7 +7,7 @@ import SportSelectionDatesSection from '@/components/website/landing/sections/sp
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import { ScrollView } from 'react-native';
 
-const VALID_SPORTS = ['football', 'basketball', 'volleyball', 'cycling']
+const VALID_SPORTS = ['football', 'basketball', 'volleyball' /* , 'cycling' */]
 
 export default function Page() {
     const { id } = useLocalSearchParams<{ id: string }>()

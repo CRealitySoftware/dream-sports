@@ -7,7 +7,7 @@ export const DISCIPLINE_LABELS: Record<string, string> = {
   football: "Fútbol",
   basketball: "Baloncesto",
   volleyball: "Voleibol",
-  cycling: "Ciclismo",
+  // cycling: "Ciclismo",
 };
 
 export type StatusConfig = {

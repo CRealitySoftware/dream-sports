@@ -26,7 +26,7 @@ export default function Hero({ variant = "plain" }: HeroProps) {
       secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => router.push("/(web)/about") }}
       stats={[
         { value: 300, label: t("stats.spots") },
-        { value: 4, label: t("stats.disciplines") },
+        { value: 3, label: t("stats.disciplines") },
         { value: 86, label: t("stats.days") },
       ]}
     />

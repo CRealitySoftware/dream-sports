@@ -11,7 +11,7 @@ type Props = {
   onSave: (fields: Partial<EditableUserFields>) => Promise<void>;
 };
 
-type Discipline = "football" | "basketball" | "volleyball" | "cycling";
+type Discipline = "football" | "basketball" | "volleyball" /* | "cycling" */;
 const DISCIPLINES = Object.keys(DISCIPLINE_LABELS) as Discipline[];
 
 function Field({

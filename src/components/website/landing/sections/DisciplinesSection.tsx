@@ -9,7 +9,7 @@ import { useRouter } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { AnimatedSection } from "../../../ui/AnimatedSection";
 
-const DISCIPLINES = ["football", "basketball", "volleyball", "cycling"] as const
+const DISCIPLINES = ["football", "basketball", "volleyball" /* , "cycling" */] as const
 type Discipline = (typeof DISCIPLINES)[number]
 
 function PhotoPlaceholder({ colors, discipline }: { colors: ThemeColors, discipline: Discipline }) {

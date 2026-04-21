@@ -14,6 +14,8 @@ type Props = {
   onEdit: () => void;
   onStatusChange: (status: UserStatus, isPaid?: boolean) => Promise<void>;
   onDelete: () => Promise<void>;
+  disciplineApprovedCount: number;
+  disciplineCap: number;
 };
 
 function InfoRow({ label, value }: { label: string; value: string | null | boolean }) {
@@ -49,7 +51,7 @@ const STATUS_ACTIONS: { status: UserStatus; label: string; setPaid?: boolean }[]
   { status: "completed", label: "Completar"                  },
 ];
 
-export default function UserDetailModal({ user, visible, onClose, onEdit, onStatusChange, onDelete }: Props) {
+export default function UserDetailModal({ user, visible, onClose, onEdit, onStatusChange, onDelete, disciplineApprovedCount, disciplineCap }: Props) {
   const { colors } = useTheme();
   const [loadingStatus, setLoadingStatus] = useState<UserStatus | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -155,30 +157,49 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
           {STATUS_ACTIONS.map(({ status, label, setPaid }) => {
             const isActive = user.status === status;
             const cfg = STATUS_CONFIG[status];
+            const isApproveBlocked =
+              status === "approved" &&
+              user.status !== "approved" &&
+              disciplineApprovedCount >= disciplineCap;
+            const isDisabled = isActive || loadingStatus !== null || isApproveBlocked;
             return (
               <Pressable
                 key={status}
                 onPress={() => handleStatus(status, setPaid)}
-                disabled={isActive || loadingStatus !== null}
+                disabled={isDisabled}
                 style={{
                   paddingVertical: 8, paddingHorizontal: 16, borderRadius: 8,
                   backgroundColor: isActive ? cfg.bg : colors.surfaceElevated,
                   borderWidth: 1,
-                  borderColor: isActive ? cfg.color : colors.border,
-                  opacity: (isActive || loadingStatus !== null) ? 0.7 : 1,
+                  borderColor: isActive ? cfg.color : isApproveBlocked ? "rgba(220,60,60,0.3)" : colors.border,
+                  opacity: isDisabled ? 0.5 : 1,
                   flexDirection: "row", alignItems: "center", gap: 6,
                 }}
               >
                 {loadingStatus === status ? (
                   <ActivityIndicator size="small" color={cfg.color} />
                 ) : null}
-                <Text style={{ color: isActive ? cfg.color : colors.ink, fontSize: 13, fontWeight: isActive ? "700" : "500" }}>
+                <Text style={{ color: isActive ? cfg.color : isApproveBlocked ? "rgba(220,60,60,0.7)" : colors.ink, fontSize: 13, fontWeight: isActive ? "700" : "500" }}>
                   {label}
                 </Text>
               </Pressable>
             );
           })}
         </View>
+
+        {(() => {
+          const isApproveBlocked =
+            user.status !== "approved" &&
+            disciplineApprovedCount >= disciplineCap;
+          return isApproveBlocked ? (
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginTop: 8 }}>
+              <Ionicons name="lock-closed-outline" size={13} color="rgba(220,60,60,0.8)" />
+              <Text style={{ color: "rgba(220,60,60,0.8)", fontSize: 12 }}>
+                Cupo lleno — {disciplineApprovedCount}/{disciplineCap} aprobados en esta disciplina. Para aprobar a este atleta, primero rechaza a uno aprobado.
+              </Text>
+            </View>
+          ) : null;
+        })()}
 
         {user.status === "approved" && (
           <View style={{ marginTop: 16, flexDirection: "row", alignItems: "center", gap: 12 }}>

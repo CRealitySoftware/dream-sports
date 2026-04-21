@@ -1,5 +1,6 @@
+import { LaunchCountdown } from "@/components/ui/LaunchCountdown";
 import PDFViewerModal from "@/components/ui/PDFViewerModal";
-import { SECTIONS_IDS } from "@/constants/landing";
+import { LAUNCH_DATE, SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { supabase, insertUser } from "@/lib/supabase";
@@ -30,7 +31,7 @@ type ConsentErrors = {
   publicationConsent: boolean
 }
 
-const DISCIPLINES = ["football", "basketball", "volleyball", "cycling"] as const
+const DISCIPLINES = ["football", "basketball", "volleyball" /* , "cycling" */] as const
 
 function FieldWrapper({
   error,
@@ -123,7 +124,7 @@ function DisciplinePills({
     football: t("registration.disciplineFootball"),
     basketball: t("registration.disciplineBasketball"),
     volleyball: t("registration.disciplineVolleyball"),
-    cycling: t("registration.disciplineCycling"),
+    // cycling: t("registration.disciplineCycling"),
   }
 
   return (
@@ -302,6 +303,8 @@ export default function RegistrationSection() {
   const { t } = useTranslation()
   const { colors } = useTheme()
 
+  const isLaunched = Date.now() >= LAUNCH_DATE.getTime()
+
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -475,13 +478,16 @@ export default function RegistrationSection() {
                 fontSize: 15,
                 lineHeight: 24,
                 textAlign: "center",
+                marginBottom: 32,
               }}
             >
               {t("registration.sectionSubtitle")}
             </Text>
           </View>
 
-          {submitted ? (
+          {!isLaunched ? (
+            <LaunchCountdown size="md" />
+          ) : submitted ? (
             <SuccessBlock colors={colors} t={t} />
           ) : (
             <View style={{ gap: 12 }}>

@@ -4,6 +4,7 @@ import UsersTable from "@/components/backoffice/users/UsersTable";
 import { useTheme } from "@/hooks/useTheme";
 import {
     deleteUser,
+    DISCIPLINE_LABELS,
     fetchUsers,
     updateUserInfo,
     updateUserStatus,
@@ -14,6 +15,86 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
+
+const DISCIPLINE_CAP = 100;
+const ACTIVE_DISCIPLINES = Object.keys(DISCIPLINE_LABELS) as string[];
+
+function DisciplineMetrics({ users, colors }: { users: UserRow[]; colors: ReturnType<typeof useTheme>["colors"] }) {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        gap: 12,
+        paddingHorizontal: 24,
+        paddingVertical: 14,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
+        backgroundColor: colors.surfaceMuted,
+        flexWrap: "wrap",
+      }}
+    >
+      {ACTIVE_DISCIPLINES.map((d) => {
+        const subset = users.filter((u) => u.discipline === d);
+        const approved = subset.filter((u) => u.status === "approved" || u.status === "completed").length;
+        const pending = subset.filter((u) => u.status === "pending").length;
+        const rejected = subset.filter((u) => u.status === "rejected").length;
+        const atCap = approved >= DISCIPLINE_CAP;
+        const progress = Math.min(approved / DISCIPLINE_CAP, 1);
+
+        return (
+          <View
+            key={d}
+            style={{
+              flex: 1,
+              minWidth: 180,
+              backgroundColor: colors.surface,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: atCap ? "rgba(220,60,60,0.35)" : colors.border,
+              padding: 14,
+              gap: 8,
+            }}
+          >
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+              <Text style={{ color: colors.ink, fontSize: 13, fontWeight: "700" }}>
+                {DISCIPLINE_LABELS[d]}
+              </Text>
+              {atCap && (
+                <View style={{ backgroundColor: "rgba(220,60,60,0.12)", borderRadius: 6, paddingHorizontal: 7, paddingVertical: 2 }}>
+                  <Text style={{ color: "rgba(220,60,60,1)", fontSize: 10, fontWeight: "700" }}>LLENO</Text>
+                </View>
+              )}
+            </View>
+
+            {/* Progress bar */}
+            <View style={{ height: 4, backgroundColor: colors.border, borderRadius: 2, overflow: "hidden" }}>
+              <View
+                style={{
+                  height: "100%",
+                  width: `${progress * 100}%`,
+                  backgroundColor: atCap ? "rgba(220,60,60,1)" : "rgba(30,160,70,1)",
+                  borderRadius: 2,
+                }}
+              />
+            </View>
+
+            <View style={{ flexDirection: "row", gap: 12 }}>
+              <Text style={{ color: "rgba(30,160,70,1)", fontSize: 12, fontWeight: "600" }}>
+                {approved}/{DISCIPLINE_CAP} aprobados
+              </Text>
+              <Text style={{ color: colors.inkMuted, fontSize: 12 }}>
+                {pending} pend.
+              </Text>
+              <Text style={{ color: colors.inkMuted, fontSize: 12 }}>
+                {rejected} rech.
+              </Text>
+            </View>
+          </View>
+        );
+      })}
+    </View>
+  );
+}
 
 export default function UsersPage() {
   const { colors } = useTheme();
@@ -63,6 +144,12 @@ export default function UsersPage() {
     }
   }
 
+  function approvedCountForDiscipline(discipline: string) {
+    return users.filter(
+      (u) => u.discipline === discipline && (u.status === "approved" || u.status === "completed")
+    ).length;
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -95,6 +182,9 @@ export default function UsersPage() {
         </Pressable>
       </View>
 
+      {/* Discipline metrics */}
+      {!loading && <DisciplineMetrics users={users} colors={colors} />}
+
       {/* Table */}
       <View style={{ flex: 1, backgroundColor: colors.surface }}>
         {loading ? (
@@ -118,6 +208,8 @@ export default function UsersPage() {
           }}
           onStatusChange={handleStatusChange}
           onDelete={handleDelete}
+          disciplineApprovedCount={approvedCountForDiscipline(selectedUser.discipline)}
+          disciplineCap={DISCIPLINE_CAP}
         />
       )}
 

@@ -1,6 +1,6 @@
 export type UserRole = "admin" | "client";
 export type UserStatus = "pending" | "approved" | "rejected" | "completed";
-export type Discipline = "football" | "basketball" | "volleyball" | "cycling";
+export type Discipline = "football" | "basketball" | "volleyball" /* | "cycling" */;
 
 export type UserRow = {
   id: string;
