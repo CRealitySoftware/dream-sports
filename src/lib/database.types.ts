@@ -16,6 +16,9 @@ export type UserRow = {
   mother_name: string;
   mother_cedula: string;
   message: string | null;
+  gender: string | null;
+  birth_date: string | null;
+  shirt_size: string | null;
   parent_consent: boolean;
   data_consent: boolean;
   publication_consent: boolean;
@@ -41,6 +44,9 @@ export type UserInsert = {
   mother_name: string;
   mother_cedula: string;
   message?: string | null;
+  gender?: string | null;
+  birth_date?: string | null;
+  shirt_size?: string | null;
   parent_consent: boolean;
   data_consent: boolean;
   publication_consent: boolean;

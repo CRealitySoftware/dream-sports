@@ -45,6 +45,28 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+const GENDER_LABELS: Record<string, string> = {
+  male: "Masculino",
+  female: "Femenino",
+  prefer_not_to_say: "Prefiero no decirlo",
+}
+
+function formatBirthDate(dateStr: string | null): string | null {
+  if (!dateStr) return null
+  const [y, m, d] = dateStr.split("-")
+  return `${d}/${m}/${y}`
+}
+
+function calcAge(dateStr: string | null): string | null {
+  if (!dateStr) return null
+  const today = new Date()
+  const birth = new Date(dateStr)
+  let age = today.getFullYear() - birth.getFullYear()
+  const m = today.getMonth() - birth.getMonth()
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--
+  return `${age} años`
+}
+
 const STATUS_ACTIONS: { status: UserStatus; label: string; setPaid?: boolean }[] = [
   { status: "approved",  label: "Aprobar",    setPaid: true  },
   { status: "rejected",  label: "Rechazar",   setPaid: false },
@@ -248,6 +270,10 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
         <InfoRow label="Email" value={user.email} />
         <InfoRow label="Teléfono" value={user.phone} />
         <InfoRow label="Disciplina" value={DISCIPLINE_LABELS[user.discipline] ?? user.discipline} />
+        <InfoRow label="Género" value={user.gender ? (GENDER_LABELS[user.gender] ?? user.gender) : null} />
+        <InfoRow label="Fecha de nacimiento" value={formatBirthDate(user.birth_date)} />
+        <InfoRow label="Edad" value={calcAge(user.birth_date)} />
+        <InfoRow label="Talla de camiseta" value={user.shirt_size} />
         <InfoRow label="Mensaje" value={user.message} />
         <InfoRow label="Inscrito el" value={new Date(user.created_at).toLocaleString("es-CO")} />
       </Section>

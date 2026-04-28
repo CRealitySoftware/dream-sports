@@ -42,19 +42,19 @@ const es = {
     football: {
       name: "Fútbol",
       summary: "Entrenamiento bajo la metodología táctica del fútbol italiano. Evaluación frente a clubes y entrenadores certificados en Italia.",
-      selectionDate: "Selección: 27 jun – 3 jul 2026",
+      selectionDate: "Selección: 29 jun – 5 jul 2026",
       videoLabel: "Ver video",
     },
     basketball: {
       name: "Baloncesto",
       summary: "Alto rendimiento con estándares europeos. Conexión directa con el circuito deportivo italiano y evaluación continua.",
-      selectionDate: "Selección: 20–26 jun 2026",
+      selectionDate: "Selección: 22–28 jun 2026",
       videoLabel: "Ver video",
     },
     volleyball: {
       name: "Voleibol",
       summary: "Inmersión en el voleibol italiano, reconocido mundialmente por su nivel competitivo y metodología de alto impacto.",
-      selectionDate: "Selección: 4–10 jul 2026",
+      selectionDate: "Selección: 6–12 jul 2026",
       videoLabel: "Ver video",
     },
     // cycling: {
@@ -110,6 +110,16 @@ const es = {
     fatherCedulaPlaceholder: "Número de cédula del padre",
     motherNamePlaceholder: "Nombre completo de la madre",
     motherCedulaPlaceholder: "Número de cédula de la madre",
+    genderLabel: "Género",
+    genderMale: "Masculino",
+    genderFemale: "Femenino",
+    genderPreferNotToSay: "Prefiero no decirlo",
+    genderRequired: "Selecciona tu género",
+    birthDatePlaceholder: "Fecha de nacimiento (DD/MM/AAAA)",
+    birthDateRequired: "Ingresa tu fecha de nacimiento",
+    birthDateInvalid: "Ingresa una fecha válida",
+    shirtSizeLabel: "Talla de camiseta",
+    shirtSizeRequired: "Selecciona una talla",
     messagePlaceholder: "Mensaje o comentario (opcional)",
     parentConsentLabel: "Acepto ser el responsable del menor durante su participación en el programa DreamSports International y asumo las obligaciones correspondientes.",
     dataConsentLabel: "Autorizo el tratamiento de los datos personales del menor de acuerdo con la Ley 1581 de 2012 de protección de datos personales.",
@@ -275,17 +285,17 @@ const es = {
   sportPage: {
     football: {
       headline: "El fútbol colombiano\ntiene un lugar en Italia",
-      selectionDate: "27 jun – 3 jul 2026 · Colombia",
+      selectionDate: "29 jun – 5 jul 2026 · Colombia",
       presentationBody: "Colombia tiene una de las tradiciones futbolísticas más ricas de América Latina. Con DreamSports, los jóvenes talentos del fútbol colombiano tienen la oportunidad de ser evaluados y entrenados bajo la metodología del fútbol italiano, uno de los más tácticos y reconocidos del mundo. Los seleccionados trabajarán con entrenadores certificados, interactuarán con clubes locales y participarán en dinámicas de observación que pueden abrir puertas reales al fútbol profesional europeo.",
     },
     basketball: {
       headline: "Alto rendimiento.\nEstándares europeos.\nTu próximo nivel.",
-      selectionDate: "20–26 jun 2026 · Colombia",
+      selectionDate: "22–28 jun 2026 · Colombia",
       presentationBody: "El baloncesto colombiano crece con fuerza y produce cada año jugadores con condiciones físicas y técnicas excepcionales. DreamSports ofrece a los jóvenes basquetbolistas la oportunidad de medir su nivel frente a los estándares europeos, entrenar con metodologías de alto rendimiento y conectarse con el circuito deportivo italiano.",
     },
     volleyball: {
       headline: "El voleibol italiano\nte está esperando",
-      selectionDate: "4–10 jul 2026 · Colombia",
+      selectionDate: "6–12 jul 2026 · Colombia",
       presentationBody: "El voleibol es una de las disciplinas de mayor crecimiento en Colombia. DreamSports abre las puertas al voleibol italiano, reconocido mundialmente por su nivel competitivo. Los seleccionados podrán vivir una experiencia de inmersión real, entrenando con metodologías de élite y compartiendo espacios con los actores del deporte europeo.",
     },
     // cycling: {

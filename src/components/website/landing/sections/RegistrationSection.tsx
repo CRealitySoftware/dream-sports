@@ -16,6 +16,9 @@ type FormData = {
   email: string
   phone: string
   discipline: string
+  gender: string
+  birthDate: string
+  shirtSize: string
   fatherName: string
   fatherCedula: string
   motherName: string
@@ -173,6 +176,146 @@ function DisciplinePills({
   )
 }
 
+const HtmlSelect = "select" as any
+const HtmlOption = "option" as any
+const HtmlInput = "input" as any
+
+function StyledSelect({
+  value,
+  onChange,
+  placeholder,
+  options,
+  fieldId,
+  focusedField,
+  setFocusedField,
+  hasError,
+  colors,
+  isDark,
+}: {
+  value: string
+  onChange: (v: string) => void
+  placeholder: string
+  options: { value: string; label: string }[]
+  fieldId: string
+  focusedField: string | null
+  setFocusedField: (id: string | null) => void
+  hasError: boolean
+  colors: ThemeColors
+  isDark: boolean
+}) {
+  const isFocused = focusedField === fieldId
+  const borderColor = hasError ? colors.gold : isFocused ? colors.brand : colors.border
+
+  return (
+    <View style={{ position: "relative" }}>
+      <HtmlSelect
+        value={value}
+        onChange={(e: any) => onChange(e.target.value)}
+        onFocus={() => setFocusedField(fieldId)}
+        onBlur={() => setFocusedField(null)}
+        style={{
+          width: "100%",
+          backgroundColor: colors.surface,
+          border: `1px solid ${borderColor}`,
+          borderRadius: 10,
+          paddingTop: 13,
+          paddingBottom: 13,
+          paddingLeft: 14,
+          paddingRight: 40,
+          color: value ? colors.ink : colors.inkMuted,
+          fontSize: 14,
+          appearance: "none",
+          WebkitAppearance: "none",
+          MozAppearance: "none",
+          cursor: "pointer",
+          outline: "none",
+          colorScheme: isDark ? "dark" : "light",
+          transition: "border-color 0.15s",
+          boxSizing: "border-box",
+        }}
+      >
+        <HtmlOption value="" disabled style={{ color: colors.inkMuted }}>
+          {placeholder}
+        </HtmlOption>
+        {options.map((opt) => (
+          <HtmlOption
+            key={opt.value}
+            value={opt.value}
+            style={{ backgroundColor: colors.surface, color: colors.ink }}
+          >
+            {opt.label}
+          </HtmlOption>
+        ))}
+      </HtmlSelect>
+      <View
+        style={{
+          position: "absolute",
+          right: 14,
+          top: 0,
+          bottom: 0,
+          justifyContent: "center",
+          pointerEvents: "none",
+        } as any}
+      >
+        <Ionicons name="chevron-down" size={16} color={colors.inkMuted} />
+      </View>
+    </View>
+  )
+}
+
+function StyledDatePicker({
+  value,
+  onChange,
+  fieldId,
+  focusedField,
+  setFocusedField,
+  hasError,
+  colors,
+  isDark,
+  max,
+}: {
+  value: string
+  onChange: (v: string) => void
+  fieldId: string
+  focusedField: string | null
+  setFocusedField: (id: string | null) => void
+  hasError: boolean
+  colors: ThemeColors
+  isDark: boolean
+  max?: string
+}) {
+  const isFocused = focusedField === fieldId
+  const borderColor = hasError ? colors.gold : isFocused ? colors.brand : colors.border
+
+  return (
+    <HtmlInput
+      type="date"
+      value={value}
+      onChange={(e: any) => onChange(e.target.value)}
+      onFocus={() => setFocusedField(fieldId)}
+      onBlur={() => setFocusedField(null)}
+      max={max}
+      style={{
+        width: "100%",
+        backgroundColor: colors.surface,
+        border: `1px solid ${borderColor}`,
+        borderRadius: 10,
+        paddingTop: 13,
+        paddingBottom: 13,
+        paddingLeft: 14,
+        paddingRight: 14,
+        color: value ? colors.ink : colors.inkMuted,
+        fontSize: 14,
+        outline: "none",
+        colorScheme: isDark ? "dark" : "light",
+        boxSizing: "border-box",
+        transition: "border-color 0.15s",
+        cursor: "pointer",
+      }}
+    />
+  )
+}
+
 function CheckboxField({
   checked,
   onToggle,
@@ -301,7 +444,7 @@ function SuccessBlock({ colors, t }: { colors: ThemeColors; t: (k: string) => st
 
 export default function RegistrationSection() {
   const { t } = useTranslation()
-  const { colors } = useTheme()
+  const { colors, isDark } = useTheme()
 
   const isLaunched = Date.now() >= LAUNCH_DATE.getTime()
 
@@ -310,6 +453,9 @@ export default function RegistrationSection() {
     email: "",
     phone: "",
     discipline: "",
+    gender: "",
+    birthDate: "",
+    shirtSize: "",
     fatherName: "",
     fatherCedula: "",
     motherName: "",
@@ -346,6 +492,9 @@ export default function RegistrationSection() {
     if (!form.email.trim()) e.email = t("registration.fieldRequired")
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("registration.emailInvalid")
     if (!form.discipline) e.discipline = t("registration.disciplineRequired")
+    if (!form.gender) e.gender = t("registration.genderRequired")
+    if (!form.birthDate) e.birthDate = t("registration.birthDateRequired")
+    if (!form.shirtSize) e.shirtSize = t("registration.shirtSizeRequired")
     if (!form.fatherName.trim()) e.fatherName = t("registration.fieldRequired")
     if (!form.fatherCedula.trim()) e.fatherCedula = t("registration.fieldRequired")
     if (!form.motherName.trim()) e.motherName = t("registration.fieldRequired")
@@ -377,6 +526,9 @@ export default function RegistrationSection() {
       email: form.email.trim().toLowerCase(),
       phone: form.phone.trim() || null,
       discipline: form.discipline as Discipline,
+      gender: form.gender,
+      birth_date: form.birthDate,
+      shirt_size: form.shirtSize,
       father_name: form.fatherName.trim(),
       father_cedula: form.fatherCedula.trim(),
       mother_name: form.motherName.trim(),
@@ -546,6 +698,61 @@ export default function RegistrationSection() {
                   />
                 </FieldWrapper>
               </View>
+
+              <View className="flex-col md:flex-row" style={{ gap: 12 }}>
+                <FieldWrapper error={errors.gender}>
+                  <StyledSelect
+                    fieldId="gender"
+                    value={form.gender}
+                    onChange={(g) => {
+                      setField("gender")(g)
+                      if (errors.gender) setErrors((prev) => ({ ...prev, gender: undefined }))
+                    }}
+                    placeholder={t("registration.genderLabel")}
+                    options={[
+                      { value: "male", label: t("registration.genderMale") },
+                      { value: "female", label: t("registration.genderFemale") },
+                      { value: "prefer_not_to_say", label: t("registration.genderPreferNotToSay") },
+                    ]}
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
+                    hasError={!!errors.gender}
+                    colors={colors}
+                    isDark={isDark}
+                  />
+                </FieldWrapper>
+                <FieldWrapper error={errors.birthDate}>
+                  <StyledDatePicker
+                    fieldId="birthDate"
+                    value={form.birthDate}
+                    onChange={setField("birthDate")}
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
+                    hasError={!!errors.birthDate}
+                    colors={colors}
+                    isDark={isDark}
+                    max={new Date().toISOString().split("T")[0]}
+                  />
+                </FieldWrapper>
+              </View>
+
+              <FieldWrapper error={errors.shirtSize}>
+                <StyledSelect
+                  fieldId="shirtSize"
+                  value={form.shirtSize}
+                  onChange={(s) => {
+                    setField("shirtSize")(s)
+                    if (errors.shirtSize) setErrors((prev) => ({ ...prev, shirtSize: undefined }))
+                  }}
+                  placeholder={t("registration.shirtSizeLabel")}
+                  options={["XS", "S", "M", "L", "XL", "XXL"].map((s) => ({ value: s, label: s }))}
+                  focusedField={focusedField}
+                  setFocusedField={setFocusedField}
+                  hasError={!!errors.shirtSize}
+                  colors={colors}
+                  isDark={isDark}
+                />
+              </FieldWrapper>
 
               <SectionDivider title={t("registration.guardianSectionTitle")} colors={colors} />
 
