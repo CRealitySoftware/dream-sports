@@ -65,6 +65,40 @@ export default function WhoWeAreSection() {
                   {t(`whoWeAre.${key}`)}
                 </Text>
               ))}
+
+              <View
+                style={{
+                  marginTop: 28,
+                  backgroundColor: colors.surface,
+                  borderRadius: 10,
+                  borderWidth: 1,
+                  borderColor: colors.border,
+                  borderLeftWidth: 3,
+                  borderLeftColor: colors.brand,
+                  padding: 20,
+                }}
+              >
+                <Text
+                  style={{
+                    color: colors.brand,
+                    fontSize: 10,
+                    fontWeight: "700",
+                    letterSpacing: 2,
+                    textTransform: "uppercase",
+                    marginBottom: 12,
+                  }}
+                >
+                  {t("whoWeAre.legalTitle")}
+                </Text>
+                <Text style={{ color: colors.ink, fontSize: 14, fontWeight: "800", marginBottom: 10, lineHeight: 20 }}>
+                  {t("whoWeAre.legalName")}
+                </Text>
+                {(["legalSigla", "legalNit", "legalDomicile", "legalFounded", "legalRegistry", "legalActivity"] as const).map((key) => (
+                  <Text key={key} style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 22 }}>
+                    {t(`whoWeAre.${key}`)}
+                  </Text>
+                ))}
+              </View>
             </View>
 
             <View style={{ flex: 45 }}>

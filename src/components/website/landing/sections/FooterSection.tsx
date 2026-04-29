@@ -108,16 +108,11 @@ function ContactColumn({ t }: { t: (k: string) => string }) {
           value={t("footer.email")}
           onPress={() => Linking.openURL(`mailto:${t("footer.email")}`)}
         />
-        {/* <ContactRow
-          prefix="📞 IT"
-          value={t("footer.phoneItaly")}
-          onPress={() => Linking.openURL(`tel:${t("footer.phoneItaly").replace(/\s/g, "")}`)}
-        />
         <ContactRow
-          prefix="📞 CO"
+          prefix="📞"
           value={t("footer.phoneColombia")}
           onPress={() => Linking.openURL(`tel:${t("footer.phoneColombia").replace(/\s/g, "")}`)}
-        /> */}
+        />
         <ContactRow prefix="📍" value={t("footer.addressLabel")} />
       </View>
     </View>

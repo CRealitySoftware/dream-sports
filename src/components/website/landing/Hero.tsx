@@ -1,6 +1,9 @@
 import PageHero, { HeroVariant } from "@/components/ui/PageHero";
 import { useTranslation } from "@/i18n/I18nProvider";
 import { useRouter } from "expo-router";
+import { Linking } from "react-native";
+
+const WHATSAPP_URL = "https://wa.me/573107906252";
 
 const BG_IMAGE = require("../../../../assets/images/sports/football-bg.jpg")
 const BG_VIDEO = require("../../../../assets/images/sports/footbal-bg-video.mp4")
@@ -23,7 +26,7 @@ export default function Hero({ variant = "plain" }: HeroProps) {
       accentLineIndex={1}
       subtitle={t("hero.subtitle")}
       primaryCta={{ label: t("hero.cta"), onPress: () => router.push("/(web)/register") }}
-      secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => router.push("/(web)/about") }}
+      secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => Linking.openURL(WHATSAPP_URL) }}
       stats={[
         { value: 300, label: t("stats.spots") },
         { value: 3, label: t("stats.disciplines") },
