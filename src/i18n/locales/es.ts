@@ -43,19 +43,19 @@ const es = {
     football: {
       name: "Fútbol",
       summary: "Entrenamiento bajo la metodología táctica del fútbol italiano. Evaluación frente a clubes y entrenadores certificados en Italia.",
-      selectionDate: "Selección: 29 jun – 5 jul 2026",
+      selectionDate: "Selección: 06 de julio al 12 de julio de 2026",
       videoLabel: "Ver video",
     },
     basketball: {
       name: "Baloncesto",
       summary: "Alto rendimiento con estándares europeos. Conexión directa con el circuito deportivo italiano y evaluación continua.",
-      selectionDate: "Selección: 22–28 jun 2026",
+      selectionDate: "Selección: 22 de junio al 28 de junio de 2026",
       videoLabel: "Ver video",
     },
     volleyball: {
       name: "Voleibol",
       summary: "Inmersión en el voleibol italiano, reconocido mundialmente por su nivel competitivo y metodología de alto impacto.",
-      selectionDate: "Selección: 6–12 jul 2026",
+      selectionDate: "Selección: 29 de junio al 05 de julio de 2026",
       videoLabel: "Ver video",
     },
     // cycling: {
@@ -294,17 +294,17 @@ const es = {
   sportPage: {
     football: {
       headline: "El fútbol colombiano\ntiene un lugar en Italia",
-      selectionDate: "29 jun – 5 jul 2026 · Colombia",
+      selectionDate: "06 de julio al 12 de julio de 2026 · Colombia",
       presentationBody: "Colombia tiene una de las tradiciones futbolísticas más ricas de América Latina. Con DreamSports, los jóvenes talentos del fútbol colombiano tienen la oportunidad de ser evaluados y entrenados bajo la metodología del fútbol italiano, uno de los más tácticos y reconocidos del mundo. Los seleccionados trabajarán con entrenadores certificados, interactuarán con clubes locales y participarán en dinámicas de observación que pueden abrir puertas reales al fútbol profesional europeo.",
     },
     basketball: {
       headline: "Alto rendimiento.\nEstándares europeos.\nTu próximo nivel.",
-      selectionDate: "22–28 jun 2026 · Colombia",
+      selectionDate: "22 de junio al 28 de junio de 2026 · Colombia",
       presentationBody: "El baloncesto colombiano crece con fuerza y produce cada año jugadores con condiciones físicas y técnicas excepcionales. DreamSports ofrece a los jóvenes basquetbolistas la oportunidad de medir su nivel frente a los estándares europeos, entrenar con metodologías de alto rendimiento y conectarse con el circuito deportivo italiano.",
     },
     volleyball: {
       headline: "El voleibol italiano\nte está esperando",
-      selectionDate: "6–12 jul 2026 · Colombia",
+      selectionDate: "29 de junio al 05 de julio de 2026 · Colombia",
       presentationBody: "El voleibol es una de las disciplinas de mayor crecimiento en Colombia. DreamSports abre las puertas al voleibol italiano, reconocido mundialmente por su nivel competitivo. Los seleccionados podrán vivir una experiencia de inmersión real, entrenando con metodologías de élite y compartiendo espacios con los actores del deporte europeo.",
     },
     // cycling: {

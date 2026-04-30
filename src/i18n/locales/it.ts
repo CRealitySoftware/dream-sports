@@ -43,19 +43,19 @@ const it = {
     football: {
       name: "Calcio",
       summary: "Allenamento con la metodologia tattica del calcio italiano. Valutazione con club e allenatori certificati in Italia.",
-      selectionDate: "Selezione: 29 giu – 5 lug 2026",
+      selectionDate: "Selezione: 06 lug – 12 lug 2026",
       videoLabel: "Guarda il video",
     },
     basketball: {
       name: "Pallacanestro",
       summary: "Alte prestazioni con standard europei. Connessione diretta con il circuito sportivo italiano e valutazione continua.",
-      selectionDate: "Selezione: 22–28 giu 2026",
+      selectionDate: "Selezione: 22 giu – 28 giu 2026",
       videoLabel: "Guarda il video",
     },
     volleyball: {
       name: "Pallavolo",
       summary: "Immersione nella pallavolo italiana, riconosciuta a livello mondiale per il suo livello competitivo e la metodologia d'élite.",
-      selectionDate: "Selezione: 6–12 lug 2026",
+      selectionDate: "Selezione: 29 giu – 05 lug 2026",
       videoLabel: "Guarda il video",
     },
     // cycling: {
@@ -282,17 +282,17 @@ const it = {
   sportPage: {
     football: {
       headline: "Il calcio colombiano\nha un posto in Italia",
-      selectionDate: "29 giu – 5 lug 2026 · Colombia",
+      selectionDate: "06 lug – 12 lug 2026 · Colombia",
       presentationBody: "La Colombia ha una delle tradizioni calcistiche più ricche dell'America Latina. Con DreamSports, i giovani talenti del calcio colombiano hanno l'opportunità di essere valutati e allenati secondo la metodologia del calcio italiano, uno dei più tattici e riconosciuti al mondo. I selezionati lavoreranno con allenatori certificati, interagiranno con club locali e parteciperanno a dinamiche di osservazione che possono aprire porte reali al calcio professionistico europeo.",
     },
     basketball: {
       headline: "Alte prestazioni.\nStandard europei.\nIl tuo prossimo livello.",
-      selectionDate: "22–28 giu 2026 · Colombia",
+      selectionDate: "22 giu – 28 giu 2026 · Colombia",
       presentationBody: "Il basket colombiano cresce con vigore e produce ogni anno giocatori dalle eccezionali condizioni fisiche e tecniche. DreamSports offre ai giovani cestisti l'opportunità di misurare il proprio livello rispetto agli standard europei, allenarsi con metodologie ad alte prestazioni e connettersi con il circuito sportivo italiano.",
     },
     volleyball: {
       headline: "La pallavolo italiana\nti sta aspettando",
-      selectionDate: "6–12 lug 2026 · Colombia",
+      selectionDate: "29 giu – 05 lug 2026 · Colombia",
       presentationBody: "La pallavolo è una delle discipline in maggiore crescita in Colombia. DreamSports apre le porte alla pallavolo italiana, riconosciuta a livello mondiale per il suo livello competitivo. I selezionati potranno vivere una vera esperienza di immersione, allenarsi con metodologie d'élite e condividere spazi con i protagonisti dello sport europeo.",
     },
     // cycling: {
