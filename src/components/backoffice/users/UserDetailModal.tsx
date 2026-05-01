@@ -2,7 +2,7 @@ import DocumentViewer from "@/components/ui/DocumentViewer";
 import Modal from "@/components/ui/Modal";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { useTheme } from "@/hooks/useTheme";
-import { DISCIPLINE_LABELS, STATUS_CONFIG, sendPaymentConfirmation, type UserRow, type UserStatus } from "@/lib/users";
+import { DISCIPLINE_LABELS, STATUS_CONFIG, sendPaymentConfirmation, sendRegistrationConfirmation, type UserRow, type UserStatus } from "@/lib/users";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
@@ -81,11 +81,26 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
   const [sendingEmail, setSendingEmail] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [sendingRegEmail, setSendingRegEmail] = useState(false);
+  const [regEmailSent, setRegEmailSent] = useState(false);
+  const [regEmailError, setRegEmailError] = useState(false);
 
   async function handleStatus(status: UserStatus, isPaid?: boolean) {
     setLoadingStatus(status);
     await onStatusChange(status, isPaid);
     setLoadingStatus(null);
+  }
+
+  async function handleSendRegEmail() {
+    setSendingRegEmail(true);
+    setRegEmailError(false);
+    const { error } = await sendRegistrationConfirmation(user);
+    setSendingRegEmail(false);
+    if (error) {
+      setRegEmailError(true);
+    } else {
+      setRegEmailSent(true);
+    }
   }
 
   async function handleSendEmail() {
@@ -161,6 +176,40 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
           >
             <Text style={{ color: colors.inkMuted, fontSize: 13 }}>Cancelar</Text>
           </Pressable>
+        )}
+
+        <Pressable
+          onPress={handleSendRegEmail}
+          disabled={sendingRegEmail || regEmailSent}
+          style={({ pressed }: { pressed: boolean }) => ({
+            flexDirection: "row", alignItems: "center", gap: 6,
+            paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8,
+            backgroundColor: regEmailSent
+              ? "rgba(40,180,90,0.08)"
+              : pressed ? colors.surfaceMuted : colors.surfaceElevated,
+            borderWidth: 1,
+            borderColor: regEmailSent ? "rgba(30,160,70,0.4)" : colors.border,
+            opacity: (sendingRegEmail || regEmailSent) ? 0.8 : 1,
+          })}
+        >
+          {sendingRegEmail ? (
+            <ActivityIndicator size="small" color={colors.inkMuted} />
+          ) : (
+            <Ionicons
+              name={regEmailSent ? "checkmark-circle-outline" : "mail-unread-outline"}
+              size={14}
+              color={regEmailSent ? "rgba(30,160,70,1)" : colors.ink}
+            />
+          )}
+          <Text style={{ color: regEmailSent ? "rgba(30,160,70,1)" : colors.ink, fontSize: 13, fontWeight: "600" }}>
+            {regEmailSent ? "Correo enviado" : "Reenviar confirmación"}
+          </Text>
+        </Pressable>
+
+        {regEmailError && (
+          <Text style={{ color: "rgba(220,60,60,1)", fontSize: 12, alignSelf: "center" }}>
+            Error al enviar
+          </Text>
         )}
       </View>
 

@@ -78,6 +78,18 @@ export async function getDocumentSignedUrl(path: string): Promise<string | null>
   return data.signedUrl;
 }
 
+export async function sendRegistrationConfirmation(user: Pick<UserRow, "id" | "name" | "email" | "discipline">) {
+  const { data, error } = await (supabase.functions.invoke("send-confirmation-email", {
+    body: {
+      userId: user.id,
+      name: user.name,
+      email: user.email,
+      discipline: user.discipline,
+    },
+  }) as unknown as Promise<{ data: { ok: boolean; emailId?: string } | null; error: unknown }>);
+  return { data, error };
+}
+
 export async function sendPaymentConfirmation(user: Pick<UserRow, "id" | "name" | "email" | "discipline">) {
   const { data, error } = await (supabase.functions.invoke("send-payment-confirmation", {
     body: {
