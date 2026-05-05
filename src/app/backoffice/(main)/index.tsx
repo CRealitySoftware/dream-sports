@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, useWindowDimensions, View } from "react-native";
 import { supabase } from "@/lib/supabase";
 
 type Stats = {
@@ -23,6 +23,8 @@ type StatCard = {
 export default function DashboardPage() {
   const { colors } = useTheme();
   const { user } = useAuth();
+  const { width } = useWindowDimensions();
+  const isMobile = width < 768;
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +58,7 @@ export default function DashboardPage() {
   const s = {
     root: {
       flex: 1,
-      padding: 32,
+      padding: isMobile ? 16 : 32,
     },
     greeting: {
       color: colors.inkMuted,

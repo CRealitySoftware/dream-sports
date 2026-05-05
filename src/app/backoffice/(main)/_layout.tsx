@@ -2,10 +2,11 @@ import LogoButton from "@/components/ui/LogoButton";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
+import { DrawerActions } from "@react-navigation/native";
 import { DrawerContentScrollView, type DrawerContentComponentProps } from "@react-navigation/drawer";
-import { Redirect } from "expo-router";
+import { Redirect, useNavigation } from "expo-router";
 import { Drawer } from "expo-router/drawer";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, Text, useWindowDimensions, View } from "react-native";
 
 type NavItem = {
   name: string
@@ -39,7 +40,7 @@ function DrawerContent(props: DrawerContentComponentProps) {
             width: "auto",
             alignContent: "center",
             alignItems: "center",
-            margin: 10
+            margin: 10,
           }}
         >
           <LogoButton showText={false} />
@@ -85,9 +86,24 @@ function DrawerContent(props: DrawerContentComponentProps) {
   )
 }
 
+function HamburgerButton() {
+  const navigation = useNavigation()
+  const { colors } = useTheme()
+  return (
+    <Pressable
+      onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+      style={{ paddingLeft: 16, paddingRight: 8 }}
+    >
+      <Ionicons name="menu-outline" size={22} color={colors.ink} />
+    </Pressable>
+  )
+}
+
 export default function MainLayout() {
   const { session, loading } = useAuth()
   const { colors } = useTheme()
+  const { width } = useWindowDimensions()
+  const isDesktop = width >= 768
 
   if (loading) {
     return (
@@ -105,9 +121,9 @@ export default function MainLayout() {
     <Drawer
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
-        drawerType: "permanent",
-        drawerStyle: { width: 220, borderRightWidth: 0 },
-        headerLeft: () => null,
+        drawerType: isDesktop ? "permanent" : "slide",
+        drawerStyle: { width: isDesktop ? 220 : 260, borderRightWidth: 0 },
+        headerLeft: isDesktop ? () => null : () => <HamburgerButton />,
         headerStyle: {
           backgroundColor: colors.surface,
           borderBottomWidth: 1,

@@ -6,6 +6,7 @@ import {
     deleteUser,
     DISCIPLINE_LABELS,
     fetchUsers,
+    sendPaymentReminder,
     updateUserInfo,
     updateUserStatus,
     type EditableUserFields,
@@ -135,6 +136,10 @@ export default function UsersPage() {
     }
   }
 
+  async function handleSendReminder(users: UserRow[]) {
+    await Promise.allSettled(users.map((u) => sendPaymentReminder(u)));
+  }
+
   async function handleDelete() {
     if (!selectedUser) return;
     const { error } = await deleteUser(selectedUser.id);
@@ -192,7 +197,7 @@ export default function UsersPage() {
             <ActivityIndicator size="large" color={colors.brand} />
           </View>
         ) : (
-          <UsersTable users={users} onView={setSelectedUser} />
+          <UsersTable users={users} onView={setSelectedUser} onSendReminder={handleSendReminder} />
         )}
       </View>
 
