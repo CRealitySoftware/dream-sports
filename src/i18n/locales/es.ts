@@ -65,6 +65,11 @@ const es = {
     //   videoLabel: "Ver video",
     // },
   },
+  videoSection: {
+    tag: "El programa en acción",
+    title: "Así se vive la experiencia DreamSports",
+    body: "Entrenamiento real, metodología europea y talento colombiano en un solo escenario. Esto es lo que te espera cuando te inscribes.",
+  },
   program: {
     sectionTag: "Nuestros programas",
     sectionTitle: "Nuestros programas",

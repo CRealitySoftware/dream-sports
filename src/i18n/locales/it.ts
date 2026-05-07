@@ -65,6 +65,11 @@ const it = {
     //   videoLabel: "Guarda il video",
     // },
   },
+  videoSection: {
+    tag: "Il programma in azione",
+    title: "Ecco come si vive l'esperienza DreamSports",
+    body: "Allenamento reale, metodologia europea e talento colombiano in un unico scenario. Questo è ciò che ti aspetta quando ti iscrivi.",
+  },
   program: {
     sectionTag: "I nostri programmi",
     sectionTitle: "I nostri programmi",
