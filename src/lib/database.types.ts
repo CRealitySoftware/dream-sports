@@ -15,6 +15,9 @@ export type UserRow = {
   father_cedula: string;
   mother_name: string;
   mother_cedula: string;
+  guardian_name: string | null;
+  guardian_email: string | null;
+  guardian_phone: string | null;
   message: string | null;
   gender: string | null;
   birth_date: string | null;
@@ -43,6 +46,9 @@ export type UserInsert = {
   father_cedula: string;
   mother_name: string;
   mother_cedula: string;
+  guardian_name?: string | null;
+  guardian_email?: string | null;
+  guardian_phone?: string | null;
   message?: string | null;
   gender?: string | null;
   birth_date?: string | null;

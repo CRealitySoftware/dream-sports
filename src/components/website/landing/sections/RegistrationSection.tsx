@@ -23,6 +23,9 @@ type FormData = {
   fatherCedula: string
   motherName: string
   motherCedula: string
+  guardianName: string
+  guardianEmail: string
+  guardianPhone: string
   message: string
 }
 
@@ -460,6 +463,9 @@ export default function RegistrationSection() {
     fatherCedula: "",
     motherName: "",
     motherCedula: "",
+    guardianName: "",
+    guardianEmail: "",
+    guardianPhone: "",
     message: "",
   })
   const [errors, setErrors] = useState<Errors>({})
@@ -499,6 +505,10 @@ export default function RegistrationSection() {
     if (!form.fatherCedula.trim()) e.fatherCedula = t("registration.fieldRequired")
     if (!form.motherName.trim()) e.motherName = t("registration.fieldRequired")
     if (!form.motherCedula.trim()) e.motherCedula = t("registration.fieldRequired")
+    if (!form.guardianName.trim()) e.guardianName = t("registration.fieldRequired")
+    if (!form.guardianEmail.trim()) e.guardianEmail = t("registration.fieldRequired")
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.guardianEmail)) e.guardianEmail = t("registration.emailInvalid")
+    if (!form.guardianPhone.trim()) e.guardianPhone = t("registration.fieldRequired")
     return e
   }
 
@@ -533,6 +543,9 @@ export default function RegistrationSection() {
       father_cedula: form.fatherCedula.trim(),
       mother_name: form.motherName.trim(),
       mother_cedula: form.motherCedula.trim(),
+      guardian_name: form.guardianName.trim(),
+      guardian_email: form.guardianEmail.trim().toLowerCase(),
+      guardian_phone: form.guardianPhone.trim(),
       message: form.message.trim() || null,
       parent_consent: parentConsent,
       data_consent: dataConsent,
@@ -806,6 +819,50 @@ export default function RegistrationSection() {
                     focusedField={focusedField}
                     setFocusedField={setFocusedField}
                     hasError={!!errors.motherCedula}
+                    colors={colors}
+                    keyboardType="phone-pad"
+                  />
+                </FieldWrapper>
+              </View>
+
+              <SectionDivider title={t("registration.guardianContactSectionTitle")} colors={colors} />
+
+              <FieldWrapper error={errors.guardianName}>
+                <StyledInput
+                  fieldId="guardianName"
+                  value={form.guardianName}
+                  onChangeText={setField("guardianName")}
+                  placeholder={t("registration.guardianNamePlaceholder")}
+                  focusedField={focusedField}
+                  setFocusedField={setFocusedField}
+                  hasError={!!errors.guardianName}
+                  colors={colors}
+                />
+              </FieldWrapper>
+
+              <View className="flex-col md:flex-row" style={{ gap: 12 }}>
+                <FieldWrapper error={errors.guardianEmail}>
+                  <StyledInput
+                    fieldId="guardianEmail"
+                    value={form.guardianEmail}
+                    onChangeText={setField("guardianEmail")}
+                    placeholder={t("registration.guardianEmailPlaceholder")}
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
+                    hasError={!!errors.guardianEmail}
+                    colors={colors}
+                    keyboardType="email-address"
+                  />
+                </FieldWrapper>
+                <FieldWrapper error={errors.guardianPhone}>
+                  <StyledInput
+                    fieldId="guardianPhone"
+                    value={form.guardianPhone}
+                    onChangeText={setField("guardianPhone")}
+                    placeholder={t("registration.guardianPhonePlaceholder")}
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
+                    hasError={!!errors.guardianPhone}
                     colors={colors}
                     keyboardType="phone-pad"
                   />

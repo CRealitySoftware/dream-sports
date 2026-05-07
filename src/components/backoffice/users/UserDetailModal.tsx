@@ -338,6 +338,14 @@ export default function UserDetailModal({ user, visible, onClose, onEdit, onStat
         <InfoRow label="Cédula" value={user.mother_cedula} />
       </Section>
 
+      {(user.guardian_name || user.guardian_email || user.guardian_phone) && (
+        <Section title="Contacto del acudiente">
+          <InfoRow label="Nombre" value={user.guardian_name} />
+          <InfoRow label="Email" value={user.guardian_email} />
+          <InfoRow label="Teléfono" value={user.guardian_phone} />
+        </Section>
+      )}
+
       {/* Consents */}
       <Section title="Autorizaciones">
         <InfoRow label="Autorización acudiente" value={user.parent_consent} />
