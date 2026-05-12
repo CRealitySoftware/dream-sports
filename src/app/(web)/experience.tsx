@@ -1,6 +1,6 @@
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
-import ExperienceSection from '@/components/website/landing/sections/ExperienceSection';
+import ExperienceFullSection from '@/components/website/landing/sections/ExperienceFullSection';
 import FooterSection from '@/components/website/landing/sections/FooterSection';
 import { useTranslation } from '@/i18n/I18nProvider';
 import React from 'react';
@@ -17,7 +17,7 @@ export default function Page() {
                 subtitle={t("experienceHero.subheadline")}
                 minHeightScale={0.8}
             />
-            <ExperienceSection />
+            <ExperienceFullSection />
             <AboutCtaSection />
             <FooterSection />
         </ScrollView>

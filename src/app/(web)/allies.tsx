@@ -1,7 +1,7 @@
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
-import AlliesSection from '@/components/website/landing/sections/AlliesSection';
 import FooterSection from '@/components/website/landing/sections/FooterSection';
+import SponsorAlliesSection from '@/components/website/landing/sections/SponsorAlliesSection';
 import { useTranslation } from '@/i18n/I18nProvider';
 import React from 'react';
 import { ScrollView } from 'react-native';
@@ -12,12 +12,12 @@ export default function Page() {
         <ScrollView>
             <PageHero
                 variant="plain"
-                badge={t("alliesHero.eyebrow")}
-                title={t("alliesHero.headline")}
-                subtitle={t("alliesHero.subheadline")}
+                badge={t("sponsors.sectionTag")}
+                title={t("sponsors.sectionTitle")}
+                subtitle={t("sponsors.subtitle")}
                 minHeightScale={0.8}
             />
-            <AlliesSection />
+            <SponsorAlliesSection />
             <AboutCtaSection />
             <FooterSection />
         </ScrollView>
