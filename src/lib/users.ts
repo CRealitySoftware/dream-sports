@@ -113,3 +113,18 @@ export async function sendPaymentConfirmation(user: Pick<UserRow, "id" | "name" 
   }) as unknown as Promise<{ data: { ok: boolean; emailId?: string } | null; error: unknown }>);
   return { data, error };
 }
+
+export async function sendWelcomePayment(
+  user: { name?: string; email?: string; discipline?: string },
+  toEmail: string,
+) {
+  const { data, error } = await (supabase.functions.invoke("send-welcome-payment", {
+    body: {
+      name: user.name || undefined,
+      email: user.email || undefined,
+      discipline: user.discipline || undefined,
+      toEmail,
+    },
+  }) as unknown as Promise<{ data: { ok: boolean; emailId?: string } | null; error: unknown }>);
+  return { data, error };
+}
