@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ActivityIndicator, Modal, Pressable, ScrollView, Text, TextInput, useWindowDimensions, View } from "react-native";
 
 const COLUMNS = ["", "Nombre", "Email", "Disciplina", "Estado", "Comprobante", "Inscrito", ""]
-const COL_FLEX = [0.35, 2, 2.8, 1.5, 1.5, 1.5, 1.5, 0.8]
+const COL_FLEX = [0.35, 2, 2.8, 1.5, 1.5, 1.5, 1.5, 1.4]
 
 type Props = {
   users: UserRow[]
