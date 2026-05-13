@@ -4,8 +4,58 @@ import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
-import { useState } from "react";
+import { Image } from "expo-image";
+import { useEffect, useState } from "react";
 import { Modal, Pressable, ScrollView, Text, View } from "react-native";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+
+const CAROUSEL_LOGOS = [
+  require("@/assets/images/logos/1.png"),
+  require("@/assets/images/logos/2.png"),
+  require("@/assets/images/logos/3.png"),
+  require("@/assets/images/logos/4.png"),
+  require("@/assets/images/logos/5.png"),
+  require("@/assets/images/logos/6.png"),
+  require("@/assets/images/logos/7.png"),
+];
+
+const LOGO_SIZE = 120;
+const LOGO_GAP = 48;
+const LOGO_ITEM_WIDTH = LOGO_SIZE + LOGO_GAP;
+const TOTAL_WIDTH = CAROUSEL_LOGOS.length * LOGO_ITEM_WIDTH;
+
+function LogoCarousel({ colors }: { colors: ThemeColors }) {
+  const translateX = useSharedValue(0);
+
+  useEffect(() => {
+    translateX.value = withRepeat(
+      withTiming(-TOTAL_WIDTH, { duration: 22000, easing: Easing.linear }),
+      -1,
+      false
+    );
+  }, []);
+
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }],
+  }));
+
+  const repeated = [...CAROUSEL_LOGOS, ...CAROUSEL_LOGOS, ...CAROUSEL_LOGOS, ...CAROUSEL_LOGOS];
+
+  return (
+    <View style={{ paddingVertical: 40, overflow: "hidden" }}>
+      <Animated.View style={[{ flexDirection: "row" }, animStyle]}>
+        {repeated.map((src, i) => (
+          <Image
+            key={i}
+            source={src}
+            style={{ width: LOGO_SIZE, height: LOGO_SIZE, borderRadius: 12, marginRight: LOGO_GAP }}
+            contentFit="contain"
+          />
+        ))}
+      </Animated.View>
+    </View>
+  );
+}
 
 type Lang = "es" | "it";
 
@@ -230,32 +280,6 @@ function AllyModal({ ally, visible, onClose, t, lang, colors }: {
               {ally.bio[lang]}
             </Text>
           </ScrollView>
-{/* 
-          {hasSocials && (
-            <View style={{ flexDirection: "row", justifyContent: "center", gap: 12, marginTop: 20 }}>
-              {ally.socials.instagram && (
-                <SocialButton
-                  label="IG"
-                  colors={colors}
-                  onPress={() => console.log("TODO: add social links")}
-                />
-              )}
-              {ally.socials.linkedin && (
-                <SocialButton
-                  label="LI"
-                  colors={colors}
-                  onPress={() => console.log("TODO: add social links")}
-                />
-              )}
-              {ally.socials.whatsapp && (
-                <SocialButton
-                  label="WA"
-                  colors={colors}
-                  onPress={() => Linking.openURL(ally.socials.whatsapp!)}
-                />
-              )}
-            </View>
-          )} */}
         </Pressable>
       </Pressable>
     </Modal>
@@ -319,7 +343,8 @@ export default function AlliesSection() {
           ))}
           <MoreCard colors={colors} t={t} />
         </ScrollView>
-        <View style={{ height: 80 }} />
+        {/* <View style={{ height: 48 }} /> */}
+        <LogoCarousel colors={colors} />
       </AnimatedSection>
 
       {selectedAlly && (

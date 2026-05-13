@@ -2,28 +2,92 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
+import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
-function LogoPlaceholder({ label, colors }: { label: string; colors: ThemeColors }) {
+type AllySlideData = {
+  index: number;
+  logoLabel: string;
+  logoSource?: string | number;
+  imageSource?: string | number;
+  name: string;
+  role: string;
+  body: string;
+  originTag: string;
+  originColor: "brand" | "gold";
+};
+
+function ImagePlaceholder({ label, source, colors }: { label: string; source?: string | number; colors: ThemeColors }) {
+  if (source) {
+    return (
+      <Image
+        source={source}
+        style={{ flex: 1, minHeight: 500 }}
+        contentFit="cover"
+      />
+    );
+  }
   return (
     <View
       style={{
-        width: 96,
-        height: 96,
+        flex: 1,
+        minHeight: 340,
+        backgroundColor: colors.surfaceElevated,
+        borderWidth: 1,
+        borderColor: colors.border,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12,
+      }}
+    >
+      <View
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: 28,
+          backgroundColor: colors.brandTint,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View style={{ width: 28, height: 22, borderRadius: 4, backgroundColor: colors.brand, opacity: 0.4 }} />
+      </View>
+      <Text style={{ color: colors.inkMuted, fontSize: 12, fontWeight: "600", letterSpacing: 0.5, textTransform: "uppercase" }}>
+        {label}
+      </Text>
+    </View>
+  );
+}
+
+function LogoChip({ label, source, colors }: { label: string; source?: string | number; colors: ThemeColors }) {
+  if (source) {
+    return (
+      <Image
+        source={source}
+        style={{ width: 100, height: 100, borderRadius: 16, marginBottom: 24 }}
+        contentFit="contain"
+      />
+    );
+  }
+  return (
+    <View
+      style={{
+        width: 72,
+        height: 72,
         borderRadius: 16,
         backgroundColor: colors.brandTint,
         borderWidth: 1.5,
         borderColor: colors.brand,
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: 20,
+        marginBottom: 24,
       }}
     >
       <Text
         style={{
           color: colors.brand,
           fontSize: 9,
-          fontWeight: "700",
+          fontWeight: "800",
           letterSpacing: 1,
           textTransform: "uppercase",
           textAlign: "center",
@@ -36,64 +100,106 @@ function LogoPlaceholder({ label, colors }: { label: string; colors: ThemeColors
   );
 }
 
-function SponsorCard({
-  logoLabel,
-  name,
-  role,
-  bio,
-  delay,
-  colors,
-  t,
-}: {
-  logoLabel: string;
-  name: string;
-  role: string;
-  bio: string;
-  delay: number;
-  colors: ThemeColors;
-  t: (k: string) => string;
-}) {
+function GroupDivider({ label, colors }: { label: string; colors: ThemeColors }) {
   return (
-    <AnimatedSection variant="fadeUp" delay={delay}>
-      <View
-        style={{
-          flex: 1,
-          minWidth: 280,
-          backgroundColor: colors.surface,
-          borderWidth: 1,
-          borderColor: colors.border,
-          borderRadius: 20,
-          padding: 32,
-          alignItems: "flex-start",
-        }}
-      >
-        <LogoPlaceholder label={`${t("sponsors.logoPlaceholder")} ${logoLabel}`} colors={colors} />
+    <View
+      style={{
+        backgroundColor: colors.brand,
+        paddingVertical: 20,
+        paddingHorizontal: 40,
+        alignItems: "center",
+      }}
+    >
+      <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 10, fontWeight: "700", letterSpacing: 3, textTransform: "uppercase" }}>
+        {label}
+      </Text>
+    </View>
+  );
+}
 
-        <Text style={{ color: colors.ink, fontSize: 20, fontWeight: "800", marginBottom: 8, lineHeight: 26 }}>
-          {name}
-        </Text>
+function AllySlide({ data, colors }: { data: AllySlideData; colors: ThemeColors }) {
+  const isEven = data.index % 2 === 0;
+  const bg = isEven ? colors.bg : colors.surfaceMuted;
+  const accentColor = data.originColor === "gold" ? colors.gold : colors.brand;
+  const accentBg = data.originColor === "gold" ? colors.goldTint : colors.brandTint;
+
+  const textColumn = (
+    <AnimatedSection variant={isEven ? "fadeRight" : "fadeLeft"} style={{ flex: 2 }}>
+      <View style={{ flex: 1, paddingVertical: 72, paddingHorizontal: 48, justifyContent: "center" }}>
+        <LogoChip label={data.logoLabel} source={data.logoSource} colors={colors} />
 
         <View
           style={{
-            backgroundColor: colors.goldTint,
-            borderRadius: 20,
-            paddingHorizontal: 12,
-            paddingVertical: 4,
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 8,
+            marginBottom: 16,
+            flexWrap: "wrap",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: accentBg,
+              borderRadius: 20,
+              paddingHorizontal: 12,
+              paddingVertical: 5,
+            }}
+          >
+            <Text style={{ color: accentColor, fontSize: 11, fontWeight: "700", letterSpacing: 0.5 }}>
+              {data.role}
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: colors.surfaceElevated,
+              borderRadius: 20,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+              borderWidth: 1,
+              borderColor: colors.border,
+            }}
+          >
+            <Text style={{ color: colors.inkMuted, fontSize: 10, fontWeight: "700", letterSpacing: 1, textTransform: "uppercase" }}>
+              {data.originTag}
+            </Text>
+          </View>
+        </View>
+
+        <Text
+          style={{
+            color: colors.ink,
+            fontSize: 28,
+            fontWeight: "800",
+            letterSpacing: -0.5,
+            lineHeight: 36,
             marginBottom: 20,
           }}
         >
-          <Text style={{ color: colors.gold, fontSize: 11, fontWeight: "700", letterSpacing: 0.5 }}>
-            {role}
-          </Text>
-        </View>
+          {data.name}
+        </Text>
 
-        <View style={{ height: 1, backgroundColor: colors.border, width: "100%", marginBottom: 20 }} />
+        <View style={{ height: 2, width: 40, backgroundColor: accentColor, marginBottom: 20 }} />
 
-        <Text style={{ color: colors.inkMuted, fontSize: 14, lineHeight: 24 }}>
-          {bio}
+        <Text style={{ color: colors.inkMuted, fontSize: 15, lineHeight: 26 }}>
+          {data.body}
         </Text>
       </View>
     </AnimatedSection>
+  );
+
+  const imageColumn = (
+    <AnimatedSection variant={isEven ? "fadeLeft" : "fadeRight"} style={{ flex: 1, minHeight: 500 }}>
+      <ImagePlaceholder label={data.logoLabel} source={data.imageSource} colors={colors} />
+    </AnimatedSection>
+  );
+
+  return (
+    <View style={{ backgroundColor: bg, borderTopWidth: 1, borderTopColor: colors.border }}>
+      <View className={`flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`} style={{ minHeight: 500 }}>
+        {textColumn}
+        {imageColumn}
+      </View>
+    </View>
   );
 }
 
@@ -101,102 +207,100 @@ export default function SponsorAlliesSection() {
   const { t } = useTranslation();
   const { colors } = useTheme();
 
-  const sponsors = [
+  const italianAllies: AllySlideData[] = [
     {
+      index: 0,
       logoLabel: "MSR",
       name: t("sponsors.msrName"),
       role: t("sponsors.msrRole"),
-      bio: t("sponsors.msrBody"),
+      body: t("sponsors.msrBody"),
+      originTag: "Roma, Italia",
+      originColor: "brand",
+      imageSource: require("@/assets/images/vertical/6.png"),
+      logoSource: require("@/assets/images/logos/12.png")
     },
     {
+      index: 1,
       logoLabel: "Certosa",
       name: t("sponsors.certosaName"),
       role: t("sponsors.certosaRole"),
-      bio: t("sponsors.certosaBody"),
+      body: t("sponsors.certosaBody"),
+      originTag: "Roma, Italia",
+      originColor: "brand",
+      imageSource: require("@/assets/images/vertical/7.png"),
+      logoSource: require("@/assets/images/logos/13.png")
     },
     {
+      index: 2,
       logoLabel: "Rete Sport",
       name: t("sponsors.retesportName"),
       role: t("sponsors.retesportRole"),
-      bio: t("sponsors.retesportBody"),
+      body: t("sponsors.retesportBody"),
+      originTag: "Roma, Italia",
+      originColor: "brand",
+      imageSource: require("@/assets/images/vertical/8.png"),
+      logoSource: require("@/assets/images/logos/14.png")
+    },
+  ];
+
+  const eliteTeam: AllySlideData[] = [
+    {
+      index: 0,
+      logoLabel: "X-Move",
+      name: "X-Move Human Performance",
+      role: t("experienceFull.xmoveRole"),
+      body: t("experienceFull.xmoveBody"),
+      originTag: "Colombia",
+      originColor: "gold",
+      imageSource: require("@/assets/images/vertical/1.png"),
+      logoSource: require("@/assets/images/logos/8.png")
+    },
+    {
+      index: 1,
+      logoLabel: "AJ Skills",
+      name: "AJ.Skills Coach",
+      role: t("experienceFull.ajSkillsRole"),
+      body: t("experienceFull.ajSkillsBody"),
+      originTag: "Colombia",
+      originColor: "gold",
+      imageSource: require("@/assets/images/vertical/2.png"),
+      logoSource: require("@/assets/images/logos/9.png")
+    },
+    {
+      index: 2,
+      logoLabel: "DJ FC",
+      name: "Dimelo Jara FC",
+      role: t("experienceFull.dimeloJaraRole"),
+      body: t("experienceFull.dimeloJaraBody"),
+      originTag: "Colombia",
+      originColor: "gold",
+      imageSource: require("@/assets/images/vertical/3.png"),
+      logoSource: require("@/assets/images/logos/10.png")
+    },
+    {
+      index: 3,
+      logoLabel: "Manos Voley",
+      name: "Manos Voley Club",
+      role: t("experienceFull.manosVoleyRole"),
+      body: t("experienceFull.manosVoleyBody"),
+      originTag: "Colombia",
+      originColor: "gold",
+      imageSource: require("@/assets/images/vertical/4.png"),
+      logoSource: require("@/assets/images/logos/11.png")
     },
   ];
 
   return (
-    <View
-      style={{
-        backgroundColor: colors.bg,
-        borderTopWidth: 1,
-        borderTopColor: colors.border,
-      }}
-    >
-      <View
-        className="py-20 md:py-24 px-6"
-        style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}
-      >
-        <AnimatedSection variant="fadeUp">
-          <View style={{ alignItems: "center", marginBottom: 56 }}>
-            <View
-              style={{
-                backgroundColor: colors.brandTint,
-                borderRadius: 20,
-                paddingHorizontal: 14,
-                paddingVertical: 6,
-                marginBottom: 16,
-              }}
-            >
-              <Text
-                style={{
-                  color: colors.brand,
-                  fontSize: 11,
-                  fontWeight: "700",
-                  letterSpacing: 2,
-                  textTransform: "uppercase",
-                }}
-              >
-                {t("sponsors.sectionTag")}
-              </Text>
-            </View>
+    <View>
+      {italianAllies.map((ally) => (
+        <AllySlide key={ally.logoLabel} data={ally} colors={colors} />
+      ))}
 
-            <Text
-              style={{
-                color: colors.ink,
-                fontSize: 36,
-                fontWeight: "800",
-                letterSpacing: -0.8,
-                textAlign: "center",
-                marginBottom: 16,
-              }}
-            >
-              {t("sponsors.sectionTitle")}
-            </Text>
+      <GroupDivider label={t("experienceFull.teamTitle")} colors={colors} />
 
-            <Text
-              style={{
-                color: colors.inkMuted,
-                fontSize: 16,
-                lineHeight: 26,
-                textAlign: "center",
-                maxWidth: 560,
-              }}
-            >
-              {t("sponsors.subtitle")}
-            </Text>
-          </View>
-        </AnimatedSection>
-
-        <View className="flex-col md:flex-row" style={{ gap: 24 }}>
-          {sponsors.map((s, i) => (
-            <SponsorCard
-              key={s.name}
-              {...s}
-              delay={i * 80}
-              colors={colors}
-              t={t}
-            />
-          ))}
-        </View>
-      </View>
+      {eliteTeam.map((ally) => (
+        <AllySlide key={ally.logoLabel} data={ally} colors={colors} />
+      ))}
     </View>
   );
 }

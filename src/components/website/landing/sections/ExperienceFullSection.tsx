@@ -2,6 +2,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
+import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
 function SectionTag({ label, colors }: { label: string; colors: ThemeColors }) {
@@ -42,8 +43,17 @@ function PhaseTag({ label, colors, gold }: { label: string; colors: ThemeColors;
   );
 }
 
-function LogoPlaceholder({ label, size, colors }: { label: string; size?: number; colors: ThemeColors }) {
+function LogoPlaceholder({ label, size, uri, colors }: { label: string; size?: number; uri?: string | number; colors: ThemeColors }) {
   const s = size ?? 80;
+  if (uri) {
+    return (
+      <Image
+        source={uri}
+        style={{ width: s, height: s, borderRadius: 12 }}
+        contentFit="contain"
+      />
+    );
+  }
   return (
     <View
       style={{
@@ -64,7 +74,10 @@ function LogoPlaceholder({ label, size, colors }: { label: string; size?: number
   );
 }
 
-function ImagePlaceholder({ label, width, height, colors }: { label: string; width: number | string; height: number; colors: ThemeColors }) {
+function ImagePlaceholder({ label, width, height, uri, colors }: { label: string; width: number | string; height: number; uri?: string | number; colors: ThemeColors }) {
+  if (uri) {
+    return <Image source={uri} style={{ width: width as any, height, borderRadius: 16 }} contentFit="cover" />;
+  }
   return (
     <View
       style={{
@@ -113,7 +126,7 @@ function IntroBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColo
               </Text>
             </View>
             <View className="hidden md:flex" style={{ alignItems: "center", justifyContent: "center" }}>
-              <LogoPlaceholder label="DSI Elite Athlete Group" size={200} colors={colors} />
+              <LogoPlaceholder label="DSI Elite Athlete Group" size={200} colors={colors} uri={require("@/assets/images/logos/logo-variant.png")} />
             </View>
           </View>
         </AnimatedSection>
@@ -146,7 +159,7 @@ function Phase1Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
               <Text style={{ color: colors.inkMuted, fontSize: 16, lineHeight: 26, marginBottom: 32 }}>
                 {t("experienceFull.phase1Body")}
               </Text>
-              <ImagePlaceholder label="Campus Colombia" width="100%" height={220} colors={colors} />
+              <ImagePlaceholder label="Campus Colombia" width="100%" height={300} colors={colors} uri={require("@/assets/images/horizontal/1.png")} />
             </View>
 
             <View
@@ -185,73 +198,6 @@ function Phase1Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
   );
 }
 
-function TeamCard({ logo, name, role, bio, delay, colors }: {
-  logo: string; name: string; role: string; bio: string; delay: number; colors: ThemeColors;
-}) {
-  return (
-    <AnimatedSection variant="fadeUp" delay={delay}>
-      <View
-        style={{
-          flex: 1,
-          minWidth: 260,
-          backgroundColor: colors.surface,
-          borderWidth: 1,
-          borderColor: colors.border,
-          borderRadius: 16,
-          padding: 24,
-        }}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 16, marginBottom: 16 }}>
-          <LogoPlaceholder label={logo} size={64} colors={colors} />
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: colors.ink, fontSize: 15, fontWeight: "800", marginBottom: 4, lineHeight: 20 }}>
-              {name}
-            </Text>
-            <View style={{ backgroundColor: colors.goldTint, borderRadius: 20, paddingHorizontal: 10, paddingVertical: 3, alignSelf: "flex-start" }}>
-              <Text style={{ color: colors.gold, fontSize: 10, fontWeight: "700", letterSpacing: 0.5 }}>
-                {role}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <Text style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 21 }}>
-          {bio}
-        </Text>
-      </View>
-    </AnimatedSection>
-  );
-}
-
-function EliteTeamBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
-  const partners = [
-    { logo: "X-Move", name: "X-Move Human Performance", role: t("experienceFull.xmoveRole"), bio: t("experienceFull.xmoveBody") },
-    { logo: "AJ Skills", name: "AJ.Skills Coach", role: t("experienceFull.ajSkillsRole"), bio: t("experienceFull.ajSkillsBody") },
-    { logo: "DJ FC", name: "Dimelo Jara FC", role: t("experienceFull.dimeloJaraRole"), bio: t("experienceFull.dimeloJaraBody") },
-    { logo: "Manos Voley", name: "Manos Voley Club", role: t("experienceFull.manosVoleyRole"), bio: t("experienceFull.manosVoleyBody") },
-  ];
-
-  return (
-    <View style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border, paddingVertical: 80, paddingHorizontal: 24 }}>
-      <View style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}>
-        <AnimatedSection variant="fadeUp">
-          <View style={{ alignItems: "center", marginBottom: 48 }}>
-            <PhaseTag label={t("experienceFull.teamTag")} colors={colors} />
-            <Text style={{ color: colors.ink, fontSize: 32, fontWeight: "800", letterSpacing: -0.6, textAlign: "center" }}>
-              {t("experienceFull.teamTitle")}
-            </Text>
-          </View>
-        </AnimatedSection>
-
-        <View className="flex-col md:flex-row" style={{ flexWrap: "wrap", gap: 20 }}>
-          {partners.map((p, i) => (
-            <TeamCard key={p.name} {...p} delay={i * 80} colors={colors} />
-          ))}
-        </View>
-      </View>
-    </View>
-  );
-}
-
 function IncludesBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
   const items = [
     { label: t("experienceFull.includesKitLabel"), body: t("experienceFull.includesKitBody"), n: "01" },
@@ -271,11 +217,10 @@ function IncludesBlock({ t, colors }: { t: (k: string) => string; colors: ThemeC
 
         <View className="flex-col md:flex-row" style={{ gap: 20, flexWrap: "wrap" }}>
           {items.map((item, i) => (
-            <AnimatedSection key={item.n} variant="fadeUp" delay={i * 70}>
+            <AnimatedSection key={item.n} variant="fadeUp" delay={i * 70} style={{ flex: 1, minWidth: 220 }}>
               <View
                 style={{
                   flex: 1,
-                  minWidth: 220,
                   backgroundColor: colors.surface,
                   borderWidth: 1,
                   borderColor: colors.border,
@@ -346,7 +291,13 @@ function Phase2Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
               </View>
             </View>
             <View className="hidden md:flex">
-              <ImagePlaceholder label="Roma, Italia" width={380} height={280} colors={{ ...colors, surfaceElevated: "rgba(255,255,255,0.08)", border: "rgba(255,255,255,0.15)", inkMuted: "rgba(255,255,255,0.5)" }} />
+              <ImagePlaceholder
+                label="Roma, Italia"
+                width={500}
+                height={280}
+                colors={{ ...colors, surfaceElevated: "rgba(255,255,255,0.08)", border: "rgba(255,255,255,0.15)", inkMuted: "rgba(255,255,255,0.5)" }}
+                uri={require("@/assets/images/horizontal/3.png")}
+              />
             </View>
           </View>
         </AnimatedSection>
@@ -373,7 +324,7 @@ function ScheduleBlock({ t, colors }: { t: (k: string) => string; colors: ThemeC
 
         <View className="flex-col md:flex-row" style={{ gap: 24 }}>
           {months.map((m, i) => (
-            <AnimatedSection key={m.n} variant="fadeUp" delay={i * 80}>
+            <AnimatedSection key={m.n} variant="fadeUp" delay={i * 80} style={{ flex: 1 }}>
               <View
                 style={{
                   flex: 1,
@@ -411,7 +362,7 @@ function VillaBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColo
         <AnimatedSection variant="fadeUp">
           <View className="flex-col md:flex-row" style={{ gap: 48, alignItems: "center" }}>
             <View className="hidden md:flex" style={{ flex: 1 }}>
-              <ImagePlaceholder label="Villa Deportiva" width="100%" height={300} colors={colors} />
+              <ImagePlaceholder label="Villa Deportiva" width="100%" height={300} colors={colors} uri={require("@/assets/images/horizontal/4.png")}/>
             </View>
             <View style={{ flex: 1 }}>
               <Text style={{ color: colors.ink, fontSize: 32, fontWeight: "800", letterSpacing: -0.6, marginBottom: 6 }}>
@@ -425,7 +376,7 @@ function VillaBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColo
               </Text>
             </View>
             <View className="flex md:hidden" style={{ width: "100%" }}>
-              <ImagePlaceholder label="Villa Deportiva" width="100%" height={220} colors={colors} />
+              <ImagePlaceholder label="Villa Deportiva" width="100%" height={220} colors={colors} uri={require("@/assets/images/horizontal/4.png")} />
             </View>
           </View>
         </AnimatedSection>
@@ -455,7 +406,7 @@ function ProjectionBlock({ t, colors }: { t: (k: string) => string; colors: Them
 
         <View className="flex-col md:flex-row" style={{ gap: 20 }}>
           {protocols.map((p, i) => (
-            <AnimatedSection key={p.n} variant="fadeUp" delay={i * 80}>
+            <AnimatedSection key={p.n} variant="fadeUp" delay={i * 80} style={{ flex: 1 }}>
               <View
                 style={{
                   flex: 1,
@@ -503,7 +454,6 @@ export default function ExperienceFullSection() {
       <IntroBlock t={t} colors={colors} />
       <Divider colors={colors} />
       <Phase1Block t={t} colors={colors} />
-      <EliteTeamBlock t={t} colors={colors} />
       <IncludesBlock t={t} colors={colors} />
       <Phase2Block t={t} colors={colors} />
       <ScheduleBlock t={t} colors={colors} />
