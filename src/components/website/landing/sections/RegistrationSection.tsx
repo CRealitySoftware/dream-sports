@@ -7,8 +7,9 @@ import { supabase, insertUser } from "@/lib/supabase";
 import type { Discipline } from "@/lib/database.types";
 import type { ThemeColors } from "@/providers/ThemeProvider";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { ActivityIndicator, Pressable, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Linking, Pressable, Text, TextInput, View } from "react-native";
 import { AnimatedSection } from "../../../ui/AnimatedSection";
 
 type FormData = {
@@ -410,36 +411,176 @@ function SectionDivider({ title, colors }: { title: string; colors: ThemeColors 
   )
 }
 
-function SuccessBlock({ colors, t }: { colors: ThemeColors; t: (k: string) => string }) {
+const MIPAGO_URL =
+  "https://www.mipagoamigo.com/MPA_WebSite/ServicePayments/StartPayment?id=20574&searchedCategoryId=-1&searchedAgreementName=DREAM%20SPORTS%20INTERNATIONAL%20SRL%20SAS"
+
+function SuccessBlock({
+  colors,
+  t,
+  userId,
+}: {
+  colors: ThemeColors
+  t: (k: string) => string
+  userId: string
+}) {
+  const router = useRouter()
+
   return (
-    <View style={{ alignItems: "center", paddingVertical: 48, gap: 16 }}>
+    <View style={{ paddingVertical: 32, gap: 24 }}>
+      <View style={{ alignItems: "center", gap: 12 }}>
+        <View
+          style={{
+            width: 64,
+            height: 64,
+            borderRadius: 32,
+            backgroundColor: colors.goldTint,
+            borderWidth: 2,
+            borderColor: colors.gold,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Ionicons name="checkmark" size={32} color={colors.gold} />
+        </View>
+        <Text style={{ color: colors.ink, fontSize: 22, fontWeight: "800", textAlign: "center" }}>
+          {t("registration.successTitle")}
+        </Text>
+        <Text
+          style={{
+            color: colors.inkMuted,
+            fontSize: 14,
+            lineHeight: 22,
+            textAlign: "center",
+            maxWidth: 380,
+          }}
+        >
+          {t("registration.successBody")}
+        </Text>
+      </View>
+
       <View
         style={{
-          width: 72,
-          height: 72,
-          borderRadius: 36,
-          backgroundColor: colors.goldTint,
           borderWidth: 2,
           borderColor: colors.gold,
-          alignItems: "center",
-          justifyContent: "center",
+          borderRadius: 16,
+          overflow: "hidden",
         }}
       >
-        <Ionicons name="checkmark" size={36} color={colors.gold} />
+        <View
+          style={{
+            backgroundColor: colors.goldTint,
+            paddingVertical: 14,
+            paddingHorizontal: 20,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text
+            style={{
+              color: colors.gold,
+              fontSize: 11,
+              fontWeight: "700",
+              letterSpacing: 1.5,
+              textTransform: "uppercase",
+            }}
+          >
+            {t("registration.successPaySection")}
+          </Text>
+          <Text style={{ color: colors.gold, fontSize: 22, fontWeight: "800" }}>€ 300</Text>
+        </View>
+
+        <View style={{ backgroundColor: colors.surface, padding: 20, gap: 16 }}>
+          <Pressable
+            onPress={() => Linking.openURL(MIPAGO_URL)}
+            style={({ pressed }: any) => ({
+              backgroundColor: pressed ? colors.gold : colors.brand,
+              borderRadius: 40,
+              paddingVertical: 16,
+              alignItems: "center",
+              gap: 6,
+              opacity: pressed ? 0.9 : 1,
+            })}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>
+              {t("registration.successPayOnline")}
+            </Text>
+            <Text style={{ color: "rgba(255,255,255,0.7)", fontSize: 11 }}>
+              {t("registration.successPayOnlineNote")}
+            </Text>
+          </Pressable>
+
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+            <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
+            <Text style={{ color: colors.inkMuted, fontSize: 11, fontWeight: "600" }}>
+              {t("registration.successPayBankTitle")}
+            </Text>
+            <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
+          </View>
+
+          <View
+            style={{
+              backgroundColor: colors.surfaceElevated,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: colors.border,
+              padding: 14,
+              gap: 8,
+            }}
+          >
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <Text style={{ color: colors.inkMuted, fontSize: 11, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.8 }}>
+                {t("registration.successPayBankName")}
+              </Text>
+              <Text style={{ color: colors.inkMuted, fontSize: 11, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.8 }}>
+                {t("registration.successPayBankType")}
+              </Text>
+            </View>
+            <View style={{ height: 1, backgroundColor: colors.border }} />
+            <Text style={{ color: colors.inkMuted, fontSize: 12 }}>{t("registration.successPayBankHolder")}</Text>
+            <Text
+              style={{
+                color: colors.brand,
+                fontSize: 20,
+                fontWeight: "800",
+                letterSpacing: 2,
+              }}
+            >
+              {t("registration.successPayBankAccount")}
+            </Text>
+          </View>
+
+          <Pressable
+            onPress={() => router.push(`/confirm/${userId}` as any)}
+            style={({ pressed }: any) => ({
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 6,
+              paddingVertical: 12,
+              borderRadius: 40,
+              borderWidth: 1,
+              borderColor: colors.border,
+              opacity: pressed ? 0.6 : 1,
+            })}
+          >
+            <Ionicons name="cloud-upload-outline" size={15} color={colors.inkMuted} />
+            <Text style={{ color: colors.inkMuted, fontSize: 13, fontWeight: "600" }}>
+              {t("registration.successPayProof")}
+            </Text>
+          </Pressable>
+        </View>
       </View>
-      <Text style={{ color: colors.ink, fontSize: 22, fontWeight: "800", textAlign: "center" }}>
-        {t("registration.successTitle")}
-      </Text>
+
       <Text
         style={{
           color: colors.inkMuted,
-          fontSize: 15,
-          lineHeight: 24,
+          fontSize: 11,
           textAlign: "center",
-          maxWidth: 400,
+          lineHeight: 16,
         }}
       >
-        {t("registration.successBody")}
+        {t("registration.successNote")}
       </Text>
     </View>
   )
@@ -471,6 +612,7 @@ export default function RegistrationSection() {
   const [errors, setErrors] = useState<Errors>({})
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  const [submittedUserId, setSubmittedUserId] = useState("")
   const [loading, setLoading] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -575,6 +717,7 @@ export default function RegistrationSection() {
       })
       .catch(console.error)
 
+    setSubmittedUserId(userId)
     setSubmitted(true)
   }
 
@@ -653,7 +796,7 @@ export default function RegistrationSection() {
           {!isLaunched ? (
             <LaunchCountdown size="md" />
           ) : submitted ? (
-            <SuccessBlock colors={colors} t={t} />
+            <SuccessBlock colors={colors} t={t} userId={submittedUserId} />
           ) : (
             <View style={{ gap: 12 }}>
               <View className="flex-col md:flex-row" style={{ gap: 12 }}>

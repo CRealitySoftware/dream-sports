@@ -4,7 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 import * as DocumentPicker from "expo-document-picker";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+
+const HtmlVideo = "video" as any;
+const HtmlSource = "source" as any;
 
 type UserInfo = { name: string; discipline: string; invoice_path: string | null };
 
@@ -109,9 +112,11 @@ export default function ConfirmPage() {
     container: {
       flex: 1,
       backgroundColor: colors.bg,
+    },
+    scrollContent: {
       alignItems: "center" as const,
-      justifyContent: "center" as const,
       padding: 24,
+      paddingVertical: 48,
     },
     card: {
       width: "100%" as const,
@@ -176,7 +181,7 @@ export default function ConfirmPage() {
 
   if (pageState === "loading") {
     return (
-      <View style={s.container}>
+      <View style={[s.container, { alignItems: "center", justifyContent: "center" }]}>
         <ActivityIndicator size="large" color={colors.brand} />
       </View>
     );
@@ -184,7 +189,7 @@ export default function ConfirmPage() {
 
   if (pageState === "not_found") {
     return (
-      <View style={s.container}>
+      <ScrollView style={s.container} contentContainerStyle={s.scrollContent}>
         <View style={s.card}>
           <Ionicons name="alert-circle-outline" size={48} color={colors.gold} />
           <Text style={s.title}>Enlace no válido</Text>
@@ -192,13 +197,13 @@ export default function ConfirmPage() {
             Este enlace no corresponde a ninguna inscripción. Verifica el correo que recibiste.
           </Text>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
   if (pageState === "already_uploaded") {
     return (
-      <View style={s.container}>
+      <ScrollView style={s.container} contentContainerStyle={s.scrollContent}>
         <View style={[s.card, { gap: 16 }]}>
           <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: colors.goldTint, alignItems: "center", justifyContent: "center" }}>
             <Ionicons name="checkmark-circle" size={36} color={colors.gold} />
@@ -208,13 +213,13 @@ export default function ConfirmPage() {
             Ya hemos recibido tu comprobante de pago, {user?.name?.split(" ")[0]}. Nuestro equipo lo está revisando y te notificará pronto.
           </Text>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
   if (pageState === "done") {
     return (
-      <View style={s.container}>
+      <ScrollView style={s.container} contentContainerStyle={s.scrollContent}>
         <View style={[s.card, { gap: 16 }]}>
           <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: colors.goldTint, alignItems: "center", justifyContent: "center" }}>
             <Ionicons name="checkmark-circle" size={36} color={colors.gold} />
@@ -228,24 +233,43 @@ export default function ConfirmPage() {
             <Text style={{ color: colors.brand, fontWeight: "700" }}>info@dreamsportsinternational.com</Text>
           </Text>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
   return (
-    <View style={s.container}>
+    <ScrollView style={s.container} contentContainerStyle={s.scrollContent}>
       <View style={s.card}>
         <View style={{ gap: 8 }}>
           <View style={s.tag}>
             <Text style={s.tagText}>DreamSports International</Text>
           </View>
-          <Text style={s.title}>Sube tu comprobante de pago</Text>
+          <Text style={s.title}>¿Cómo pagar?</Text>
           <Text style={s.body}>
             Hola <Text style={{ fontWeight: "700", color: colors.ink }}>{user?.name?.split(" ")[0]}</Text>
             {user?.discipline ? ` · ${DISCIPLINE_LABELS[user.discipline] ?? user.discipline}` : ""}
-            {"\n"}Adjunta la imagen o PDF de tu comprobante para confirmar tu inscripción.
+            {"\n"}Mira el tutorial y luego sube tu comprobante para confirmar tu inscripción.
           </Text>
         </View>
+
+        <HtmlVideo
+          controls
+          playsInline
+          style={{
+            width: "100%",
+            borderRadius: 12,
+            aspectRatio: "16/9",
+            backgroundColor: "#000",
+          }}
+        >
+          <HtmlSource src="/videos/tutorial.mp4" type="video/mp4" />
+        </HtmlVideo>
+
+        <View style={{ height: 1, backgroundColor: colors.border }} />
+
+        <Text style={{ color: colors.inkMuted, fontSize: 13, fontWeight: "600" }}>
+          Sube tu comprobante de pago
+        </Text>
 
         <Pressable onPress={pickFile} style={s.dropzone(!!selectedFile)}>
           <Ionicons
@@ -292,6 +316,6 @@ export default function ConfirmPage() {
           )}
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   );
 }
