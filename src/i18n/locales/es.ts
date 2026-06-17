@@ -13,7 +13,7 @@ const es = {
     aliados: "Aliados",
   },
   hero: {
-    badge: "Showcase Internacional · Junio 2026",
+    badge: "Showcase Internacional · Julio 2026",
     title: "Lleva tu talento\nal siguiente nivel",
     subtitle:
       "Showcase Internacional de Fútbol, Baloncesto y Voleibol. Participa en una evaluación real con entrenadores y scouts internacionales. Demuestra tu nivel, compite y abre puertas fuera de Colombia.",
@@ -43,19 +43,19 @@ const es = {
     football: {
       name: "Fútbol",
       summary: "Entrenamiento bajo la metodología táctica del fútbol italiano. Evaluación frente a clubes y entrenadores certificados en Italia.",
-      selectionDate: "Selección: 06 de julio al 12 de julio de 2026",
+      selectionDate: "Selección: 08 de julio al 14 de julio de 2026",
       videoLabel: "Ver video",
     },
     basketball: {
       name: "Baloncesto",
       summary: "Alto rendimiento con estándares europeos. Conexión directa con el circuito deportivo italiano y evaluación continua.",
-      selectionDate: "Selección: 22 de junio al 28 de junio de 2026",
+      selectionDate: "Selección: 01 de julio al 07 de julio de 2026",
       videoLabel: "Ver video",
     },
     volleyball: {
       name: "Voleibol",
       summary: "Inmersión en el voleibol italiano, reconocido mundialmente por su nivel competitivo y metodología de alto impacto.",
-      selectionDate: "Selección: 29 de junio al 05 de julio de 2026",
+      selectionDate: "Selección: 08 de julio al 14 de julio de 2026",
       videoLabel: "Ver video",
     },
     // cycling: {
@@ -75,7 +75,7 @@ const es = {
     sectionTitle: "Nuestros programas",
     phase1Tag: "Showcase",
     phase1Title: "Showcase Internacional",
-    phase1Sub: "Tunja, Colombia · 22–28 jun 2026",
+    phase1Sub: "Tunja, Colombia · 1–14 jul 2026",
     phase1Item1: "Compites frente a entrenadores y evaluadores internacionales",
     phase1Item2: "Identificación de jugadores con potencial real",
     phase1Item3: "Evaluación técnica, táctica y física",
@@ -244,7 +244,7 @@ const es = {
   exchangeOverview: {
     eyebrow: "El programa",
     title: "Una experiencia que transforma carreras",
-    intro: "El programa se estructura en dos fases: un campamento de selección en Colombia (junio–julio 2026) y ciclos de desarrollo en Italia desde agosto de 2026. 300 cupos disponibles — los primeros 100 inscritos tienen cupo directo a Italia en grupos progresivos de 25, con 86 días de inmersión por ciclo.",
+    intro: "El programa se estructura en dos fases: un campamento de selección en Colombia (julio 2026) y ciclos de desarrollo en Italia desde agosto de 2026. 300 cupos disponibles — los primeros 100 inscritos tienen cupo directo a Italia en grupos progresivos de 25, con 86 días de inmersión por ciclo.",
     objectivesTitle: "Objetivos del intercambio",
     obj1: "Identificación de talento competitivo por disciplina",
     obj2: "Evaluación técnica, táctica, física y médica inicial",
@@ -313,17 +313,17 @@ const es = {
   sportPage: {
     football: {
       headline: "El fútbol colombiano\ntiene un lugar en Italia",
-      selectionDate: "06 de julio al 12 de julio de 2026 · Colombia",
+      selectionDate: "08 de julio al 14 de julio de 2026 · Colombia",
       presentationBody: "Colombia tiene una de las tradiciones futbolísticas más ricas de América Latina. Con DreamSports, los jóvenes talentos del fútbol colombiano tienen la oportunidad de ser evaluados y entrenados bajo la metodología del fútbol italiano, uno de los más tácticos y reconocidos del mundo. Los seleccionados trabajarán con entrenadores certificados, interactuarán con clubes locales y participarán en dinámicas de observación que pueden abrir puertas reales al fútbol profesional europeo.",
     },
     basketball: {
       headline: "Alto rendimiento.\nEstándares europeos.\nTu próximo nivel.",
-      selectionDate: "22 de junio al 28 de junio de 2026 · Colombia",
+      selectionDate: "01 de julio al 07 de julio de 2026 · Colombia",
       presentationBody: "El baloncesto colombiano crece con fuerza y produce cada año jugadores con condiciones físicas y técnicas excepcionales. DreamSports ofrece a los jóvenes basquetbolistas la oportunidad de medir su nivel frente a los estándares europeos, entrenar con metodologías de alto rendimiento y conectarse con el circuito deportivo italiano.",
     },
     volleyball: {
       headline: "El voleibol italiano\nte está esperando",
-      selectionDate: "29 de junio al 05 de julio de 2026 · Colombia",
+      selectionDate: "08 de julio al 14 de julio de 2026 · Colombia",
       presentationBody: "El voleibol es una de las disciplinas de mayor crecimiento en Colombia. DreamSports abre las puertas al voleibol italiano, reconocido mundialmente por su nivel competitivo. Los seleccionados podrán vivir una experiencia de inmersión real, entrenando con metodologías de élite y compartiendo espacios con los actores del deporte europeo.",
     },
     // cycling: {
@@ -355,15 +355,15 @@ const es = {
     introBody: "Dream Sports International SRL no es solo un campamento; es una plataforma de conexión global diseñada para proyectar el talento joven (chicos y chicas de 14 a 17 años) hacia el ecosistema profesional europeo. Nuestro enfoque combina el rigor técnico del alto rendimiento con la formación integral del ser.",
     phase1Tag: "Fase 1",
     phase1Title: "Campamento Colombia",
-    phase1Location: "Tunja · Junio – Julio 2026",
+    phase1Location: "Tunja · Julio 2026",
     phase1Body: "Un espacio de evaluación y tecnificación intensiva donde los atletas trabajarán bajo los estándares de los mejores profesionales del país.",
     phase1DatesTitle: "Disciplinas y Fechas:",
     phase1Basketball: "Baloncesto:",
-    phase1BasketballDate: "22 al 28 de junio de 2026",
+    phase1BasketballDate: "1 al 7 de julio de 2026",
     phase1Volleyball: "Voleibol:",
-    phase1VolleyballDate: "29 de junio al 5 de julio de 2026",
+    phase1VolleyballDate: "8 al 14 de julio de 2026",
     phase1Football: "Fútbol:",
-    phase1FootballDate: "6 al 12 de julio de 2026",
+    phase1FootballDate: "8 al 14 de julio de 2026",
     teamTitle: "Nuestro Equipo Elite",
     teamTag: "Colombia",
     xmoveBody: "X-Move Human Performance es un centro especializado en rendimiento físico, salud y movimiento humano, conformado por un equipo interdisciplinario de preparadores físicos, fisioterapeutas y médicos del deporte altamente capacitados. Su enfoque combina ciencia y experiencia práctica para optimizar el rendimiento y promover el desarrollo integral de cada deportista en cualquier edad.",
@@ -446,6 +446,17 @@ const es = {
     copyright: "© 2026 DREAM SPORT'S INTERNATIONAL SRL S.A.S",
     legalId: "NIT: 902.052.688-1 · Matrícula: 04085816 · CCB",
     rights: "Todos los derechos reservados",
+  },
+  announcement: {
+    label: "Comunicado oficial",
+    title: "Campamento Internacional 2026 reprogramado",
+    body: "Por seguridad y bienestar de nuestros deportistas, hemos aplazado el inicio del campamento. Las nuevas fechas son:",
+    basketball: "Baloncesto:",
+    basketballDates: "1 al 7 de julio",
+    volleyballFootball: "Voleibol y Fútbol:",
+    volleyballFootballDates: "8 al 14 de julio",
+    cta: "Leer comunicado completo",
+    dismiss: "Entendido",
   },
   countdown: {
     days: "días",

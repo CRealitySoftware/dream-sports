@@ -13,7 +13,7 @@ const it = {
     aliados: "Alleati",
   },
   hero: {
-    badge: "Showcase Internazionale · Giugno 2026",
+    badge: "Showcase Internazionale · Luglio 2026",
     title: "Porta il tuo talento\nal livello successivo",
     subtitle:
       "Showcase Internazionale di Calcio, Pallacanestro e Pallavolo. Partecipa a una valutazione reale con allenatori e scout internazionali. Dimostra il tuo livello, competi e apri porte fuori dalla Colombia.",
@@ -43,19 +43,19 @@ const it = {
     football: {
       name: "Calcio",
       summary: "Allenamento con la metodologia tattica del calcio italiano. Valutazione con club e allenatori certificati in Italia.",
-      selectionDate: "Selezione: 06 lug – 12 lug 2026",
+      selectionDate: "Selezione: 08 lug – 14 lug 2026",
       videoLabel: "Guarda il video",
     },
     basketball: {
       name: "Pallacanestro",
       summary: "Alte prestazioni con standard europei. Connessione diretta con il circuito sportivo italiano e valutazione continua.",
-      selectionDate: "Selezione: 22 giu – 28 giu 2026",
+      selectionDate: "Selezione: 01 lug – 07 lug 2026",
       videoLabel: "Guarda il video",
     },
     volleyball: {
       name: "Pallavolo",
       summary: "Immersione nella pallavolo italiana, riconosciuta a livello mondiale per il suo livello competitivo e la metodologia d'élite.",
-      selectionDate: "Selezione: 29 giu – 05 lug 2026",
+      selectionDate: "Selezione: 08 lug – 14 lug 2026",
       videoLabel: "Guarda il video",
     },
     // cycling: {
@@ -75,7 +75,7 @@ const it = {
     sectionTitle: "I nostri programmi",
     phase1Tag: "Showcase",
     phase1Title: "Showcase Internazionale",
-    phase1Sub: "Tunja, Colombia · 22–28 giu 2026",
+    phase1Sub: "Tunja, Colombia · 1–14 lug 2026",
     phase1Item1: "Competi davanti ad allenatori e valutatori internazionali",
     phase1Item2: "Identificazione di giocatori con potenziale reale",
     phase1Item3: "Valutazione tecnica, tattica e fisica",
@@ -244,7 +244,7 @@ const it = {
   exchangeOverview: {
     eyebrow: "Il programma",
     title: "Un'esperienza che trasforma le carriere",
-    intro: "Il programma si articola in due fasi: un campamento di selezione in Colombia (giugno–luglio 2026) e cicli di sviluppo in Italia da agosto 2026. 300 posti disponibili — i primi 100 iscritti hanno un posto diretto in Italia in gruppi progressivi di 25, con 86 giorni di immersione per ciclo.",
+    intro: "Il programma si articola in due fasi: un campamento di selezione in Colombia (luglio 2026) e cicli di sviluppo in Italia da agosto 2026. 300 posti disponibili — i primi 100 iscritti hanno un posto diretto in Italia in gruppi progressivi di 25, con 86 giorni di immersione per ciclo.",
     objectivesTitle: "Obiettivi dello scambio",
     obj1: "Identificazione del talento competitivo per disciplina",
     obj2: "Valutazione tecnica, tattica, fisica e medica iniziale",
@@ -301,17 +301,17 @@ const it = {
   sportPage: {
     football: {
       headline: "Il calcio colombiano\nha un posto in Italia",
-      selectionDate: "06 lug – 12 lug 2026 · Colombia",
+      selectionDate: "08 lug – 14 lug 2026 · Colombia",
       presentationBody: "La Colombia ha una delle tradizioni calcistiche più ricche dell'America Latina. Con DreamSports, i giovani talenti del calcio colombiano hanno l'opportunità di essere valutati e allenati secondo la metodologia del calcio italiano, uno dei più tattici e riconosciuti al mondo. I selezionati lavoreranno con allenatori certificati, interagiranno con club locali e parteciperanno a dinamiche di osservazione che possono aprire porte reali al calcio professionistico europeo.",
     },
     basketball: {
       headline: "Alte prestazioni.\nStandard europei.\nIl tuo prossimo livello.",
-      selectionDate: "22 giu – 28 giu 2026 · Colombia",
+      selectionDate: "01 lug – 07 lug 2026 · Colombia",
       presentationBody: "Il basket colombiano cresce con vigore e produce ogni anno giocatori dalle eccezionali condizioni fisiche e tecniche. DreamSports offre ai giovani cestisti l'opportunità di misurare il proprio livello rispetto agli standard europei, allenarsi con metodologie ad alte prestazioni e connettersi con il circuito sportivo italiano.",
     },
     volleyball: {
       headline: "La pallavolo italiana\nti sta aspettando",
-      selectionDate: "29 giu – 05 lug 2026 · Colombia",
+      selectionDate: "08 lug – 14 lug 2026 · Colombia",
       presentationBody: "La pallavolo è una delle discipline in maggiore crescita in Colombia. DreamSports apre le porte alla pallavolo italiana, riconosciuta a livello mondiale per il suo livello competitivo. I selezionati potranno vivere una vera esperienza di immersione, allenarsi con metodologie d'élite e condividere spazi con i protagonisti dello sport europeo.",
     },
     // cycling: {
@@ -355,15 +355,15 @@ const it = {
     introBody: "Dream Sports International SRL non è solo un campus sportivo; è una piattaforma di connessione globale progettata per proiettare i giovani talenti (ragazzi e ragazze dai 14 ai 17 anni) verso l'ecosistema professionale europeo. Il nostro approccio combina il rigore tecnico dell'alto rendimento con la formazione integrale della persona.",
     phase1Tag: "Fase 1",
     phase1Title: "Campus Colombia",
-    phase1Location: "Tunja · Giugno – Luglio 2026",
+    phase1Location: "Tunja · Luglio 2026",
     phase1Body: "Uno spazio di valutazione e tecnificazione intensiva dove gli atleti lavoreranno secondo gli standard dei migliori professionisti del paese.",
     phase1DatesTitle: "Discipline e Date:",
     phase1Basketball: "Pallacanestro:",
-    phase1BasketballDate: "22 al 28 giugno 2026",
+    phase1BasketballDate: "1 al 7 luglio 2026",
     phase1Volleyball: "Pallavolo:",
-    phase1VolleyballDate: "29 giugno al 5 luglio 2026",
+    phase1VolleyballDate: "8 al 14 luglio 2026",
     phase1Football: "Calcio:",
-    phase1FootballDate: "6 al 12 luglio 2026",
+    phase1FootballDate: "8 al 14 luglio 2026",
     teamTitle: "Il Nostro Team Elite",
     teamTag: "Colombia",
     xmoveBody: "X-Move Human Performance è un centro specializzato in performance fisica, salute e movimento umano, formato da un team interdisciplinare di preparatori atletici, fisioterapisti e medici sportivi altamente qualificati. Il suo approccio combina scienza ed esperienza pratica per ottimizzare le prestazioni e promuovere lo sviluppo integrale di ogni sportivo a qualsiasi età.",
@@ -446,6 +446,17 @@ const it = {
     copyright: "© 2026 DREAM SPORT'S INTERNATIONAL SRL S.A.S",
     legalId: "NIT: 902.052.688-1 · Matricola: 04085816 · CCB",
     rights: "Tutti i diritti riservati",
+  },
+  announcement: {
+    label: "Comunicato ufficiale",
+    title: "Campus Internazionale 2026 riprogrammato",
+    body: "Per la sicurezza e il benessere dei nostri atleti, abbiamo posticipato l'inizio del campus. Le nuove date sono:",
+    basketball: "Pallacanestro:",
+    basketballDates: "1 al 7 luglio",
+    volleyballFootball: "Pallavolo e Calcio:",
+    volleyballFootballDates: "8 al 14 luglio",
+    cta: "Leggi il comunicato completo",
+    dismiss: "Capito",
   },
   countdown: {
     days: "giorni",
