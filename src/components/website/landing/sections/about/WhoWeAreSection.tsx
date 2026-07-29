@@ -98,6 +98,22 @@ export default function WhoWeAreSection() {
                     {t(`whoWeAre.${key}`)}
                   </Text>
                 ))}
+
+                <View
+                  style={{
+                    marginTop: 16,
+                    paddingTop: 16,
+                    borderTopWidth: 1,
+                    borderTopColor: colors.border,
+                  }}
+                >
+                  <Text style={{ color: colors.ink, fontSize: 14, fontWeight: "800", marginBottom: 4, lineHeight: 20 }}>
+                    {t("whoWeAre.legalItalyTitle")}
+                  </Text>
+                  <Text style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 22 }}>
+                    {t("whoWeAre.legalItalyVat")}
+                  </Text>
+                </View>
               </View>
             </View>
 

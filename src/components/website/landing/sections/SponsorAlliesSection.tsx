@@ -276,18 +276,7 @@ export default function SponsorAlliesSection() {
       originColor: "gold",
       imageSource: require("@/assets/images/vertical/3.png"),
       logoSource: require("@/assets/images/logos/10.png")
-    },
-    {
-      index: 3,
-      logoLabel: "Manos Voley",
-      name: "Manos Voley Club",
-      role: t("experienceFull.manosVoleyRole"),
-      body: t("experienceFull.manosVoleyBody"),
-      originTag: "Colombia",
-      originColor: "gold",
-      imageSource: require("@/assets/images/vertical/4.png"),
-      logoSource: require("@/assets/images/logos/11.png")
-    },
+    }
   ];
 
   return (

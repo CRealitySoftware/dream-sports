@@ -159,7 +159,7 @@ function Phase1Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
               <Text style={{ color: colors.inkMuted, fontSize: 16, lineHeight: 26, marginBottom: 32 }}>
                 {t("experienceFull.phase1Body")}
               </Text>
-              <ImagePlaceholder label="Campus Colombia" width="100%" height={300} colors={colors} uri={require("@/assets/images/horizontal/1.png")} />
+              <ImagePlaceholder label="Selección Colombia" width="100%" height={300} colors={colors} uri={require("@/assets/images/horizontal/1.png")} />
             </View>
 
             <View
@@ -253,20 +253,6 @@ function Phase2Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
         <AnimatedSection variant="fadeUp">
           <View className="flex-col md:flex-row" style={{ alignItems: "center", gap: 48 }}>
             <View style={{ flex: 1 }}>
-              <View
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.12)",
-                  borderRadius: 20,
-                  paddingHorizontal: 14,
-                  paddingVertical: 6,
-                  alignSelf: "flex-start",
-                  marginBottom: 12,
-                }}
-              >
-                <Text style={{ color: colors.gold, fontSize: 11, fontWeight: "700", letterSpacing: 2, textTransform: "uppercase" }}>
-                  {t("experienceFull.phase2Tag")}
-                </Text>
-              </View>
               <Text style={{ color: "rgba(255,255,255,1)", fontSize: 36, fontWeight: "800", letterSpacing: -0.8, marginBottom: 6 }}>
                 {t("experienceFull.phase2Title")}
               </Text>
@@ -276,19 +262,6 @@ function Phase2Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
               <Text style={{ color: "rgba(255,255,255,0.85)", fontSize: 16, lineHeight: 26, marginBottom: 20 }}>
                 {t("experienceFull.phase2Body")}
               </Text>
-              <View
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.08)",
-                  borderRadius: 12,
-                  padding: 20,
-                  borderWidth: 1,
-                  borderColor: "rgba(255,255,255,0.12)",
-                }}
-              >
-                <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: 14, lineHeight: 24 }}>
-                  {t("experienceFull.phase2CycleInfo")}
-                </Text>
-              </View>
             </View>
             <View className="hidden md:flex">
               <ImagePlaceholder
@@ -308,9 +281,9 @@ function Phase2Block({ t, colors }: { t: (k: string) => string; colors: ThemeCol
 
 function ScheduleBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
   const months = [
-    { label: t("experienceFull.scheduleMonth1Label"), body: t("experienceFull.scheduleMonth1Body"), n: "01" },
-    { label: t("experienceFull.scheduleMonths23Label"), body: t("experienceFull.scheduleMonths23Body"), n: "02-03" },
-    { label: t("experienceFull.scheduleCulturalLabel"), body: t("experienceFull.scheduleCulturalBody"), n: "+" },
+    { label: t("experienceFull.scheduleMonth1Label"), body: t("experienceFull.scheduleMonth1Body"), n: "M1" },
+    { label: t("experienceFull.scheduleMonth2Label"), body: t("experienceFull.scheduleMonth2Body"), n: "M2" },
+    { label: t("experienceFull.scheduleMonth3Label"), body: t("experienceFull.scheduleMonth3Body"), n: "M3" },
   ];
 
   return (
@@ -453,7 +426,6 @@ export default function ExperienceFullSection() {
     <View>
       <IntroBlock t={t} colors={colors} />
       <Divider colors={colors} />
-      <Phase1Block t={t} colors={colors} />
       <IncludesBlock t={t} colors={colors} />
       <Phase2Block t={t} colors={colors} />
       <ScheduleBlock t={t} colors={colors} />

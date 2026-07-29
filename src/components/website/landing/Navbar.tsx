@@ -1,4 +1,3 @@
-import AnnouncementBanner from "@/components/ui/AnnouncementBanner";
 import { LaunchBanner } from "@/components/ui/LaunchCountdown";
 import LogoButton from "@/components/ui/LogoButton";
 import { SUPPORT_LANGS } from "@/constants/language";
@@ -47,7 +46,6 @@ export default function Navbar() {
         default: { position: "relative" },
       })}
     >
-      <AnnouncementBanner />
       <LaunchBanner />
       <View
         style={{

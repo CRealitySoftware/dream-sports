@@ -13,7 +13,7 @@ export default function QuienesSomosSection() {
   return (
     <View
       nativeID={SECTIONS_IDS.about.toString()}
-      style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
+      style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <View
         className="py-20 md:py-24 px-6"
@@ -68,25 +68,45 @@ export default function QuienesSomosSection() {
                 {t(`quienesSomos.${key}`)}
               </Text>
             ))}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 8,
-                alignSelf: "flex-start",
-                backgroundColor: colors.brandTint,
-                borderRadius: 8,
-                paddingHorizontal: 12,
-                paddingVertical: 8,
-                marginBottom: 24,
-                borderWidth: 1,
-                borderColor: colors.brand,
-              }}
-            >
-              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.brand }} />
-              <Text style={{ color: colors.brand, fontSize: 11, fontWeight: "700", letterSpacing: 0.5 }}>
-                {t("quienesSomos.legalSeal")}
-              </Text>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10, marginBottom: 24 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 8,
+                  alignSelf: "flex-start",
+                  backgroundColor: colors.brandTint,
+                  borderRadius: 8,
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  borderWidth: 1,
+                  borderColor: colors.brand,
+                }}
+              >
+                <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.brand }} />
+                <Text style={{ color: colors.brand, fontSize: 11, fontWeight: "700", letterSpacing: 0.5 }}>
+                  {t("quienesSomos.legalSeal")}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 8,
+                  alignSelf: "flex-start",
+                  backgroundColor: colors.goldTint,
+                  borderRadius: 8,
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  borderWidth: 1,
+                  borderColor: colors.gold,
+                }}
+              >
+                <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.gold }} />
+                <Text style={{ color: colors.gold, fontSize: 11, fontWeight: "700", letterSpacing: 0.5 }}>
+                  {t("quienesSomos.legalSealItaly")}
+                </Text>
+              </View>
             </View>
 
             <Link

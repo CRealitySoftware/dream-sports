@@ -3,7 +3,6 @@ import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
-import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -80,7 +79,7 @@ function DisciplineCard({
         </Text>
 
         <Text
-          numberOfLines={3}
+          numberOfLines={4}
           style={{
             color: colors.inkMuted,
             fontSize: 13,
@@ -91,27 +90,6 @@ function DisciplineCard({
         >
           {t(`disciplines.${discipline}.summary`)}
         </Text>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 6,
-            marginBottom: 14,
-          }}
-        >
-          <Ionicons name="calendar-outline" size={12} color={colors.gold} />
-          <Text
-            style={{
-              color: colors.gold,
-              fontSize: 11,
-              fontWeight: "600",
-              letterSpacing: 0.2,
-            }}
-          >
-            {t(`disciplines.${discipline}.selectionDate`)}
-          </Text>
-        </View>
         {/* <Pressable
           onPress={() => console.log(discipline)}
           style={({ pressed }: any) => ({

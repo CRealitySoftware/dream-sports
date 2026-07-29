@@ -16,9 +16,9 @@ export default function SportHeroSection({ sportId }: Props) {
   return <PageHero
     variant="image"
     imageSource={image}
-    badge={t(`sportPage.${sportId}.selectionDate`)}
+    // badge={t(`sportPage.${sportId}.selectionDate`)}
     title={t(`disciplines.${sportId}.name`)}
-    subtitle={t(`sportPage.${sportId}.headline`)}
+    // subtitle={t(`sportPage.${sportId}.headline`)}
     minHeightScale={isDesktop ? 0.65 : 0.55}
   />
 }

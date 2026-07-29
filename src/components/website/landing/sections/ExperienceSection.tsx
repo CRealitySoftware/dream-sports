@@ -3,6 +3,7 @@ import { SECTIONS_IDS } from "@/constants/landing";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
+import { Ionicons } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 
 const STEPS = [
@@ -166,6 +167,94 @@ function MobileTimeline({ t, colors }: { t: (k: string) => string; colors: Theme
   )
 }
 
+function PermanenceCard({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.surface,
+        borderWidth: 1,
+        borderColor: colors.border,
+        borderLeftWidth: 4,
+        borderLeftColor: colors.brand,
+        borderRadius: 12,
+        padding: 28,
+      }}
+    >
+      <View
+        style={{
+          alignSelf: "flex-start",
+          backgroundColor: colors.brandTint,
+          borderRadius: 20,
+          paddingHorizontal: 12,
+          paddingVertical: 5,
+          marginBottom: 16,
+        }}
+      >
+        <Text style={{ color: colors.brand, fontSize: 11, fontWeight: "700", letterSpacing: 1.5, textTransform: "uppercase" }}>
+          {t("experience.permanenceTag")}
+        </Text>
+      </View>
+      <Text style={{ color: colors.ink, fontSize: 18, fontWeight: "800", marginBottom: 10 }}>
+        {t("experience.permanenceTitle")}
+      </Text>
+      <Text style={{ color: colors.inkMuted, fontSize: 14, lineHeight: 22, marginBottom: 14 }}>
+        {t("experience.permanenceBody")}
+      </Text>
+      <Text style={{ color: colors.ink, fontSize: 13, lineHeight: 20, fontWeight: "700" }}>
+        {t("experience.permanenceNote")}
+      </Text>
+    </View>
+  )
+}
+
+function LegalCard({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
+  const items = ["legalItem1", "legalItem2", "legalItem3"] as const
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.surface,
+        borderWidth: 1,
+        borderColor: colors.border,
+        borderLeftWidth: 4,
+        borderLeftColor: colors.gold,
+        borderRadius: 12,
+        padding: 28,
+      }}
+    >
+      <View
+        style={{
+          alignSelf: "flex-start",
+          backgroundColor: colors.goldTint,
+          borderRadius: 20,
+          paddingHorizontal: 12,
+          paddingVertical: 5,
+          marginBottom: 16,
+        }}
+      >
+        <Text style={{ color: colors.gold, fontSize: 11, fontWeight: "700", letterSpacing: 1.5, textTransform: "uppercase" }}>
+          {t("experience.legalTag")}
+        </Text>
+      </View>
+      <Text style={{ color: colors.ink, fontSize: 18, fontWeight: "800", marginBottom: 14 }}>
+        {t("experience.legalTitle")}
+      </Text>
+      <View style={{ gap: 12 }}>
+        {items.map((key) => (
+          <View key={key} style={{ flexDirection: "row", gap: 10, alignItems: "flex-start" }}>
+            <Ionicons name="checkmark-circle" size={16} color={colors.gold} style={{ marginTop: 2 }} />
+            <Text style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 20, flex: 1 }}>
+              {t(`experience.${key}`)}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </View>
+  )
+}
+
 export default function ExperienceSection() {
   const { t } = useTranslation()
   const { colors } = useTheme()
@@ -174,7 +263,7 @@ export default function ExperienceSection() {
     <View
       nativeID={SECTIONS_IDS.experience.toString()}
       style={{
-        backgroundColor: colors.surfaceElevated,
+        backgroundColor: colors.bg,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}
@@ -221,6 +310,11 @@ export default function ExperienceSection() {
 
           <DesktopTimeline t={t} colors={colors} />
           <MobileTimeline t={t} colors={colors} />
+
+          <View className="flex-col md:flex-row" style={{ gap: 20, marginTop: 56 }}>
+            <PermanenceCard t={t} colors={colors} />
+            <LegalCard t={t} colors={colors} />
+          </View>
 
           <View style={{ alignItems: "center", marginTop: 64 }}>
             <Text

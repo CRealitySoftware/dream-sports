@@ -11,11 +11,16 @@ import { ScrollView } from "react-native";
 export default function AboutPage() {
     return (
         <ScrollView>
+            {/*  */}
             <HeroAbout />
-            <WhoWeAreSection />
+            
+            {/* Constitucion legal en roma */}
+            <WhoWeAreSection /> 
+            
             <ValuePillarsSection />
             <AboutMissionVisionSection />
             <ExchangeOverviewSection />
+            {/* Quitar objetivos de intercambio -> Organización de grupos para los ciclos en Italia | Evaluación técnica, táctica y física inicial*/}
             <StrengthsSection />
             <AboutCtaSection />
             <FooterSection />

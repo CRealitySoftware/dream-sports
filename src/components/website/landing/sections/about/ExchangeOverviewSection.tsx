@@ -3,7 +3,7 @@ import { useTranslation } from "@/i18n/I18nProvider";
 import { Text, View } from "react-native";
 
 const STATS = [
-  { valueKey: "exchangeOverview.stat1Value", labelKey: "exchangeOverview.stat1Label" },
+  // { valueKey: "exchangeOverview.stat1Value", labelKey: "exchangeOverview.stat1Label" },
   { valueKey: "exchangeOverview.stat2Value", labelKey: "exchangeOverview.stat2Label" },
   { valueKey: "exchangeOverview.stat3Value", labelKey: "exchangeOverview.stat3Label" },
   { valueKey: "exchangeOverview.stat4Value", labelKey: "exchangeOverview.stat4Label" },
@@ -14,7 +14,7 @@ const OBJECTIVES = [
   "exchangeOverview.obj2",
   "exchangeOverview.obj3",
   "exchangeOverview.obj4",
-  "exchangeOverview.obj5",
+  // "exchangeOverview.obj5",
 ] as const
 
 const OPPORTUNITIES = [

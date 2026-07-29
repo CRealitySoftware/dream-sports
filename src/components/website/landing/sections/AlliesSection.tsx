@@ -13,7 +13,6 @@ const CAROUSEL_LOGOS = [
   require("@/assets/images/logos/1.png"),
   require("@/assets/images/logos/2.png"),
   require("@/assets/images/logos/3.png"),
-  require("@/assets/images/logos/4.png"),
   require("@/assets/images/logos/5.png"),
   require("@/assets/images/logos/6.png"),
   require("@/assets/images/logos/7.png"),
@@ -295,7 +294,7 @@ export default function AlliesSection() {
   return (
     <View
       nativeID={SECTIONS_IDS.allies.toString()}
-      style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
+      style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <AnimatedSection variant="fadeUp">
         <View

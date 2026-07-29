@@ -5,7 +5,8 @@ import AlliesSection from "@/components/website/landing/sections/AlliesSection";
 import DisciplinesSection from "@/components/website/landing/sections/DisciplinesSection";
 import ExperienceSection from "@/components/website/landing/sections/ExperienceSection";
 import FooterSection from "@/components/website/landing/sections/FooterSection";
-import ProgramSection from "@/components/website/landing/sections/ProgramSection";
+import InstitutionalAllianceSection from "@/components/website/landing/sections/InstitutionalAllianceSection";
+import InvestmentSection from "@/components/website/landing/sections/InvestmentSection";
 import QuienesSomosSection from "@/components/website/landing/sections/QuienesSomosSection";
 import RegistrationSection from "@/components/website/landing/sections/RegistrationSection";
 import VideoSection from "@/components/website/landing/sections/VideoSection";
@@ -18,14 +19,13 @@ export default function LandingPage() {
       <AnimatedSection variant="fadeIn">
         <QuienesSomosSection />
       </AnimatedSection>
+      <InstitutionalAllianceSection />
       <AboutMissionVisionSection variant="surfaceMuted" />
-      <AnimatedSection variant="fadeIn">
-        <ProgramSection />
-      </AnimatedSection>
       <VideoSection />
       <DisciplinesSection />
       <ExperienceSection />
       <AlliesSection />
+      <InvestmentSection />
       <RegistrationSection />
       <FooterSection />
     </ScrollView>

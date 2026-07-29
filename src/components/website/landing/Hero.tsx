@@ -28,7 +28,7 @@ export default function Hero({ variant = "plain" }: HeroProps) {
       primaryCta={{ label: t("hero.cta"), onPress: () => router.push("/(web)/register") }}
       secondaryCta={{ label: t("hero.ctaSecondary"), onPress: () => Linking.openURL(WHATSAPP_URL) }}
       stats={[
-        { value: 300, label: t("stats.spots") },
+        // { value: 300, label: t("stats.spots") },
         { value: 3, label: t("stats.disciplines") },
         { value: 86, label: t("stats.days") },
       ]}
