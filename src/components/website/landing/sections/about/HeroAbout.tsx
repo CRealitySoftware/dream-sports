@@ -1,4 +1,4 @@
-import Background from "@/assets/images/sports/team.jpg";
+import Background from "@/assets/images/uploads/basketball-action.jpg";
 import PageHero from "@/components/ui/PageHero";
 import { useTranslation } from "@/i18n/I18nProvider";
 

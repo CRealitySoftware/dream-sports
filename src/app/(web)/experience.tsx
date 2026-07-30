@@ -1,3 +1,4 @@
+import Background from "@/assets/images/uploads/volleyball-action.jpg";
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
 import ExperienceFullSection from '@/components/website/landing/sections/ExperienceFullSection';
@@ -11,7 +12,8 @@ export default function Page() {
     return (
         <ScrollView>
             <PageHero
-                variant="plain"
+                imageSource={Background}
+                variant="image"
                 badge={t("experienceHero.eyebrow")}
                 title={t("experienceHero.headline")}
                 subtitle={t("experienceHero.subheadline")}

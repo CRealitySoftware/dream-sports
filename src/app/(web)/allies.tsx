@@ -1,3 +1,4 @@
+import Background from "@/assets/images/uploads/soccer-match-italy.jpg";
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
 import FooterSection from '@/components/website/landing/sections/FooterSection';
@@ -11,7 +12,8 @@ export default function Page() {
     return (
         <ScrollView>
             <PageHero
-                variant="plain"
+                imageSource={Background}
+                variant="image"
                 badge={t("sponsors.sectionTag")}
                 title={t("sponsors.sectionTitle")}
                 subtitle={t("sponsors.subtitle")}
