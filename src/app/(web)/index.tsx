@@ -1,4 +1,6 @@
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
+import SeoHead from "@/components/seo/SeoHead";
 import Hero from "@/components/website/landing/Hero";
 import AboutMissionVisionSection from "@/components/website/landing/sections/about/AboutMissionVisionSection";
 import AlliesSection from "@/components/website/landing/sections/AlliesSection";
@@ -15,6 +17,12 @@ import { ScrollView } from "react-native";
 export default function LandingPage() {
   return (
     <ScrollView>
+      <SeoHead
+        title="Programa Internacional Roma 2026"
+        description="Inmersión deportiva y reclutamiento en Europa. Conectamos talento colombiano en fútbol, baloncesto y voleibol con el ecosistema profesional italiano."
+        path="/"
+      />
+      <OrganizationJsonLd />
       <Hero variant="video" />
       <AnimatedSection variant="fadeIn">
         <QuienesSomosSection />

@@ -1,4 +1,5 @@
 import Background from "@/assets/images/uploads/volleyball-action.jpg";
+import SeoHead from '@/components/seo/SeoHead';
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
 import ExperienceFullSection from '@/components/website/landing/sections/ExperienceFullSection';
@@ -11,6 +12,11 @@ export default function Page() {
     const { t } = useTranslation()
     return (
         <ScrollView>
+            <SeoHead
+                title="La Experiencia: 86 Días en Roma"
+                description="Selección, preparación e inmersión en Italia. Descubre cómo es la experiencia completa del programa Dream Sports International."
+                path="/experience"
+            />
             <PageHero
                 imageSource={Background}
                 variant="image"

@@ -8,7 +8,8 @@ export default function WebLayout() {
   return (
     <>
       <Head>
-        <title>Dream Sports</title>
+        <title>Dream Sports International</title>
+        <meta name="description" content="Programa internacional que conecta talento deportivo colombiano con el ecosistema profesional europeo. Fútbol, baloncesto y voleibol. Roma 2026." />
       </Head>
       <View style={{ flex: 1 }}>
         <Navbar />

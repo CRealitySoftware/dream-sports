@@ -1,4 +1,5 @@
 import Background from '@/assets/images/sports/bg6.jpg';
+import SeoHead from '@/components/seo/SeoHead';
 import PageHero from '@/components/ui/PageHero';
 import AboutCtaSection from '@/components/website/landing/sections/about/AboutCtaSection';
 import DisciplinesSection from '@/components/website/landing/sections/DisciplinesSection';
@@ -13,6 +14,11 @@ export default function Page() {
 
     return (
         <ScrollView>
+            <SeoHead
+                title="Disciplinas: Fútbol, Baloncesto y Voleibol"
+                description="Formación y competencia en fútbol, baloncesto y voleibol. Conoce las tres disciplinas del programa Dream Sports International en Italia."
+                path="/sports"
+            />
             <PageHero
                 minHeightScale={0.8}
                 variant="image"

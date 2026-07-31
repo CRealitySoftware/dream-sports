@@ -1,5 +1,6 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/sports/:id", "destination": "/sports/[id].html" }
+  ]
+}

@@ -1,3 +1,4 @@
+import SeoHead from "@/components/seo/SeoHead";
 import AboutCtaSection from "@/components/website/landing/sections/about/AboutCtaSection";
 import AboutMissionVisionSection from "@/components/website/landing/sections/about/AboutMissionVisionSection";
 import ExchangeOverviewSection from "@/components/website/landing/sections/about/ExchangeOverviewSection";
@@ -11,6 +12,11 @@ import { ScrollView } from "react-native";
 export default function AboutPage() {
     return (
         <ScrollView>
+            <SeoHead
+                title="Quiénes Somos"
+                description="Dream Sports International es la plataforma que conecta el talento deportivo colombiano con clubes, academias y el ecosistema profesional de Italia."
+                path="/about"
+            />
             {/*  */}
             <HeroAbout />
             
