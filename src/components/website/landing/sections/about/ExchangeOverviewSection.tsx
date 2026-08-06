@@ -71,7 +71,7 @@ export default function ExchangeOverviewSection() {
           </Text>
         </View>
 
-        <View style={{ alignItems: "center", marginBottom: 48 }}>
+        {/* <View style={{ alignItems: "center", marginBottom: 48 }}>
           <Text
             style={{
               color: colors.inkMuted,
@@ -83,7 +83,7 @@ export default function ExchangeOverviewSection() {
           >
             {t("exchangeOverview.intro")}
           </Text>
-        </View>
+        </View> */}
 
         <View
           className="flex-row flex-wrap"
