@@ -31,7 +31,7 @@ export default function VideoSection() {
   return (
     <View
       style={{
-        backgroundColor: colors.bg,
+        backgroundColor: colors.surfaceMuted,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}

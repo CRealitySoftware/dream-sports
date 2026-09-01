@@ -13,7 +13,7 @@ export default function QuienesSomosSection() {
   return (
     <View
       nativeID={SECTIONS_IDS.about.toString()}
-      style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}
+      style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <View
         className="py-20 md:py-24 px-6"

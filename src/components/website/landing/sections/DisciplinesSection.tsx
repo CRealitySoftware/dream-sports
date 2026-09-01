@@ -126,7 +126,7 @@ export default function DisciplinesSection() {
     <View
       nativeID={SECTIONS_IDS.sports.toString()}
       style={{
-        backgroundColor: colors.surfaceMuted,
+        backgroundColor: colors.bg,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}

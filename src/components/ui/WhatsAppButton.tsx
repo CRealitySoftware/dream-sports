@@ -1,7 +1,7 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Linking, Pressable } from "react-native";
 
-const WA_URL = "https://wa.me/message/GUFDRCKD6B2DN1";
+const WA_URL = "https://wa.me/573217823700";
 
 export default function WhatsAppButton() {
   return (

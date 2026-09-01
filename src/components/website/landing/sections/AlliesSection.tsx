@@ -294,7 +294,7 @@ export default function AlliesSection() {
   return (
     <View
       nativeID={SECTIONS_IDS.allies.toString()}
-      style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}
+      style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}
     >
       <AnimatedSection variant="fadeUp">
         <View

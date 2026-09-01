@@ -9,6 +9,7 @@ import ExperienceSection from "@/components/website/landing/sections/ExperienceS
 import FooterSection from "@/components/website/landing/sections/FooterSection";
 import InstitutionalAllianceSection from "@/components/website/landing/sections/InstitutionalAllianceSection";
 import InvestmentSection from "@/components/website/landing/sections/InvestmentSection";
+import ProjectManagersSection from "@/components/website/landing/sections/ProjectManagersSection";
 import QuienesSomosSection from "@/components/website/landing/sections/QuienesSomosSection";
 import RegistrationSection from "@/components/website/landing/sections/RegistrationSection";
 import VideoSection from "@/components/website/landing/sections/VideoSection";
@@ -28,7 +29,8 @@ export default function LandingPage() {
         <QuienesSomosSection />
       </AnimatedSection>
       <InstitutionalAllianceSection />
-      <AboutMissionVisionSection variant="surfaceMuted" />
+      <ProjectManagersSection />
+      <AboutMissionVisionSection variant="surface" />
       <VideoSection />
       <DisciplinesSection />
       <ExperienceSection />

@@ -3,7 +3,7 @@ import { useTranslation } from "@/i18n/I18nProvider";
 import { useRouter } from "expo-router";
 import { Linking } from "react-native";
 
-const WHATSAPP_URL = "https://wa.me/message/GUFDRCKD6B2DN1";
+const WHATSAPP_URL = "https://wa.me/573217823700";
 
 const BG_IMAGE = require("../../../../assets/images/sports/football-bg.jpg")
 const BG_VIDEO = require("../../../../assets/images/sports/footbal-bg-video.mp4")

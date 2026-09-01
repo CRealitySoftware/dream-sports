@@ -2,6 +2,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
+import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
@@ -358,6 +359,112 @@ function VillaBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColo
   );
 }
 
+function VillaFacilitiesBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
+  const facilities = [
+    { label: t("experienceFull.villaFacilityGreenLabel"), body: t("experienceFull.villaFacilityGreenBody"), uri: require("@/assets/images/rooms/5.jpeg") },
+    { label: t("experienceFull.villaFacilityPoolLabel"), body: t("experienceFull.villaFacilityPoolBody"), uri: require("@/assets/images/rooms/3.jpeg") },
+    { label: t("experienceFull.villaFacilityHouseLabel"), body: t("experienceFull.villaFacilityHouseBody"), uri: require("@/assets/images/rooms/4.jpeg") },
+    { label: t("experienceFull.villaFacilityCommonLabel"), body: t("experienceFull.villaFacilityCommonBody"), uri: require("@/assets/images/rooms/6.jpeg") },
+  ];
+
+  return (
+    <View style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border, paddingVertical: 80, paddingHorizontal: 24 }}>
+      <View style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}>
+        <AnimatedSection variant="fadeUp">
+          <SectionTag label={t("experienceFull.villaFacilitiesTag")} colors={colors} />
+          <Text style={{ color: colors.ink, fontSize: 32, fontWeight: "800", letterSpacing: -0.6, marginBottom: 48 }}>
+            {t("experienceFull.villaFacilitiesTitle")}
+          </Text>
+        </AnimatedSection>
+
+        <View className="flex-col md:flex-row" style={{ gap: 20 }}>
+          {facilities.map((f, i) => (
+            <AnimatedSection key={f.label} variant="fadeUp" delay={i * 70} style={{ flex: 1 }}>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: colors.surface,
+                  borderWidth: 1,
+                  borderColor: colors.border,
+                  borderRadius: 16,
+                  overflow: "hidden",
+                }}
+              >
+                <ImagePlaceholder label={f.label} width="100%" height={180} colors={colors} uri={f.uri} />
+                <View style={{ padding: 20 }}>
+                  <Text style={{ color: colors.ink, fontSize: 17, fontWeight: "800", marginBottom: 8 }}>
+                    {f.label}
+                  </Text>
+                  <Text style={{ color: colors.inkMuted, fontSize: 13, lineHeight: 21 }}>
+                    {f.body}
+                  </Text>
+                </View>
+              </View>
+            </AnimatedSection>
+          ))}
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function VillaRoomsBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
+  return (
+    <View style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border, paddingVertical: 80, paddingHorizontal: 24 }}>
+      <View style={{ maxWidth: 1120, alignSelf: "center", width: "100%" }}>
+        <AnimatedSection variant="fadeUp">
+          <SectionTag label={t("experienceFull.villaRoomsTag")} colors={colors} />
+          <Text style={{ color: colors.ink, fontSize: 32, fontWeight: "800", letterSpacing: -0.6, marginBottom: 40 }}>
+            {t("experienceFull.villaRoomsTitle")}
+          </Text>
+
+          <View className="flex-col md:flex-row" style={{ gap: 48, alignItems: "flex-start" }}>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: colors.surfaceElevated,
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: colors.border,
+                padding: 28,
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                <Ionicons name="people" size={18} color={colors.gold} />
+                <Text style={{ color: colors.ink, fontSize: 16, fontWeight: "800" }}>
+                  {t("experienceFull.villaRoomsCapacity")}
+                </Text>
+              </View>
+              <Text style={{ color: colors.inkMuted, fontSize: 15, lineHeight: 25, marginBottom: 20 }}>
+                {t("experienceFull.villaRoomsBody")}
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  gap: 10,
+                  backgroundColor: colors.brandTint,
+                  borderRadius: 12,
+                  padding: 16,
+                }}
+              >
+                <Ionicons name="sparkles" size={16} color={colors.brand} style={{ marginTop: 2 }} />
+                <Text style={{ color: colors.brand, fontSize: 14, lineHeight: 21, fontWeight: "700", flex: 1 }}>
+                  {t("experienceFull.villaRoomsQuote")}
+                </Text>
+              </View>
+            </View>
+
+            <View style={{ flex: 1, flexDirection: "row", gap: 12 }}>
+              <ImagePlaceholder label="Habitación" width="50%" height={280} colors={colors} uri={require("@/assets/images/rooms/1.jpeg")} />
+              <ImagePlaceholder label="Baño" width="50%" height={280} colors={colors} uri={require("@/assets/images/rooms/2.jpeg")} />
+            </View>
+          </View>
+        </AnimatedSection>
+      </View>
+    </View>
+  );
+}
+
 function ProjectionBlock({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
   const protocols = [
     { label: t("experienceFull.projectionDirectLabel"), body: t("experienceFull.projectionDirectBody"), n: "01" },
@@ -426,10 +533,11 @@ export default function ExperienceFullSection() {
     <View>
       <IntroBlock t={t} colors={colors} />
       <Divider colors={colors} />
-      <IncludesBlock t={t} colors={colors} />
       <Phase2Block t={t} colors={colors} />
       <ScheduleBlock t={t} colors={colors} />
       <VillaBlock t={t} colors={colors} />
+      <VillaFacilitiesBlock t={t} colors={colors} />
+      <VillaRoomsBlock t={t} colors={colors} />
       <ProjectionBlock t={t} colors={colors} />
     </View>
   );

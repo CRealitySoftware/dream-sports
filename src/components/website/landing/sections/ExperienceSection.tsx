@@ -4,7 +4,9 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/i18n/I18nProvider";
 import type { ThemeColors } from "@/providers/ThemeProvider";
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Image } from "expo-image";
+import { useRouter } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 
 const STEPS = [
   { n: "1", numKey: "step1Number", titleKey: "step1Title", dateKey: "step1Date", bodyKey: "step1Body" },
@@ -46,70 +48,6 @@ function StepCircle({
       >
         {label}
       </Text>
-    </View>
-  )
-}
-
-function DesktopTimeline({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
-  return (
-    <View className="hidden md:flex" style={{ position: "relative" }}>
-      <View
-        style={{
-          position: "absolute",
-          top: 24,
-          left: "12.5%",
-          right: "12.5%",
-          height: 1,
-          backgroundColor: colors.border,
-        }}
-      />
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        {STEPS.map((step, i) => (
-          <View key={step.n} style={{ flex: 1, alignItems: "center", paddingHorizontal: 8 }}>
-            <StepCircle
-              label={t(`experience.${step.numKey}`)}
-              isFirst={i === 0}
-              size={48}
-              colors={colors}
-            />
-            <Text
-              style={{
-                color: colors.ink,
-                fontSize: 15,
-                fontWeight: "800",
-                marginTop: 16,
-                marginBottom: 4,
-                textAlign: "center",
-              }}
-            >
-              {t(`experience.${step.titleKey}`)}
-            </Text>
-            <Text
-              style={{
-                color: colors.gold,
-                fontSize: 11,
-                fontWeight: "600",
-                letterSpacing: 0.5,
-                marginBottom: 10,
-                textAlign: "center",
-              }}
-            >
-              {t(`experience.${step.dateKey}`)}
-            </Text>
-            <Text
-              numberOfLines={3}
-              style={{
-                color: colors.inkMuted,
-                fontSize: 13,
-                lineHeight: 20,
-                textAlign: "center",
-              }}
-            >
-              {t(`experience.${step.bodyKey}`)}
-            </Text>
-          </View>
-        ))}
-      </View>
     </View>
   )
 }
@@ -255,6 +193,81 @@ function LegalCard({ t, colors }: { t: (k: string) => string; colors: ThemeColor
   )
 }
 
+const VILLA_FACILITIES_PREVIEW = [
+  { labelKey: "experienceFull.villaFacilityGreenLabel", uri: require("@/assets/images/rooms/5.jpeg") },
+  { labelKey: "experienceFull.villaFacilityPoolLabel", uri: require("@/assets/images/rooms/3.jpeg") },
+  { labelKey: "experienceFull.villaFacilityHouseLabel", uri: require("@/assets/images/rooms/4.jpeg") },
+  { labelKey: "experienceFull.villaFacilityCommonLabel", uri: require("@/assets/images/rooms/6.jpeg") },
+] as const
+
+function VillaPreviewCard({ t, colors }: { t: (k: string) => string; colors: ThemeColors }) {
+  const { push } = useRouter()
+
+  return (
+    <View style={{ marginTop: 56 }}>
+      <View
+        className="flex-col md:flex-row"
+        style={{ justifyContent: "space-between", alignItems: "center", gap: 16, marginBottom: 24 }}
+      >
+        <View>
+          <View
+            style={{
+              backgroundColor: colors.goldTint,
+              borderRadius: 20,
+              paddingHorizontal: 12,
+              paddingVertical: 5,
+              alignSelf: "flex-start",
+              marginBottom: 10,
+            }}
+          >
+            <Text style={{ color: colors.gold, fontSize: 11, fontWeight: "700", letterSpacing: 1.5, textTransform: "uppercase" }}>
+              {t("experience.villaPreviewTag")}
+            </Text>
+          </View>
+          <Text style={{ color: colors.ink, fontSize: 22, fontWeight: "800" }}>
+            {t("experience.villaPreviewTitle")}
+          </Text>
+        </View>
+        <Pressable
+          onPress={() => push("/(web)/experience")}
+          style={({ pressed }: any) => ({
+            backgroundColor: pressed ? colors.gold : colors.cta,
+            borderRadius: 24,
+            paddingVertical: 12,
+            paddingHorizontal: 24,
+          })}
+        >
+          <Text style={{ color: colors.ctaText, fontSize: 14, fontWeight: "800" }}>
+            {t("experience.villaPreviewCta")}
+          </Text>
+        </Pressable>
+      </View>
+
+      <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
+        {VILLA_FACILITIES_PREVIEW.map((f) => (
+          <View
+            key={f.labelKey}
+            style={{
+              width: "48%",
+              borderRadius: 14,
+              overflow: "hidden",
+              borderWidth: 1,
+              borderColor: colors.border,
+            }}
+          >
+            <Image source={f.uri} style={{ width: "100%", height: 150 }} contentFit="cover" />
+            <View style={{ paddingVertical: 10, backgroundColor: colors.surface }}>
+              <Text style={{ color: colors.ink, fontSize: 13, fontWeight: "700", textAlign: "center" }}>
+                {t(f.labelKey)}
+              </Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </View>
+  )
+}
+
 export default function ExperienceSection() {
   const { t } = useTranslation()
   const { colors } = useTheme()
@@ -263,7 +276,7 @@ export default function ExperienceSection() {
     <View
       nativeID={SECTIONS_IDS.experience.toString()}
       style={{
-        backgroundColor: colors.bg,
+        backgroundColor: colors.surfaceMuted,
         borderTopWidth: 1,
         borderTopColor: colors.border,
       }}
@@ -307,50 +320,12 @@ export default function ExperienceSection() {
               {t("experience.sectionTitle")}
             </Text>
           </View>
-
-          <DesktopTimeline t={t} colors={colors} />
-          <MobileTimeline t={t} colors={colors} />
-
           <View className="flex-col md:flex-row" style={{ gap: 20, marginTop: 56 }}>
             <PermanenceCard t={t} colors={colors} />
             <LegalCard t={t} colors={colors} />
           </View>
 
-          <View style={{ alignItems: "center", marginTop: 64 }}>
-            <Text
-              style={{
-                color: colors.inkMuted,
-                fontSize: 15,
-                lineHeight: 26,
-                textAlign: "center",
-                maxWidth: 600,
-                marginBottom: 32,
-              }}
-            >
-              {t("experience.closingText")}
-            </Text>
-            {/* <Pressable
-              onPress={() => scrollToSection(SECTIONS_IDS.registration.toString())}
-              style={({ pressed }: any) => ({
-                backgroundColor: pressed ? colors.gold : colors.cta,
-                paddingHorizontal: 36,
-                paddingVertical: 16,
-                borderRadius: 40,
-                opacity: pressed ? 0.9 : 1,
-              })}
-            >
-              <Text
-                style={{
-                  color: colors.ctaText,
-                  fontSize: 15,
-                  fontWeight: "800",
-                  letterSpacing: 0.3,
-                }}
-              >
-                {t("experience.cta")}
-              </Text>
-            </Pressable> */}
-          </View>
+          <VillaPreviewCard t={t} colors={colors} />
         </View>
       </AnimatedSection>
     </View>

@@ -57,7 +57,7 @@ export default function InstitutionalAllianceSection() {
   const { colors } = useTheme()
 
   return (
-    <View style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}>
+    <View style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}>
       <AnimatedSection variant="fadeUp">
         <View
           className="py-16 md:py-20 px-6"

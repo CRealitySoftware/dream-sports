@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { labelKey: "nav.disciplinas", route: "/(web)/sports" },
   { labelKey: "nav.experiencia", route: "/(web)/experience" },
   { labelKey: "nav.aliados", route: "/(web)/allies" },
+  { labelKey: "nav.convenios", route: "/(web)/convenios" },
 ] as const
 
 export default function Navbar() {

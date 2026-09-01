@@ -109,7 +109,7 @@ export default function InvestmentSection() {
   const { colors } = useTheme()
 
   return (
-    <View style={{ backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border }}>
+    <View style={{ backgroundColor: colors.surfaceMuted, borderTopWidth: 1, borderTopColor: colors.border }}>
       <AnimatedSection variant="fadeUp">
         <View
           className="py-20 md:py-24 px-6"
