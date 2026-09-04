@@ -493,7 +493,7 @@ const es = {
     eyebrow: "Respaldo institucional",
     title: "Alianzas institucionales",
     coniTitle: "CONI & Gobernación de Roma",
-    coniBody: "La carta de invitación oficial para los deportistas es emitida directamente por el Comité Olímpico Nacional Italiano (CONI), que junto a la Gobernación de Roma garantiza a nuestro proyecto estatus y respaldo gubernamental.",
+    coniBody: "Nuestro proyecto cuenta con el respaldo institucional del Comité Olímpico Nacional Italiano (CONI) y el apoyo gubernamental de la ciudad de Roma, lo que garantiza el máximo estatus, credibilidad y aval internacional para la experiencia de los deportistas",
     routeTitle: "Ruta directa Bogotá – Roma",
     routeBody: "Gestionamos junto a Iberia la apertura de la ruta directa Bogotá – Roma sin escalas, facilitando el traslado seguro y eficiente de nuestros atletas.",
   },

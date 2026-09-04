@@ -493,7 +493,7 @@ const it = {
     eyebrow: "Sostegno istituzionale",
     title: "Alleanze istituzionali",
     coniTitle: "CONI & Comune di Roma",
-    coniBody: "La lettera di invito ufficiale per gli atleti viene emessa direttamente dal Comitato Olimpico Nazionale Italiano (CONI), che insieme al Comune di Roma garantisce al nostro progetto status e sostegno governativo.",
+    coniBody: "Il nostro progetto gode del supporto istituzionale del Comitato Olimpico Nazionale Italiano (CONI) e del sostegno governativo della città di Roma, garantendo il massimo status, credibilità e riconoscimento internazionale per l'esperienza degli atleti.",
     routeTitle: "Rotta diretta Bogotà – Roma",
     routeBody: "Stiamo lavorando con Iberia per l'apertura della rotta diretta Bogotà – Roma senza scali, facilitando il trasferimento sicuro ed efficiente dei nostri atleti.",
   },
